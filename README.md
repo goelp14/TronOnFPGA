@@ -43,3 +43,5 @@ Week 4: Finish implementing basic features, Implement sounds and different playi
 - menu
 - life, score, etc
 
+## Mockup
+![mockup](sprite_png/mockup.png?raw=true)
