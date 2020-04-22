@@ -3,4 +3,4 @@ palette_hex = [ '0xffffff', '0x0e0e0e','0x3b3b3b','0x2195f3','0x00bbd4', '0xcf10
 
 palette background: 242424 - background grey, 2195f3 - blue border, -0xFCFCFC text background -0e0e0e - tyres and shadow
 
-
+Hearts: f200ff - clear background, 00bbd4 - color indicator (equal red color for the other player), ffffff - middle part
