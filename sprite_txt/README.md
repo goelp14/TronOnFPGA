@@ -5,4 +5,9 @@
 
 ![trail vert](../sprite_png/trail_vert.png?raw=true)
 ![trail horiz](../sprite_png/trail_horiz.png?raw=true)
-![trail_corner](../sprite_png/trail_corner.png?raw=true)
+
+![hearts](../sprite_png/hearts.png?raw=true)
+
+![background](../sprite_png/background.png?raw=true)
+
+![mockup](../sprite_png/mockup.png?raw=true)
