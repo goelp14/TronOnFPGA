@@ -1,4 +1,6 @@
-palette_hex = [ '0xffffff', '0x242424','0x3b3b3b','0x2195f3','0x00bbd4', '0xcf1010', '0xff5252', '0x0058F8', '0xFCFCFC', '0xBCBCBC', '0xA40000', '0xD82800', '0xFC7460', '0xFCBCB0', '0xF0BC3C', '0xAEACAE']
+palette_hex = [ '0xffffff', '0x0e0e0e','0x3b3b3b','0x2195f3','0x00bbd4', '0xcf1010', '0xff5252', '0x0058F8', '0xFCFCFC', '0xBCBCBC', '0xA40000', '0xD82800', '0xFC7460', '0xFCBCB0', '0xF0BC3C', '0xAEACAE']
 # white, dark grey (tyres), light grey, bike blue ,light trail blue, bike red, light trail red,
 
-palette background: 242424 - background grey, 2195f3 - blue border
+palette background: 242424 - background grey, 2195f3 - blue border, -0xFCFCFC text background -0e0e0e - tyres and shadow
+
+
