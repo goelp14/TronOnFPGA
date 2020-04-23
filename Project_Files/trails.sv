@@ -8,10 +8,20 @@ module trails ( input        Clk,                // 50 MHz clock
 					input logic [1:0] Blue_dir, Red_dir
 					);
 					
-					// play area is 464x464
-					// 5*464^2 = 1076480 bits = 1.07 Mb
-					// if 4x4 subdivide = .06 Mb
+					// play area is 448x448
+					// 14x14 offset from top left corner
+					
+					// 464^2 = 200704 Bytes
+					// if 4x4 subdivide = 12544 Bytes
 					// can put in sram or OCM
+					
+					logic [6:0] x_grid_blue, x_grid_red, y_grid_blue, y_grid_red;
+					
+					assign x_grid_blue = Blue_X / 4;
+					assign y_grid_blue = Blue_Y / 4;
+					assign x_grid_red  = Red_X  / 4;
+					assign y_grid_red  = Red_Y  / 4;
+					
 					
 
 endmodule
