@@ -10,17 +10,26 @@ module score ( input         Clk,                // 50 MHz clock
 					input logic collision_blue, collision_red,
                output logic [1:0] score_blue, score_red
 				 );
-				 
-				 
+	
+	logic [1:0] score_blue_reg, score_red_reg;
+	
+	assign score_blue = score_blue_reg;
+	assign score_red  = score_red_reg;
+	
 	always_ff @ (posedge Clk)
 	begin
-		if (collision_blue)
+		if (Reset_Score):
 		begin
-			score_blue <= score_blue + 1;
+			score_blue_reg <= 0;
+			score_red_reg  <= 0;
 		end
-		if (collision_red)
+		else if (collision_blue)
 		begin
-			score_red <= score_red + 1;
+			score_blue_reg <= score_blue_reg + 1;
+		end
+		else if (collision_red)
+		begin
+			score_red_reg <= score_red_reg + 1;
 		end
 
 endmodule
