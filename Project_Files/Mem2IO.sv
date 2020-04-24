@@ -19,8 +19,6 @@ module  Mem2IO ( 	input logic Clk, Reset,
 					input logic [15:0] Data_from_REG, Data_from_SRAM,
 					output logic [15:0] Data_to_REG, Data_to_SRAM
 					);
-
-	logic [15:0] hex_data;
    
 	// Load data from switches when address is xFFFF, and from SRAM otherwise.
 	always_comb
