@@ -122,15 +122,15 @@ module lab8( input               CLOCK_50,
 	 );
     
     // Which signal should be frame_clk?
-    ball ball_instance(
-		 .Clk(Clk),         // 50 MHz clock
-		 .Reset(Reset_h),       // Active-high reset signal
-		 .frame_clk(VGA_VS),   // The clock indicating a new frame (~60Hz)
-		 .DrawX(DrawX), 
-		 .DrawY(DrawY),       // Current pixel coordinates
-		 .is_ball(is_ball),      // Whether current pixel belongs to ball or background
-		 .keycode(keycode)	// Key inputs
-	 );
+//    ball ball_instance(
+//		 .Clk(Clk),         // 50 MHz clock
+//		 .Reset(Reset_h),       // Active-high reset signal
+//		 .frame_clk(VGA_VS),   // The clock indicating a new frame (~60Hz)
+//		 .DrawX(DrawX), 
+//		 .DrawY(DrawY),       // Current pixel coordinates
+//		 .is_ball(is_ball),      // Whether current pixel belongs to ball or background
+//		 .keycode(keycode)	// Key inputs
+//	 );
     
     color_mapper color_instance(
 		.is_ball(is_ball),	// Whether current pixel belongs to ball 
