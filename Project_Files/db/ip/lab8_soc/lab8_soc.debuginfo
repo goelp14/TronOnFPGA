@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="lab8_soc" kind="system" version="18.1" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
+<<<<<<< HEAD
  <!-- 2020.04.24.00:21:39 -->
+=======
+ <!-- 2020.04.24.01:04:58 -->
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +57,11 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
+<<<<<<< HEAD
   <value>1587705650</value>
+=======
+  <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -15235,7 +15243,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
+<<<<<<< HEAD
    <value>1587705650</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -15255,7 +15267,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
+<<<<<<< HEAD
    <value>1587705650</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -15271,7 +15287,11 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
+<<<<<<< HEAD
    <value>1587705650</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>
@@ -25853,5 +25873,9 @@ parameters are a RESULT of the module parameters. -->
   <version>18.1</version>
  </plugin>
  <reportVersion>18.1 625</reportVersion>
+<<<<<<< HEAD
  <uniqueIdentifier>982CBC23CF7600000171AAA1C2E4</uniqueIdentifier>
+=======
+ <uniqueIdentifier>36F39A597A2700000171AA923429</uniqueIdentifier>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
 </EnsembleReport>

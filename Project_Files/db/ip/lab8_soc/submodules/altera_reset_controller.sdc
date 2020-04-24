@@ -11,6 +11,7 @@
 # agreement for further details.
 
 
+<<<<<<< HEAD
 # +---------------------------------------------------
 # | Cut the async clear paths
 # +---------------------------------------------------
@@ -28,3 +29,22 @@ if {$aclr_counter > 0} {
 if {$clrn_counter > 0} {
     set_false_path -to [get_pins -compatibility_mode -nocase *|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|clrn]
 }
+=======
+# +---------------------------------------------------
+# | Cut the async clear paths
+# +---------------------------------------------------
+set aclr_counter 0
+set clrn_counter 0
+set aclr_collection [get_pins -compatibility_mode -nocase -nowarn *|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|aclr]
+set clrn_collection [get_pins -compatibility_mode -nocase -nowarn *|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|clrn]
+set aclr_counter [get_collection_size $aclr_collection]
+set clrn_counter [get_collection_size $clrn_collection]
+
+if {$aclr_counter > 0} {
+    set_false_path -to [get_pins -compatibility_mode -nocase *|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|aclr]
+}
+
+if {$clrn_counter > 0} {
+    set_false_path -to [get_pins -compatibility_mode -nocase *|alt_rst_sync_uq1|altera_reset_synchronizer_int_chain*|clrn]
+}
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24

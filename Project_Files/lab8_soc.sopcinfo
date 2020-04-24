@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="lab8_soc" kind="lab8_soc" version="1.0" fabric="QSYS">
  <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
+<<<<<<< HEAD
  <!-- 2020.04.24.00:24:33 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
   <value>1587705873</value>
+=======
+ <!-- 2020.04.24.01:03:49 -->
+ <!-- A collection of modules and connections -->
+ <parameter name="AUTO_GENERATION_ID">
+  <type>java.lang.Integer</type>
+  <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -15301,7 +15309,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
+<<<<<<< HEAD
    <value>1587705873</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -15321,7 +15333,11 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
+<<<<<<< HEAD
    <value>1587705873</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -15337,7 +15353,11 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
+<<<<<<< HEAD
    <value>1587705873</value>
+=======
+   <value>1587704628</value>
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>

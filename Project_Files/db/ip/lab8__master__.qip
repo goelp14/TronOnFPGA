@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) lab8_soc/lab8_soc.qip]
+=======
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) lab8_soc/lab8_soc.qip]
+>>>>>>> e66b47abbc66c1b6cefcb295eb5d4a1163bf3f24
