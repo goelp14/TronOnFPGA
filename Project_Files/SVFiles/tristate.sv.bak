@@ -13,7 +13,7 @@
 //------------------------------------------------------------------------------
 
 
-module tristate #(N = 307200) (
+module tristate #(N = 16) (
 	input logic Clk, 
 	input logic tristate_output_enable,
 	input logic [N-1:0] Data_write, // Data from Mem2IO
