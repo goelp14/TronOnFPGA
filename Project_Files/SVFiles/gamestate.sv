@@ -1,6 +1,6 @@
 //Game State Machine
 
-module ISDU (   input logic  Clk, Reset_Game, Reset_Round, Blue_W, Red_W,
+module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, Red_W,
 					 input logic  [7:0] keycode,
 					 output logic [2:0] Game_State
 				
@@ -17,7 +17,7 @@ module ISDU (   input logic  Clk, Reset_Game, Reset_Round, Blue_W, Red_W,
 		
 	always_ff @ (posedge Clk)
 	begin
-		if (Reset_Game) 
+		if (Reset_Game || Reset) 
 			State <= Menu;
 		else 
 			State <= Next_state;

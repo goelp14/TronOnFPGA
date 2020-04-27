@@ -36,6 +36,7 @@ module  arena ( input         Clk,                // 50 MHz clock
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					input [2:0]   Game_State,
 					input [7:0]   keycode,
+					output logic collision_blue, collision_red,
 					output logic [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
                output logic [6:0] Blue_X, Blue_Y, Red_X, Red_Y,
 					output logic [1:0] Blue_dir, Red_dir
