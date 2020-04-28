@@ -8,6 +8,7 @@ module score ( input         Clk,                // 50 MHz clock
                              Reset_Score,        // Active-high reset signal
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					input [2:0]   Game_State,				  
+					input logic collision_blue, collision_red, collision_blue_trail, collision_red_trail, 
 					input logic [7:0] red_color, blue_color,
 					output logic Blue_W, Red_W, reset_round,
                output logic [1:0] score_blue, score_red
@@ -24,19 +25,19 @@ module score ( input         Clk,                // 50 MHz clock
 	
 	always_ff @ (posedge Clk)
 	begin
-		if (Reset_Score || (Game_State == 3'b0))
+		if (Reset_Score || (Game_State == 3'b1))
 		begin
 			score_blue_reg <= 0;
 			score_red_reg  <= 0;
 		end
 		else if (Game_State == 3'b1)
 			reset_flag <= 0;
-		else if (blue_color != 8'b1)
+		else if (collision_blue || collision_blue_trail || (blue_color == 8'b1))
 		begin
 			score_blue_reg <= score_blue_reg + 1;
 			reset_flag <= 1;
 		end
-		else if (red_color != 8'b1)
+		else if (collision_red || collision_red_trail || (red_color == 8'b1))
 		begin
 			score_red_reg <= score_red_reg + 1;
 			reset_flag <= 1;

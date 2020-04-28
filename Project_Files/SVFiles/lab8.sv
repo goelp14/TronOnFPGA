@@ -58,7 +58,24 @@ module lab8( input               CLOCK_50,
     logic [1:0] hpi_addr;
     logic [15:0] hpi_data_in, hpi_data_out;
     logic hpi_r, hpi_w, hpi_cs, hpi_reset;
+	 
+	 // VARS TO STORE GAME STUFF
+	 logic [7:0] red_color, blue_color;
+	 logic [2:0] Game_State;
+	 logic [1:0] score_blue, score_red;
+	 
+	 logic reset_round, reset_game, Blue_W, Red_W;
+	 // actual 640x480 coords
+	 logic [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real;
+	 // scaled x4 coords 
+	 logic [6:0] Blue_X, Blue_Y, Red_X, Red_Y;
+	 
+	 logic [1:0] Blue_dir, Red_dir;
     
+	 logic [2:0] write_r, write_b;
+	 
+	 
+	 
     // Interface between NIOS II and EZ-OTG chip
     hpi_io_intf hpi_io_inst(
                             .Clk(Clk),
@@ -145,10 +162,21 @@ module lab8( input               CLOCK_50,
     HexDriver hex_inst_0 (keycode[3:0], HEX0);
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
     
-    /**************************************************************************************
-        ATTENTION! Please answer the following quesiton in your lab report! Points will be allocated for the answers!
-        Hidden Question #1/2:
-        What are the advantages and/or disadvantages of using a USB interface over PS/2 interface to
-             connect to the keyboard? List any two.  Give an answer in your Post-Lab.
-    **************************************************************************************/
+	 // STUFF FOR GAMELOGIC
+	 statemachine GameState(.Clk(CLOCK_50), .Reset(KEY[0]), .Reset_Game(reset_game),
+									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W),
+									.keycode(keycode), .Game_State(Game_State));
+									
+	 scorekeeper score(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
+							 .red_color(red_color), .blue_color(blue_color), 
+							 .Blue_W(Blue_W), Red_W(Red_W), reset_round(reset_round), score_blue(score_blue), score_red(score_red));
+							
+	 field arena(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
+					 .Blue_X_real(Blue_X_real), Blue_Y_real(.Blue_Y_real), Red_X_real(Red_X_real), Red_Y_real(Red_Y_real),
+					 .Blue_X(Blue_X), Blue_Y(Blue_Y), Red_X(Red_X), Red_Y(Red_Y), Blue_dir(Blue_dir), Red_dir(Red_dir));
+	
+	 trail_decider trails(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
+								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
+								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), Game_State(Game_State));
+	 
 endmodule
