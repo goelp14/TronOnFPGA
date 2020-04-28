@@ -15,7 +15,7 @@
 
 module  Mem2IO ( 	input logic Clk, Reset,
 					input logic CE, UB, LB, OE, WE,
-					input logic [2:0] SRAMFRAME,
+					// input logic [2:0] SRAMFRAME,
 					input logic [19:0] ADDR,
 					input logic [307199:0] Data_from_REG, Data_from_SRAM,
 					output logic [307199:0] Data_to_REG, Data_to_SRAM
@@ -26,11 +26,25 @@ module  Mem2IO ( 	input logic Clk, Reset,
     begin 
         Data_to_REG = 307200'd0;
 		if (WE && ~OE)
-			if (ADDR == 19'h00000 && SRAMFRAME == 3'b000)
+			if (ADDR == 19'h00000)
 				Data_to_REG = Data_from_SRAM;
-			else if (ADDR == 19'h4B000 && SRAMFRAME == 3'b001)
+			else if (ADDR == 19'h4B000)
 				Data_to_REG = Data_from_SRAM;
-			else if (ADDR == (19'h4B000 * 2) && SRAMFRAME == 3'b010)
+			else if (ADDR == (19'h4B000 * 2))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + 19'h00400))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 2)))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 3)))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 4)))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 5)))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 6)))
+				Data_to_REG = Data_from_SRAM;
+			else if (ADDR == ((19'h4B000 * 2) + (19'h00400 * 7)))
 				Data_to_REG = Data_from_SRAM;
     end
 
