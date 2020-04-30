@@ -3,13 +3,13 @@ module load_background(
 	input logic [1:0] BG_Sel,
 	input logic [2:0] Game_State,
 	input logic [15:0] DATA_IN,
-	output logic writing,
+	output logic writing, reading,
 	output logic [19:0] ADDR,
 	output logic [15:0] DATA_OUT,
 );
 
 // notes:
-// unsure on offsets, also if (DATA_IN > 16'hFF) ~ line 55, not sure if need 2 writes
+// unsure on offsets, also if (DATA_IN > 16'h0F01) ~ line 55, not sure if need 2 writes
 
 // loads 2 bytes at a time
 // 640 * 153600 = 0
@@ -55,7 +55,7 @@ begin
 			if (load)
 				nextState = read;
 		read:
-			if (DATA_IN > 16'hFF)
+			if (DATA_IN > 16'h0F01)
 				nextState = done;
 			else
 				nextState = write1;
@@ -81,7 +81,9 @@ begin
 		read:
 			
 		write1:
+		
 		write2:
+		
 		done:
 			nextstate = idle;
 		
