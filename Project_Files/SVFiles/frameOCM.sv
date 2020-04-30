@@ -13,8 +13,8 @@
             output logic [4:0] data_Out
     );
     
-    // mem has width of 3 bits and a total of 400 addresses
-    logic [2:0] mem [0:399];
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [479:0] mem [0:639];
     
     always_ff @ (posedge Clk) begin
         if (we)

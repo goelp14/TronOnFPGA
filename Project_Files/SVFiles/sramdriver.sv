@@ -23,9 +23,11 @@ enum logic [2:0] {hold, read, write} state, nextState; // states
 
 logic [15:0] readData, nextReadData, writeData, nextWriteData; // actually hold the values for read and write so they can change depending on situation
 logic [19:0] addr, nextAddr; // save the current address so that its easy to look at the next address
-logic we_sig, we_sig_next, oe_sig, oe_sig_next; // this is so that we can actually give something to the outputs (the others are always going to be active it should be fine to directly keep them 0)
+logic we_sig, we_sig_next, oe_sig, oe_sig_next, tristate, tristate_next; // this is so that we can actually give something to the outputs (the others are always going to be active it should be fine to directly keep them 0)
 
 assign CE = 1'b0, UB = 1'b0, LB = 1'b0, OE = oe_data, WE = we_data, ADDR = addr, DATA = read; // make sure outputs are connected
+
+assign data = (tristate) ? writeData : 16'bZZZZZZZZZZZZZZZZ;
 
 // basic state machine setup for each logic
 always_ff @ (posedge Clk)
@@ -38,6 +40,7 @@ always_ff @ (posedge Clk)
 				addr <= 0;
 				we_sig <= 1'b1;
 				oe_sig <= 1'b1;
+				tristate <= 1'b1;
 			end
 		else
 			begin
@@ -47,6 +50,7 @@ always_ff @ (posedge Clk)
 				addr <= nextAddr;
 				we_sig <= we_sig_next;
 				oe_sig <= oe_sig_next;
+				tristate <= tristate_next;
 			end
 	end
 
@@ -59,6 +63,7 @@ always_comb
 		nextAddr = addr;
 		we_sig_next = 1'b1;
 		oe_sig_next = 1'b1;
+		tristate_next = 1'b1;
 	end
 	// state machine to control outputs
 	case (state)
@@ -77,20 +82,22 @@ always_comb
 						else:
 							begin
 								nextState = write;
-								we_sig = 1'b0 // since you are writing you want that signal to be sent out
+								we_sig = 1'b0; // since you are writing you want that signal to be sent out
+								tristate = 1'b0;
 					end
 			end
 		read:
 			begin
 				nextState = hold; // wait for next call
 				nextReadData = data; // pull data from sram
-				oe_sig_next = 1'b1 // make sure it doesn't continue to output
+				oe_sig_next = 1'b1; // make sure it doesn't continue to output
 			end
 		write:
 			begin
 				nextState = hold; // wait for next call
 				nextWriteData = Data_in; // set data to be written
-				we_sig_next = 1'b1 // make sure it doesn't continue to write
+				we_sig_next = 1'b1; // make sure it doesn't continue to write
+				tristate = 1'b1;
 			end
 		default: nextState = hold;
 	endcase
