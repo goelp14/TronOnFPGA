@@ -150,9 +150,6 @@ module lab8( input               CLOCK_50,
 //	 );
     
     color_mapper color_instance(
-		.is_ball(is_ball),	// Whether current pixel belongs to ball 
-		.DrawX(DrawX), 
-		.DrawY(DrawY),	// Current pixel coordinates
 		.VGA_R(VGA_R), 
 		.VGA_G(VGA_G), 
 		.VGA_B(VGA_B)		// VGA RGB output
