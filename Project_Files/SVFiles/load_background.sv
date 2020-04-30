@@ -99,8 +99,10 @@ begin
 		read:
 			reading = 1;          // tell SRAM to read at address
 		write:
+		begin
 			writing = 1;          // tell OCM to write at address
 			nextaddr = addr + 1;  // increment the address for next read
+		end
 		default: ;
 	endcase
 end
