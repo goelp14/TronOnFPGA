@@ -1,5 +1,5 @@
 module load_background(
-	input logic Clk, Reset, load, SRAM_done, OCM_done // load to tell it to load the background, SRAM_done tells it that its ready.
+	input logic Clk, Reset, load, SRAM_done, OCM_done, // load to tell it to load the background, SRAM_done tells it that its ready.
 	input logic [1:0] BG_Sel,
 	input logic [2:0] Game_State,
 	input logic [15:0] DATA_IN,
@@ -47,7 +47,7 @@ always_ff @ (posedge Clk)
 begin
 	if (Reset)
 		state <= idle;
-	else:
+	else
 		state <= nextState;
 end
 // update addr
@@ -55,7 +55,7 @@ always_ff @ (posedge Clk)
 begin
 	if (Reset)
 		addr <= 20'd0;
-	else:
+	else
 		addr <= nextaddr;
 end
 
