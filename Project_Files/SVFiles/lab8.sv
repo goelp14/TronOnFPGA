@@ -163,19 +163,19 @@ module lab8( input               CLOCK_50,
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
     
 	 // STUFF FOR GAMELOGIC
-	 statemachine GameState(.Clk(CLOCK_50), .Reset(KEY[0]), .Reset_Game(reset_game),
+	 GameState statemachine(.Clk(CLOCK_50), .Reset(KEY[0]), .Reset_Game(reset_game),
 									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W),
 									.keycode(keycode), .Game_State(Game_State));
 									
-	 scorekeeper score(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
+	 score scorekeeper(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
 							 .red_color(red_color), .blue_color(blue_color), 
 							 .Blue_W(Blue_W), .Red_W(Red_W), .reset_round(reset_round), .score_blue(score_blue), .score_red(score_red));
 							
-	 field arena(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
+	 arena field(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
 	
-	 trail_decider trails(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
+	 trails trail_decider(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
 	 
