@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------
 
 // color_mapper: Decide which color to be output to VGA for each pixel.
-module  color_mapper ( input [15:0] color_pallete_enum,            // Whether current pixel belongs to ball 
+module  color_mapper ( input [15:0] color_pallete_enum,   // Whether current pixel belongs to ball 
                     //    input [9:0] DrawX, DrawY,       // Current pixel coordinates
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
