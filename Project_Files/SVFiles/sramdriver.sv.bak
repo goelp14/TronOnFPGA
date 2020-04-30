@@ -1,14 +1,32 @@
+// notes: assuming address is per 16 bit word, active-low
+
 module sram_controller(
-	input logic Clk, Reset, Run, READ, // READ is telling whether it should read or write
-	input logic [19:0] addr_loc,
-	input logic [15:0] Data_in,
+	input logic Clk, Reset, Run,
+	input logic [19:0] addr,
+	//input logic [15:0] Data_in,
 	output logic CE, UB, LB, OE, WE, // active when 0
-	output logic [19:0] ADDR,
-	output logic [15:0] DATA // to actually be used in other modules
+	output logic [15:0] OUTPUT_DATA, // to actually be used in other modules
 	inout wire [15:0] data // connecting to sram
 	// output logic [639:0] BG [480]
 	// inout wire [307199:0] Data //tristate buffers need to be of type wire
 );
+
+// readdata for storing read data, newreaddata to update
+logic [15:0] readData, newreadData;
+
+// we only read, so chip stuff can be constant
+assign CE = 0;
+assign UB = 0;
+assign LB = 0;
+assign WE = 1;
+
+// states
+enum logic [1:0] {idle, read, done} state, nextState;
+
+assign OUTPUT_DATA = readData;
+
+
+endmodule
 
 // Declaration of active high signals
 logic Reset_ah, Run_ah;
@@ -25,10 +43,10 @@ logic [15:0] readData, nextReadData, writeData, nextWriteData; // actually hold 
 logic [19:0] addr, nextAddr; // save the current address so that its easy to look at the next address
 logic we_sig, we_sig_next, oe_sig, oe_sig_next, tristate, tristate_next; // this is so that we can actually give something to the outputs (the others are always going to be active it should be fine to directly keep them 0)
 
-assign CE = 1'b0, UB = 1'b0, LB = 1'b0, OE = oe_data, WE = we_data, ADDR = addr, DATA = read; // make sure outputs are connected
+assign CE = 1'b0, UB = 1'b0, LB = 1'b0, OE = oe_sig, WE = we_sig, ADDR = addr, DATA = read; // make sure outputs are connected
 
 // possibly tristate needs to be notted
-assign data = (tristate) ? writeData : 16'bZZZZZZZZZZZZZZZZ;
+assign data = (tristate) ? 16'bZZZZZZZZZZZZZZZZ : writeData;
 
 // basic state machine setup for each logic
 always_ff @ (posedge Clk)
@@ -65,7 +83,6 @@ always_comb
 		we_sig_next = 1'b1;
 		oe_sig_next = 1'b1;
 		tristate_next = 1'b1;
-	end
 	// state machine to control outputs
 	case (state)
 		hold: 
@@ -80,11 +97,12 @@ always_comb
 								nextState = read;
 								oe_sig = 1'b0; // since you are reading you want it to output result
 							end
-						else:
+						else
 							begin
 								nextState = write;
 								we_sig = 1'b0; // since you are writing you want that signal to be sent out
 								tristate = 1'b0;
+							end
 					end
 			end
 		read:
@@ -101,8 +119,9 @@ always_comb
 				tristate = 1'b1;
 			end
 		default: nextState = hold;
-	endcase
-end
+		endcase
+	end
+endmodule
 
 //********************************OLD CONTENT*******************************************************
 // // Declaration of SRAM DATA related wires
@@ -211,4 +230,3 @@ end
 // 		else if (Sprite_addr_sel == 3'b111)
 // 			BIKE = Data_to_SRAM [1023*8:1024*7];
 // 	end
-endmodule

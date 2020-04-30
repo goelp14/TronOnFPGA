@@ -1,109 +1,185 @@
+// notes: assuming address is per 16 bit word, active-low
+// not sure if inout wire should be input if ROM
+
 module sram_controller(
-	input logic Clk, Reset, Run, READ, // READ is telling whether it should read or write
-	input logic [19:0] addr_loc,
-	input logic [15:0] Data_in,
+	input logic Clk, Reset, Read,
+	input logic [19:0] addr_in,
+	//input logic [15:0] Data_in,
 	output logic CE, UB, LB, OE, WE, // active when 0
-	output logic [19:0] ADDR,
-	output logic [15:0] DATA, // to actually be used in other modules
+	output logic done_r, // active when 1, tells that reg is loaded w/ correct value
+	output logic [15:0] OUTPUT_DATA, // to actually be used in other modules
+	output logic [19:0] ADDR, // to the SRAM
 	inout wire [15:0] data // connecting to sram
 	// output logic [639:0] BG [480]
 	// inout wire [307199:0] Data //tristate buffers need to be of type wire
 );
 
-// Declaration of active high signals
-logic Reset_ah, Run_ah;
+// readdata for storing read data, newreaddata to update
+logic [15:0] readData, newreadData;
 
-assign Reset_ah = ~Reset;
-// assign Continue_ah = ~Continue;
-assign Run_ah = ~Run;
+// we only read, so chip stuff can be constant
+assign CE = 1'b0;
+assign UB = 1'b0;
+assign LB = 1'b0;
+assign WE = 1'b1;
+// assign address
+assign ADDR = addr_in;
+// assign output data
+assign OUTPUT_DATA = readData;
+// states
+enum logic [1:0] {idle, read, done} state, nextState;
 
-// Since each line is 16 bits I am thinking its easier just to read a line at a time depending starting at an address (handled in drawengine)
+assign OUTPUT_DATA = readData;
 
-enum logic [2:0] {hold, read, write} state, nextState; // states
-
-logic [15:0] readData, nextReadData, writeData, nextWriteData; // actually hold the values for read and write so they can change depending on situation
-logic [19:0] addr, nextAddr; // save the current address so that its easy to look at the next address
-logic we_sig, we_sig_next, oe_sig, oe_sig_next, tristate, tristate_next; // this is so that we can actually give something to the outputs (the others are always going to be active it should be fine to directly keep them 0)
-
-assign CE = 1'b0, UB = 1'b0, LB = 1'b0, OE = oe_sig, WE = we_sig, ADDR = addr, DATA = read; // make sure outputs are connected
-
-// possibly tristate needs to be notted
-assign data = (tristate) ? 16'bZZZZZZZZZZZZZZZZ : writeData;
-
-// basic state machine setup for each logic
 always_ff @ (posedge Clk)
+begin
+	if (Reset)
 	begin
-		if (Reset_ah)
-			begin
-				state <= hold;
-				readData <= 0;
-				writeData <= 0;
-				addr <= 0;
-				we_sig <= 1'b1;
-				oe_sig <= 1'b1;
-				tristate <= 1'b1;
-			end
-		else
-			begin
-				state <= nextState;
-				readData <= nextReadData;
-				writeData <= nextWriteData;
-				addr <= nextAddr;
-				we_sig <= we_sig_next;
-				oe_sig <= oe_sig_next;
-				tristate <= tristate_next;
-			end
+		state <= idle;
+		readData <= 16'b0;
 	end
+	
+	else
+	begin
+		state <= nextState;
+		readData <= newreadData;
+	end
+end
 
-
-// State machine
 always_comb
-	begin
-		nextReadData = readData;
-		nextWriteData = writeData;
-		nextAddr = addr;
-		we_sig_next = 1'b1;
-		oe_sig_next = 1'b1;
-		tristate_next = 1'b1;
-	// state machine to control outputs
-	case (state)
-		hold: 
-			begin
-				if (Run_ah)
-					nextState = state;
-				else
-					begin
-						addr = addr_loc;
-						if (READ)
-							begin
-								nextState = read;
-								oe_sig = 1'b0; // since you are reading you want it to output result
-							end
-						else
-							begin
-								nextState = write;
-								we_sig = 1'b0; // since you are writing you want that signal to be sent out
-								tristate = 1'b0;
-							end
-					end
-			end
+begin
+	// default values
+	nextState = state;
+	
+	unique case (state)
+		idle:
+			if (Read)
+				nextState = read;
 		read:
-			begin
-				nextState = hold; // wait for next call
-				nextReadData = data; // pull data from sram
-				oe_sig_next = 1'b1; // make sure it doesn't continue to output
-			end
-		write:
-			begin
-				nextState = hold; // wait for next call
-				nextWriteData = Data_in; // set data to be written
-				we_sig_next = 1'b1; // make sure it doesn't continue to write
-				tristate = 1'b1;
-			end
-		default: nextState = hold;
-		endcase
-	end
+			nextState = done;
+		done
+			nextState = idle;
+	endcase
+end
+
+always_comb
+begin
+	// default values
+	OE = 1'b1;
+	done_r = 1'b0;
+	
+	unique case (state)
+		idle: ;
+			
+		read:
+			OE = 1'b0;
+			newreadData = data;
+		done:
+			OE = 1'b0;
+			done_r = 1'b1;
+			newreadData = data;
+			
+	endcase
+end
+
 endmodule
+
+
+//          *********************************OLD********************************
+// Declaration of active high signals
+//logic Reset_ah, Run_ah;
+//
+//assign Reset_ah = ~Reset;
+//// assign Continue_ah = ~Continue;
+//assign Run_ah = ~Run;
+//
+//// Since each line is 16 bits I am thinking its easier just to read a line at a time depending starting at an address (handled in drawengine)
+//
+//enum logic [2:0] {hold, read, write} state, nextState; // states
+//
+//logic [15:0] readData, nextReadData, writeData, nextWriteData; // actually hold the values for read and write so they can change depending on situation
+//logic [19:0] addr, nextAddr; // save the current address so that its easy to look at the next address
+//logic we_sig, we_sig_next, oe_sig, oe_sig_next, tristate, tristate_next; // this is so that we can actually give something to the outputs (the others are always going to be active it should be fine to directly keep them 0)
+//
+//assign CE = 1'b0, UB = 1'b0, LB = 1'b0, OE = oe_sig, WE = we_sig, ADDR = addr, DATA = read; // make sure outputs are connected
+//
+//// possibly tristate needs to be notted
+//assign data = (tristate) ? 16'bZZZZZZZZZZZZZZZZ : writeData;
+//
+//// basic state machine setup for each logic
+//always_ff @ (posedge Clk)
+//	begin
+//		if (Reset_ah)
+//			begin
+//				state <= hold;
+//				readData <= 0;
+//				writeData <= 0;
+//				addr <= 0;
+//				we_sig <= 1'b1;
+//				oe_sig <= 1'b1;
+//				tristate <= 1'b1;
+//			end
+//		else
+//			begin
+//				state <= nextState;
+//				readData <= nextReadData;
+//				writeData <= nextWriteData;
+//				addr <= nextAddr;
+//				we_sig <= we_sig_next;
+//				oe_sig <= oe_sig_next;
+//				tristate <= tristate_next;
+//			end
+//	end
+//
+//
+//// State machine
+//always_comb
+//	begin
+//		nextReadData = readData;
+//		nextWriteData = writeData;
+//		nextAddr = addr;
+//		we_sig_next = 1'b1;
+//		oe_sig_next = 1'b1;
+//		tristate_next = 1'b1;
+//	// state machine to control outputs
+//	case (state)
+//		hold: 
+//			begin
+//				if (Run_ah)
+//					nextState = state;
+//				else
+//					begin
+//						addr = addr_loc;
+//						if (READ)
+//							begin
+//								nextState = read;
+//								oe_sig = 1'b0; // since you are reading you want it to output result
+//							end
+//						else
+//							begin
+//								nextState = write;
+//								we_sig = 1'b0; // since you are writing you want that signal to be sent out
+//								tristate = 1'b0;
+//							end
+//					end
+//			end
+//		read:
+//			begin
+//				nextState = hold; // wait for next call
+//				nextReadData = data; // pull data from sram
+//				oe_sig_next = 1'b1; // make sure it doesn't continue to output
+//			end
+//		write:
+//			begin
+//				nextState = hold; // wait for next call
+//				nextWriteData = Data_in; // set data to be written
+//				we_sig_next = 1'b1; // make sure it doesn't continue to write
+//				tristate = 1'b1;
+//			end
+//		default: nextState = hold;
+//		endcase
+//	end
+//endmodule
 
 //********************************OLD CONTENT*******************************************************
 // // Declaration of SRAM DATA related wires
