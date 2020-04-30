@@ -57,10 +57,10 @@ begin
 				nextState = read;
 		read:
 			nextState = done;
-		done
+		done:
 			nextState = idle;
 		default : 
-			nextstate = idle;
+			nextState = idle;
 	endcase
 end
 
@@ -74,12 +74,16 @@ begin
 		idle: ;
 			
 		read:
-			OE = 1'b0;
-			newreadData = data;
+			begin
+				OE = 1'b0;
+				newreadData = data;
+			end
 		done:
-			OE = 1'b0;
-			done_r = 1'b1;
-			newreadData = data;
+			begin
+				OE = 1'b0;
+				done_r = 1'b1;
+				newreadData = data;
+			end
 		default: ;
 	endcase
 end

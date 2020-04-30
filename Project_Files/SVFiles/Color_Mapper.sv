@@ -19,12 +19,12 @@ module  color_mapper ( input [15:0] color_pallete_enum,            // Whether cu
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
     
-//    logic [7:0] Red, Green, Blue;
-//    
-//    // Output colors to VGA
-//    assign VGA_R = Red;
-//    assign VGA_G = Green;
-//    assign VGA_B = Blue;
+    logic [7:0] Red, Green, Blue;
+    
+    // Output colors to VGA
+    assign VGA_R = Red;
+    assign VGA_G = Green;
+    assign VGA_B = Blue;
     
     // Assign color based on is_ball signal
     always_comb
@@ -32,100 +32,101 @@ module  color_mapper ( input [15:0] color_pallete_enum,            // Whether cu
         case (color_pallete_enum)
             16'd0:
             begin
-                VGA_R = 8'hff;
-                VGA_G = 8'hff;
-                VGA_B = 8'hff;
+                Red = 8'hff;
+                Green = 8'hff;
+                Blue = 8'hff;
             end
             16'd1:
             begin
-                VGA_R = 8'h0e;
-                VGA_G = 8'h0e;
-                VGA_B = 8'h0e;
+                Red = 8'h0e;
+                Green = 8'h0e;
+                Blue = 8'h0e;
             end
             16'd2:
             begin
-                VGA_R = 8'h3b;
-                VGA_G = 8'h3b;
-                VGA_B = 8'h3b;
+                Red = 8'h3b;
+                Green = 8'h3b;
+                Blue = 8'h3b;
             end
             16'd3:
             begin
-                VGA_R = 8'h21;
-                VGA_G = 8'h95;
-                VGA_B = 8'hf3;
+                Red = 8'h21;
+                Green = 8'h95;
+                Blue = 8'hf3;
             end
             16'd4:
             begin
-                VGA_R = 8'h00;
-                VGA_G = 8'hbb;
-                VGA_B = 8'hd4;
+                Red = 8'h00;
+                Green = 8'hbb;
+                Blue = 8'hd4;
             end
             16'd5:
             begin
-                VGA_R = 8'hcf;
-                VGA_G = 8'h10;
-                VGA_B = 8'h10;
+                Red = 8'hcf;
+                Green = 8'h10;
+                Blue = 8'h10;
             end
             16'd6:
             begin
-                VGA_R = 8'hff;
-                VGA_G = 8'h52;
-                VGA_B = 8'h52;
+                Red = 8'hff;
+                Green = 8'h52;
+                Blue = 8'h52;
             end
             16'd7:
             begin
-                VGA_R = 8'h24;
-                VGA_G = 8'h24;
-                VGA_B = 8'h24;
+                Red = 8'h24;
+                Green = 8'h24;
+                Blue = 8'h24;
             end
             16'd8:
             begin
-                VGA_R = 8'hAA;
-                VGA_G = 8'hAA;
-                VGA_B = 8'hAA;
+                Red = 8'hAA;
+                Green = 8'hAA;
+                Blue = 8'hAA;
             end
             16'd9:
             begin
-                VGA_R = 8'hAA;
-                VGA_G = 8'hAA;
-                VGA_B = 8'hAA;
+                Red = 8'hAA;
+                Green = 8'hAA;
+                Blue = 8'hAA;
             end
             16'd10:
             begin
-                VGA_R = 8'hAA;
-                VGA_G = 8'hAA;
-                VGA_B = 8'hAA;
+                Red = 8'hAA;
+                Green = 8'hAA;
+                Blue = 8'hAA;
             end
             16'd11:
             begin
-                VGA_R = 8'hAA;
-                VGA_G = 8'hAA;
-                VGA_B = 8'hAA;
+                Red = 8'hAA;
+                Green = 8'hAA;
+                Blue = 8'hAA;
             end
             16'd12:
             begin
-                VGA_R = 8'hAA;
-                VGA_G = 8'hAA;
-                VGA_B = 8'hAA;
+                Red = 8'hAA;
+                Green = 8'hAA;
+                Blue = 8'hAA;
             end
             16'd13:
             begin
-                VGA_R = 8'h00;
-                VGA_G = 8'h71;
-                VGA_B = 8'h0e;
+                Red = 8'h00;
+                Green = 8'h71;
+                Blue = 8'h0e;
             end
             16'd14:
             begin
-                VGA_R = 8'h00;
-                VGA_G = 8'h00;
-                VGA_B = 8'h00;
+                Red = 8'h00;
+                Green = 8'h00;
+                Blue = 8'h00;
             end
             16'd15:
             begin
-                VGA_R = 8'hf2;
-                VGA_G = 8'h00;
-                VGA_B = 8'hff;
+                Red = 8'hf2;
+                Green = 8'h00;
+                Blue = 8'hff;
             end
+				default: ;
         endcase
     end 
     
