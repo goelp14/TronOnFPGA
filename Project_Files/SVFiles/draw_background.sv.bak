@@ -1,0 +1,12 @@
+module drawengine(
+	input logic Clk, Reset, Run, Continue,
+	input LD, Sprite_addr_sel,
+	input logic [2:0] Game_State,
+	output logic CE, UB, LB, OE, WE,
+	output logic [19:0] ADDR,
+	output logic [1023:0] BIKE,
+	output logic [639:0] BG [480]
+	// inout wire [307199:0] Data //tristate buffers need to be of type wire
+);
+
+endmodule

@@ -60,7 +60,7 @@ module  arena ( input         Clk,                // 50 MHz clock
 	 enum logic [1:0] {up, down, left, right} Blue_dir_reg, Red_dir_reg, Blue_dir_new, Red_dir_new;
 		
 	 // Collision flags
-	 logic new_collision_blue, new_collision_red;
+//	 logic new_collision_blue, new_collision_red;
 	 
 	 // assign x and y outputs
 	 assign Blue_X_real = Blue_X_reg;
@@ -98,7 +98,7 @@ module  arena ( input         Clk,                // 50 MHz clock
             Blue_X_M <= Bike_X_Step;
             Blue_Y_M <= 10'd0;
 				Blue_dir_reg <= right;
-				collision_blue <= 1'b0;
+//				collision_blue <= 1'b0;
         end
 		  
         else if (Game_State == 3'b10)
@@ -109,7 +109,7 @@ module  arena ( input         Clk,                // 50 MHz clock
             Blue_X_M <= Blue_X_M_new;
             Blue_Y_M <= Blue_Y_M_new;
 				Blue_dir_reg <= Blue_dir_new;
-				collision_blue <= new_collision_blue;
+//				collision_blue <= new_collision_blue;
         end
     end
 		
@@ -123,7 +123,7 @@ module  arena ( input         Clk,                // 50 MHz clock
             Red_X_M <= ~(Bike_X_Step) + 1'b1;
             Red_Y_M <= 10'd0;
 				Red_dir_reg <= left;		
-				collision_red <= 1'b0;
+//				collision_red <= 1'b0;
         end
 		  
         else if (Game_State == 3'b10)
@@ -133,7 +133,7 @@ module  arena ( input         Clk,                // 50 MHz clock
             Red_X_M <= Red_X_M_new;
             Red_Y_M <= Red_Y_M_new;
 				Red_dir_reg <= Red_dir_new;
-				collision_red <= new_collision_red;
+//				collision_red <= new_collision_red;
         end
     end
 	 
@@ -141,8 +141,8 @@ module  arena ( input         Clk,                // 50 MHz clock
     always_comb
     begin
         // default
-		  // no collisions
-		  new_collision_blue = 1'b0;
+//		  // no collisions
+//		  new_collision_blue = 1'b0;
 
 		  // keep motion and position unchanged
 
@@ -160,16 +160,16 @@ module  arena ( input         Clk,                // 50 MHz clock
             // e.g. Ball_Y_Pos - Ball_Size <= Ball_Y_Min 
             // If Ball_Y_Pos is 0, then Ball_Y_Pos - Ball_Size will not be -4, but rather a large positive number.
 				
-				// Collision Detection
-
-            if(Blue_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
-                new_collision_blue = 1'b1;  
-            else if (Blue_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
-                new_collision_blue = 1'b1;
-				else if (Blue_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
-					new_collision_blue = 1'b1;  
-				else if (Blue_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
-					new_collision_blue = 1'b1;
+//				// Collision Detection
+//
+//            if(Blue_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
+//                new_collision_blue = 1'b1;  
+//            else if (Blue_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
+//                new_collision_blue = 1'b1;
+//				else if (Blue_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
+//					new_collision_blue = 1'b1;  
+//				else if (Blue_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
+//					new_collision_blue = 1'b1;
 
 				// w key - up
 				if(keycode == 8'h1A && ((Blue_X_reg / 4) * 4 == Blue_X_reg))
@@ -177,10 +177,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Blue_X_M_new = 10'd0;
 						Blue_Y_M_new = (~(Bike_Y_Step) + 1'b1);  // 2's complement.
 						Blue_dir_new = up;
-						
-						// Make sure key press doesn't override bounce
-						if (Blue_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
-							new_collision_blue = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Blue_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
+//							new_collision_blue = 1'b1;
 					end
 				
 				// a key - left
@@ -189,10 +189,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Blue_Y_M_new = 10'd0;
 						Blue_X_M_new = (~(Bike_X_Step) + 1'b1);  // 2's complement.
 						Blue_dir_new = left;
-						
-						// Make sure key press doesn't override bounce
-						if (Blue_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
-							new_collision_blue = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Blue_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
+//							new_collision_blue = 1'b1;
 					end
 					
 				// s key - down
@@ -201,10 +201,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Blue_X_M_new = 10'd0;
 						Blue_Y_M_new = Bike_Y_Step;
 						Blue_dir_new = down;
-						
-						// Make sure key press doesn't override bounce
-						if(Blue_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
-							new_collision_blue = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if(Blue_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
+//							new_collision_blue = 1'b1;
 					end
 					
 				// d key - right
@@ -213,10 +213,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Blue_Y_M_new = 10'd0;
 						Blue_X_M_new = Bike_X_Step;
 						Blue_dir_new = right;
-						
-						// Make sure key press doesn't override bounce
-						if (Blue_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
-							new_collision_blue = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Blue_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
+//							new_collision_blue = 1'b1;
 					end
 					
             // Update the bike's position with its motion
@@ -230,8 +230,8 @@ module  arena ( input         Clk,                // 50 MHz clock
 	 always_comb
     begin
         // default
-		  // no collisions
-		  new_collision_red = 1'b0;
+//		  // no collisions
+//		  new_collision_red = 1'b0;
 
 		  // keep motion and position unchanged
 
@@ -249,16 +249,16 @@ module  arena ( input         Clk,                // 50 MHz clock
             // e.g. Ball_Y_Pos - Ball_Size <= Ball_Y_Min 
             // If Ball_Y_Pos is 0, then Ball_Y_Pos - Ball_Size will not be -4, but rather a large positive number.
 				
-				// Collision Detection
-
-            if(Red_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
-                new_collision_red = 1'b1;  
-            else if (Red_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
-                new_collision_red = 1'b1;
-				else if (Red_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
-					new_collision_red = 1'b1;  
-				else if (Red_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
-					new_collision_red = 1'b1;
+//				// Collision Detection
+//
+//            if(Red_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
+//                new_collision_red = 1'b1;  
+//            else if (Red_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
+//                new_collision_red = 1'b1;
+//				else if (Red_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
+//					new_collision_red = 1'b1;  
+//				else if (Red_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
+//					new_collision_red = 1'b1;
 
 				// arrow key - up
 				if(keycode == 8'h52 && ((Red_X_reg / 4) * 4 == Red_X_reg))
@@ -266,10 +266,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Red_X_M_new = 10'd0;
 						Red_Y_M_new = (~(Bike_Y_Step) + 1'b1);  // 2's complement.
 						Red_dir_new = up;
-						
-						// Make sure key press doesn't override bounce
-						if (Red_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
-							new_collision_red = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Red_Y_reg <= Arena_Y_Min + Bike_Size )  // Bike hits top edge
+//							new_collision_red = 1'b1;
 					end
 				
 				// arrow key - left
@@ -278,10 +278,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Red_Y_M_new = 10'd0;
 						Red_X_M_new = (~(Bike_X_Step) + 1'b1);  // 2's complement.
 						Red_dir_new = left;
-						
-						// Make sure key press doesn't override bounce
-						if (Red_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
-							new_collision_red = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Red_X_reg <= Arena_X_Min + Bike_Size)    // Bike hits left edge
+//							new_collision_red = 1'b1;
 					end
 					
 				// arrow key - down
@@ -290,10 +290,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Red_X_M_new = 10'd0;
 						Red_Y_M_new = Bike_Y_Step;
 						Red_dir_new = down;
-						
-						// Make sure key press doesn't override bounce
-						if(Red_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
-							new_collision_red = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if(Red_Y_reg + Bike_Size >= Arena_Y_Max )        // Bike hits bottom edge
+//							new_collision_red = 1'b1;
 					end
 					
 				// arrow key - right
@@ -302,10 +302,10 @@ module  arena ( input         Clk,                // 50 MHz clock
 						Red_Y_M_new = 10'd0;
 						Red_X_M_new = Bike_X_Step;
 						Red_dir_new = right;
-						
-						// Make sure key press doesn't override bounce
-						if (Red_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
-							new_collision_red = 1'b1;
+//						
+//						// Make sure key press doesn't override bounce
+//						if (Red_X_reg + Bike_Size >= Arena_X_Max)    // Bike hits right edge
+//							new_collision_red = 1'b1;
 					end
 					
             // Update the bike's position with its motion
