@@ -68,7 +68,7 @@ module lab8( input               CLOCK_50,
 	 // actual 640x480 coords
 	 logic [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real;
 	 // scaled x4 coords 
-	 logic [6:0] Blue_X, Blue_Y, Red_X, Red_Y;
+	 logic [7:0] Blue_X, Blue_Y, Red_X, Red_Y;
 	 
 	 logic [1:0] Blue_dir, Red_dir;
     

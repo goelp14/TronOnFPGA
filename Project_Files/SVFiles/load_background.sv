@@ -26,7 +26,7 @@ assign addr_OCM = ADDR * 2;
 logic [19:0] OFFSET, address, nextaddr;
 
 // states
-enum logic [2:0] {idle, pause, read, write1, write2, done} state, nextState;
+enum logic [2:0] {idle, pause, read, write, done} state, nextState;
 
 // set the offset to start loading at
 // every background is 640x480 bytes + 2 bytes of xFF
@@ -54,9 +54,9 @@ end
 always_ff @ (posedge Clk)
 begin
 	if (Reset)
-		addr <= 20'd0;
+		address <= 20'd0;
 	else
-		addr <= nextaddr;
+		address <= nextaddr;
 end
 
 
@@ -90,7 +90,7 @@ begin
 	// set defaults
 	writing = 0;
 	reading = 0;
-	nextaddr = addr;
+	nextaddr = address;
 	
 	unique case (state)
 		idle:
@@ -101,7 +101,7 @@ begin
 		write:
 		begin
 			writing = 1;          // tell OCM to write at address
-			nextaddr = addr + 1;  // increment the address for next read
+			nextaddr = address + 1;  // increment the address for next read
 		end
 		default: ;
 	endcase

@@ -20,7 +20,7 @@ module score ( input         Clk,                // 50 MHz clock
 	assign score_blue = score_blue_reg;
 	assign score_red  = score_red_reg;
 	
-	
+	assign reset_round = reset_flag;
 	
 	always_ff @ (posedge Clk)
 	begin
@@ -33,12 +33,12 @@ module score ( input         Clk,                // 50 MHz clock
 			reset_flag <= 0;
 		else if (blue_color != 8'b1)
 		begin
-			score_blue_reg <= score_blue_reg + 1;
+			score_blue_reg <= score_blue_reg + 2'b1;
 			reset_flag <= 1;
 		end
 		else if (red_color != 8'b1)
 		begin
-			score_red_reg <= score_red_reg + 1;
+			score_red_reg <= score_red_reg + 2'b1;
 			reset_flag <= 1;
 		end
 	end
