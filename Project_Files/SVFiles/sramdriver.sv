@@ -4,7 +4,7 @@
 module sram_controller(
 	input logic Clk, Reset, Read,
 	input logic [19:0] addr_in,
-	//input logic [15:0] Data_in,
+	//input logic [15:0] Data_in, - unneeded cus ROM
 	output logic CE, UB, LB, OE, WE, // active when 0
 	output logic done_r, // active when 1, tells that reg is loaded w/ correct value
 	output logic [15:0] OUTPUT_DATA, // to actually be used in other modules
@@ -59,6 +59,8 @@ begin
 			nextState = done;
 		done
 			nextState = idle;
+		default : 
+			nextstate = idle;
 	endcase
 end
 
@@ -78,7 +80,7 @@ begin
 			OE = 1'b0;
 			done_r = 1'b1;
 			newreadData = data;
-			
+		default: ;
 	endcase
 end
 
