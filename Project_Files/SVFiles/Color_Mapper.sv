@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------
 
 // color_mapper: Decide which color to be output to VGA for each pixel.
-module  color_mapper ( input [15:0] color_pallete_enum,   // Whether current pixel belongs to ball 
+module  color_mapper ( input [3:0] color_pallete_enum,            // Whether current pixel belongs to ball 
                     //    input [9:0] DrawX, DrawY,       // Current pixel coordinates
                        output logic [7:0] VGA_R, VGA_G, VGA_B // VGA RGB output
                      );
@@ -30,103 +30,103 @@ module  color_mapper ( input [15:0] color_pallete_enum,   // Whether current pix
     always_comb
     begin 
         case (color_pallete_enum)
-            16'd0:
+		  default: ;
+        16'd0:
             begin
                 Red = 8'hff;
                 Green = 8'hff;
                 Blue = 8'hff;
             end
-            16'd1:
+        16'd1:
             begin
                 Red = 8'h0e;
                 Green = 8'h0e;
                 Blue = 8'h0e;
             end
-            16'd2:
+        16'd2:
             begin
                 Red = 8'h3b;
                 Green = 8'h3b;
                 Blue = 8'h3b;
             end
-            16'd3:
+        16'd3:
             begin
                 Red = 8'h21;
                 Green = 8'h95;
                 Blue = 8'hf3;
             end
-            16'd4:
+        16'd4:
             begin
                 Red = 8'h00;
                 Green = 8'hbb;
                 Blue = 8'hd4;
             end
-            16'd5:
+         16'd5:
             begin
                 Red = 8'hcf;
                 Green = 8'h10;
                 Blue = 8'h10;
             end
-            16'd6:
+         16'd6:
             begin
                 Red = 8'hff;
                 Green = 8'h52;
                 Blue = 8'h52;
             end
-            16'd7:
+         16'd7:
             begin
                 Red = 8'h24;
                 Green = 8'h24;
                 Blue = 8'h24;
             end
-            16'd8:
+         16'd8:
             begin
                 Red = 8'hAA;
                 Green = 8'hAA;
                 Blue = 8'hAA;
             end
-            16'd9:
+         16'd9:
             begin
                 Red = 8'hAA;
                 Green = 8'hAA;
                 Blue = 8'hAA;
             end
-            16'd10:
+         16'd10:
             begin
                 Red = 8'hAA;
                 Green = 8'hAA;
                 Blue = 8'hAA;
             end
-            16'd11:
+         16'd11:
             begin
                 Red = 8'hAA;
                 Green = 8'hAA;
                 Blue = 8'hAA;
             end
-            16'd12:
+         16'd12:
             begin
                 Red = 8'hAA;
                 Green = 8'hAA;
                 Blue = 8'hAA;
             end
-            16'd13:
+         16'd13:
             begin
                 Red = 8'h00;
                 Green = 8'h71;
                 Blue = 8'h0e;
             end
-            16'd14:
+         16'd14:
             begin
                 Red = 8'h00;
                 Green = 8'h00;
                 Blue = 8'h00;
             end
-            16'd15:
+         16'd15:
             begin
                 Red = 8'hf2;
                 Green = 8'h00;
                 Blue = 8'hff;
             end
-				default: ;
         endcase
     end 
     
