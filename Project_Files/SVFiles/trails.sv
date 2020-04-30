@@ -45,16 +45,16 @@ module trails ( input        Clk,                // 50 MHz clock
 //						end
 //					end
 					
-					always_ff @ (posedge Clk) 
-					begin
-					if (Game_State == 3'b1)
-						mem <= 0;
-					else if (Game_State == 3'b10)
-						begin
-						mem[Blue_Y*112+Blue_X] <= write_b;
-						mem[Red_Y*112+Red_X] <= write_r;
-						end
-					end
+//					always_ff @ (posedge Clk) 
+//					begin
+//					if (Game_State == 3'b1)
+//						mem <= 0;
+//					else if (Game_State == 3'b10)
+//						begin
+//						mem[Blue_Y*112+Blue_X] <= write_b;
+//						mem[Red_Y*112+Red_X] <= write_r;
+//						end
+//					end
 					
 					always_comb
 					begin
@@ -78,7 +78,7 @@ module trails ( input        Clk,                // 50 MHz clock
 							// left or right
 							else if ((Blue_dir == 2'b10) || (Blue_dir == 2'b11))
 								write_b = 3'b001;
-							else:
+							else
 								write_b = 3'b0;
 						end
 						
@@ -96,7 +96,7 @@ module trails ( input        Clk,                // 50 MHz clock
 							else if ((Red_dir == 2'b10) || (Red_dir == 2'b11))
 								write_r = 3'b011;		
 						end
-						else:
+						else
 							write_r = 3'b0;
 						
 					end
