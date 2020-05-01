@@ -105,8 +105,10 @@ begin
 	
 	unique case (state)
 		idle:
+			begin
 			nextaddr = OFFSET;
 			OCM_addr_new = 19'd0;
+			end
 		pause: ;
 		read:
 			reading = 1;          // tell SRAM to read at address
