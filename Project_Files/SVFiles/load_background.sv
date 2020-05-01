@@ -92,6 +92,8 @@ begin
 		write:
 			//if (OCM_done)
 			nextState = idle;
+		default:
+			nextState = idle;
 	endcase
 end
 
@@ -102,6 +104,7 @@ begin
 	writing = 0;
 	reading = 0;
 	nextaddr = address;
+	OCM_addr_new = OCM_addr_reg;
 	
 	unique case (state)
 		idle:
@@ -111,12 +114,12 @@ begin
 			end
 		pause: ;
 		read:
-			reading = 1;          // tell SRAM to read at address
+			reading = 1'b1;          // tell SRAM to read at address
 		write:
 		begin
-			writing = 1;            // tell OCM to write at address
+			writing = 1'b1;            // tell OCM to write at address
 			OCM_addr_new = OCM_addr_reg + 19'b1; // increment the OCM address
-			nextaddr = address + 1;  // increment the address for next read
+			nextaddr = address + 1'b1;  // increment the address for next read
 		end
 		default: ;
 	endcase

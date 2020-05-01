@@ -43,7 +43,10 @@ module lab8( input               CLOCK_50,
                                  DRAM_CKE,     //SDRAM Clock Enable
                                  DRAM_WE_N,    //SDRAM Write Enable
                                  DRAM_CS_N,    //SDRAM Chip Select
-                                 DRAM_CLK      //SDRAM Clock
+                                 DRAM_CLK,      //SDRAM Clock
+				 output logic CE, UB, LB, OE, WE,  // Sram stuff
+				 output [19:0] ADDR,
+				 input [15:0] Data
                     );
     
     logic Reset_h, Clk, is_ball;
@@ -62,7 +65,7 @@ module lab8( input               CLOCK_50,
 	 // VARS TO STORE GAME STUFF
 	 logic [7:0] red_color, blue_color;
 	 logic [2:0] Game_State;
-	 logic [1:0] score_blue, score_red;
+	 logic [1:0] score_blue, score_red, background_sel;
 	 
 	 logic reset_round, reset_game, Blue_W, Red_W;
 	 // actual 640x480 coords
@@ -74,8 +77,13 @@ module lab8( input               CLOCK_50,
     
 	 logic [2:0] write_r, write_b;
 	 
+	 logic [19:0] addr_to_cont;
 	 
+	 logic sram_read, sram_done;
 	 
+	 logic [15:0] SRAM_OUTPUT_DATA;
+	 
+	 logic load_background;
     // Interface between NIOS II and EZ-OTG chip
     hpi_io_intf hpi_io_inst(
                             .Clk(Clk),
@@ -161,8 +169,8 @@ module lab8( input               CLOCK_50,
     
 	 // STUFF FOR GAMELOGIC
 	 GameState statemachine(.Clk(CLOCK_50), .Reset(KEY[0]), .Reset_Game(reset_game),
-									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W),
-									.keycode(keycode), .Game_State(Game_State));
+									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W), 
+									.keycode(keycode), .Game_State(Game_State), .background_select(background_sel), .load_background(load_background));
 									
 	 score scorekeeper(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
 							 .red_color(red_color), .blue_color(blue_color), 
@@ -175,5 +183,26 @@ module lab8( input               CLOCK_50,
 	 trails trail_decider(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
+								 
+	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(KEY[0]), .Read(sram_read), .addr_in(addr_to_cont), .CE(CE), .UB(UB),
+										 .LB(LB), .OE(OE), .WE(WE), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(ADDR),
+										 .Data(Data));
+	 
+//	 
+//	 
+//	 
+//	 LOAD_BACKGROUND
+//	 NOT FILLED COMPLETELY
+//	 
+//	 WARNING
+//	 
+//	 WARNING
+//	 
+//	 
+	
+	 load_background ldback(.Clk(CLOCK_50), .Reset(KEY[0]), .load(load_background), .SRAM_done(sram_done),
+	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
+									.writing(), .reading(sram_read), .ADDR(addr_to_cont),
+									.addr_OCM(), .DATA_OUT());
 	 
 endmodule
