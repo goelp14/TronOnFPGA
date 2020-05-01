@@ -52,30 +52,42 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	begin 
 		// Default Keep State
 		Next_state = State;
+		load_background = 1'b1
 		// Assign next state
 		unique case (State)
 			Menu :
-				load_backgroud = 1'b1;
+				
 				if (keycode == 8'h28) // enter
+				begin
 					Next_state = Round_Paused;
+					load_backgroud = 1'b1;
+				end
 								
 			Round_Paused :
 				if (keycode)
-					load_backgroud = 1'b1;
 					Next_state = Round_Started;
 			Round_Started :
 					if (Reset_Round)
+					begin
 						Next_state = Round_Paused;
+						load_backgroud = 1'b1;
+					end
 					else if (Blue_W)
 						Next_state = Blue_Wins;
 					else if (Red_W)
 						Next_state = Red_Wins;
 			Blue_Wins :
 				if (keycode)
+				begin
 					Next_state = Menu;
+					load_backgroud = 1'b1;
+				end
 			Red_Wins :
 				if (keycode)
-					Next_state = Menu;		
+				begin
+					Next_state = Menu;
+					load_backgroud = 1'b1;
+				end
 			default : Next_state = Menu;
 
 		endcase
