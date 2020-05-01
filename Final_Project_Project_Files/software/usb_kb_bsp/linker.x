@@ -1,10 +1,10 @@
 /*
  * linker.x - Linker script
  *
- * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'lab8_soc'
+ * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'finalproject_soc'
  * SOPC Builder design path: ../../lab8_soc.sopcinfo
  *
- * Generated: Thu Mar 26 18:24:27 CDT 2020
+ * Generated: Fri May 01 03:38:05 CDT 2020
  */
 
 /*

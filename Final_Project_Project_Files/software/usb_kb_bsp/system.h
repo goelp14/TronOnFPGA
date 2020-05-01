@@ -1,10 +1,10 @@
 /*
  * system.h - SOPC Builder system and BSP software package information
  *
- * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'lab8_soc'
+ * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'finalproject_soc'
  * SOPC Builder design path: ../../lab8_soc.sopcinfo
  *
- * Generated: Thu Mar 26 18:24:27 CDT 2020
+ * Generated: Fri May 01 03:38:05 CDT 2020
  */
 
 /*
@@ -175,7 +175,7 @@
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
-#define ALT_SYSTEM_NAME "lab8_soc"
+#define ALT_SYSTEM_NAME "finalproject_soc"
 
 
 /*
@@ -273,7 +273,7 @@
 #define ONCHIP_MEMORY2_0_CONTENTS_INFO ""
 #define ONCHIP_MEMORY2_0_DUAL_PORT 0
 #define ONCHIP_MEMORY2_0_GUI_RAM_BLOCK_TYPE "AUTO"
-#define ONCHIP_MEMORY2_0_INIT_CONTENTS_FILE "lab8_soc_onchip_memory2_0"
+#define ONCHIP_MEMORY2_0_INIT_CONTENTS_FILE "finalproject_soc_onchip_memory2_0"
 #define ONCHIP_MEMORY2_0_INIT_MEM_CONTENT 1
 #define ONCHIP_MEMORY2_0_INSTANCE_ID "NONE"
 #define ONCHIP_MEMORY2_0_IRQ -1
@@ -544,7 +544,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1585263302
+#define SYSID_QSYS_0_TIMESTAMP 1588317003
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 #endif /* __SYSTEM_H_ */

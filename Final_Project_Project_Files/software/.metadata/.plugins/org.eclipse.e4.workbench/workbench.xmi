@@ -52,7 +52,7 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_T6cahYt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.views.ResourceNavigator" toBeRendered="false" ref="_T6Z-QIt0Eeqdhd_1QEaCwg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_T6cahot0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.views.BookmarkView" toBeRendered="false" ref="_T6Z-QYt0Eeqdhd_1QEaCwg"/>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_T6cah4t0Eeqdhd_1QEaCwg" containerData="7500">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_T6cah4t0Eeqdhd_1QEaCwg" containerData="7500" selectedElement="_T6cajIt0Eeqdhd_1QEaCwg">
               <children xsi:type="basic:PartSashContainer" xmi:id="_T6caiIt0Eeqdhd_1QEaCwg" containerData="7500" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_T6caiYt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_T6L70It0Eeqdhd_1QEaCwg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_T6caiot0Eeqdhd_1QEaCwg" elementId="topRight" containerData="2500" selectedElement="_T6cai4t0Eeqdhd_1QEaCwg">
@@ -96,7 +96,7 @@
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_T6YJEIt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.gif" tooltip="" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.cdt.ui.cview.groupincludes=&quot;false&quot; org.eclipse.cdt.ui.cview.groupmacros=&quot;false&quot; org.eclipse.cdt.ui.editor.CUChildren=&quot;true&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; currentWorkingSetName=&quot;Aggregate for window 1588314227562&quot; org.eclipse.cdt.ui.cview.groupincludes=&quot;false&quot; org.eclipse.cdt.ui.cview.groupmacros=&quot;false&quot; org.eclipse.cdt.ui.editor.CUChildren=&quot;true&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <tags>active</tags>
@@ -166,7 +166,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Tp3A0It0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Tp8gYIt0Eeqdhd_1QEaCwg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_TQxyvIt0Eeqdhd_1QEaCwg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_5tjKoIuFEeq1ysGXu3RRqQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_TQxyvIt0Eeqdhd_1QEaCwg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Tp3A0Yt0Eeqdhd_1QEaCwg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -187,7 +187,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Tp3A1Yt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Tp9HdYt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_TQxLhYt0Eeqdhd_1QEaCwg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_5tmN8IuFEeq1ysGXu3RRqQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_TQxLhYt0Eeqdhd_1QEaCwg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Tp3A1ot0Eeqdhd_1QEaCwg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -221,8 +221,19 @@
         <tags>Draggable</tags>
       </children>
     </trimBars>
-    <trimBars xmi:id="_T4SeYIt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.trim.vertical1" side="Left"/>
-    <trimBars xmi:id="_T4TsgIt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.trim.vertical2" side="Right"/>
+    <trimBars xmi:id="_T4SeYIt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.trim.vertical1" toBeRendered="false" side="Left">
+      <children xsi:type="menu:ToolControl" xmi:id="_9J4uoIuFEeq1ysGXu3RRqQ" elementId="topLeft(com.altera.sbtgui.ui.cPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <tags>TrimStack</tags>
+      </children>
+    </trimBars>
+    <trimBars xmi:id="_T4TsgIt0Eeqdhd_1QEaCwg" elementId="org.eclipse.ui.trim.vertical2" toBeRendered="false" side="Right">
+      <children xsi:type="menu:ToolControl" xmi:id="_9KKbcIuFEeq1ysGXu3RRqQ" elementId="topRight(com.altera.sbtgui.ui.cPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <tags>TrimStack</tags>
+      </children>
+      <children xsi:type="menu:ToolControl" xmi:id="_9KSXQIuFEeq1ysGXu3RRqQ" elementId="org.eclipse.ui.editorss(com.altera.sbtgui.ui.cPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <tags>TrimStack</tags>
+      </children>
+    </trimBars>
   </children>
   <bindingTables xmi:id="_TPbHk4t0Eeqdhd_1QEaCwg" contributorURI="platform:/plugin/org.eclipse.platform" bindingContext="_TPbHlIt0Eeqdhd_1QEaCwg">
     <bindings xmi:id="_TRJl6ot0Eeqdhd_1QEaCwg" keySequence="CTRL+A" command="_TQyZ74t0Eeqdhd_1QEaCwg"/>

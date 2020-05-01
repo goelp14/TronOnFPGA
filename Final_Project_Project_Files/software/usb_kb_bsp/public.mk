@@ -86,7 +86,7 @@ ACDS_VERSION := 18.1
 
 # Quartus Generated JDI File. Required for resolving node instance ID's with 
 # design component names. 
-JDI_FILE := $(ABS_BSP_ROOT_DIR)/../../lab8.jdi
+JDI_FILE := $(ABS_BSP_ROOT_DIR)/../../finalproject.jdi
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
@@ -143,8 +143,8 @@ QSYS := 1
 ELF_PATCH_FLAG += --qsys true
 
 # Design Name 
-# setting SOPC_NAME is lab8_soc
-SOPC_NAME := lab8_soc
+# setting SOPC_NAME is finalproject_soc
+SOPC_NAME := finalproject_soc
 
 # SopcBuilder Simulation Enabled 
 # setting SOPC_SIMULATION_ENABLED is false
@@ -161,9 +161,9 @@ SOPC_SYSID_FLAG += --sidp=0xf0
 ELF_PATCH_FLAG  += --sidp 0xf0
 
 # The SOPC Timestamp 
-# setting SOPC_TIMESTAMP is 1585263302
-SOPC_SYSID_FLAG += --timestamp=1585263302
-ELF_PATCH_FLAG  += --timestamp 1585263302
+# setting SOPC_TIMESTAMP is 1588317003
+SOPC_SYSID_FLAG += --timestamp=1588317003
+ELF_PATCH_FLAG  += --timestamp 1588317003
 
 # Enable JTAG UART driver to recover when host is inactive causing buffer to 
 # full without returning error. Printf will not fail with this recovery. none 
