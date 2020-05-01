@@ -6,15 +6,15 @@
 
  module  frameRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
             
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((640*480)-1)];
+    logic [15:0] mem [0:((640*240)-1)];
 
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/menu.txt", mem);
@@ -29,15 +29,15 @@
 
 module  bikeDownBlueRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_down_blue.txt", mem);
@@ -53,15 +53,15 @@ endmodule
 
 module  bikeUpBlueRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [8:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_up_blue.txt", mem);
@@ -77,15 +77,15 @@ endmodule
 
 module  bikeLeftBlueRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_left_blue.txt", mem);
@@ -101,15 +101,15 @@ endmodule
 
 module  bikeRightBlueRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_right_blue.txt", mem);
@@ -125,15 +125,15 @@ endmodule
 
 module  bikeDownRedRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_down_red.txt", mem);
@@ -149,15 +149,15 @@ endmodule
 
 module  bikeUpRedRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_up_red.txt", mem);
@@ -173,15 +173,15 @@ endmodule
 
 module  bikeLeftRedRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_left_red.txt", mem);
@@ -197,18 +197,138 @@ endmodule
 
 module  bikeRightRedRAM
     (
-            input [7:0] data_In,
+            input [15:0] data_In,
             input [19:0] write_address, read_address,
             input we, Clk,
     
-            output logic [7:0] data_Out
+            output logic [15:0] data_Out
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [7:0] mem [0:((32*32)-1)];
+    logic [15:0] mem [0:((32*32/2)-1)];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/bike_right_red.txt", mem);
+    end
+
+    always_ff @ (posedge Clk) begin
+        if (we)
+            mem[write_address] <= data_In;
+        data_Out<= mem[read_address];
+    end
+    
+endmodule
+
+module  trailVertBlueRAM
+    (
+            input [15:0] data_In,
+            input [19:0] write_address, read_address,
+            input we, Clk,
+    
+            output logic [15:0] data_Out
+    );
+    
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [15:0] mem [0:((4*4/2)-1)];
+    
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_vert_blue.txt", mem);
+    end
+
+    always_ff @ (posedge Clk) begin
+        if (we)
+            mem[write_address] <= data_In;
+        data_Out<= mem[read_address];
+    end
+    
+endmodule
+
+module  trailHorizBlueRAM
+    (
+            input [15:0] data_In,
+            input [19:0] write_address, read_address,
+            input we, Clk,
+    
+            output logic [15:0] data_Out
+    );
+    
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [15:0] mem [0:((4*4/2)-1)];
+    
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_horiz_blue.txt", mem);
+    end
+
+    always_ff @ (posedge Clk) begin
+        if (we)
+            mem[write_address] <= data_In;
+        data_Out<= mem[read_address];
+    end
+    
+endmodule
+
+module  trailVertRedRAM
+    (
+            input [15:0] data_In,
+            input [19:0] write_address, read_address,
+            input we, Clk,
+    
+            output logic [15:0] data_Out
+    );
+    
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [15:0] mem [0:((4*4/2)-1)];
+    
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_vert_red.txt", mem);
+    end
+
+    always_ff @ (posedge Clk) begin
+        if (we)
+            mem[write_address] <= data_In;
+        data_Out<= mem[read_address];
+    end
+    
+endmodule
+
+module  trailHorizRedRAM
+    (
+            input [15:0] data_In,
+            input [19:0] write_address, read_address,
+            input we, Clk,
+    
+            output logic [15:0] data_Out
+    );
+    
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [15:0] mem [0:((4*4/2)-1)];
+    
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_horiz_red.txt", mem);
+    end
+
+    always_ff @ (posedge Clk) begin
+        if (we)
+            mem[write_address] <= data_In;
+        data_Out<= mem[read_address];
+    end
+    
+endmodule
+
+module  trailCornerRam
+    (
+            input [15:0] data_In,
+            input [19:0] write_address, read_address,
+            input we, Clk,
+    
+            output logic [15:0] data_Out
+    );
+    
+    // mem has width of 480 bits and a total of 640 addresses
+    logic [15:0] mem [0:((4*4/2)-1)];
+    
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_corner.txt", mem);
     end
 
     always_ff @ (posedge Clk) begin
