@@ -1,5 +1,5 @@
 module load_background(
-	input logic Clk, Reset, load, SRAM_done, OCM_done, // load to tell it to load the background, SRAM_done tells it that its ready.
+	input logic Clk, Reset, load, SRAM_done,// OCM_done, // load to tell it to load the background, SRAM_done tells it that its ready.
 	input logic [1:0] BG_Sel,
 	input logic [2:0] Game_State,
 	input logic [15:0] DATA_IN,
@@ -19,17 +19,22 @@ module load_background(
 // assign data out and addr
 assign DATA_OUT = DATA_IN;
 
-// addr_OCM is per byte, ADDR is per 2 bytes
-assign addr_OCM = ADDR * 2;
+//// addr_OCM is per byte, ADDR is per 2 bytes
+//assign addr_OCM = ADDR * 2;
+
+assign addr_OCM = OCM_addr_reg;
 
 // have reg to hold offset for the background selected
 logic [19:0] OFFSET, address, nextaddr;
+logic [18:0] OCM_addr_reg, OCM_addr_new;
 
 // states
 enum logic [2:0] {idle, pause, read, write, done} state, nextState;
 
 // set the offset to start loading at
+
 // every background is 640x480 bytes + 2 bytes of xFF
+// offset /2 cuz 16 bits at a time
 
 always_ff @ (posedge Clk)
 begin
@@ -54,9 +59,15 @@ end
 always_ff @ (posedge Clk)
 begin
 	if (Reset)
+		begin
 		address <= 20'd0;
+		OCM_addr_reg <= 19'd0;
+		end
 	else
+		begin
 		address <= nextaddr;
+		OCM_addr_reg <= OCM_addr_new;
+		end
 end
 
 
@@ -79,8 +90,10 @@ begin
 			else if (SRAM_done)
 				nextState = write;
 		write:
-			if (OCM_done)
-				nextState = idle;
+			//if (OCM_done)
+			nextState = idle;
+		default:
+			nextState = idle;
 	endcase
 end
 
@@ -91,17 +104,22 @@ begin
 	writing = 0;
 	reading = 0;
 	nextaddr = address;
+	OCM_addr_new = OCM_addr_reg;
 	
 	unique case (state)
 		idle:
+			begin
 			nextaddr = OFFSET;
+			OCM_addr_new = 19'd0;
+			end
 		pause: ;
 		read:
-			reading = 1;          // tell SRAM to read at address
+			reading = 1'b1;          // tell SRAM to read at address
 		write:
 		begin
-			writing = 1;          // tell OCM to write at address
-			nextaddr = address + 1;  // increment the address for next read
+			writing = 1'b1;            // tell OCM to write at address
+			OCM_addr_new = OCM_addr_reg + 19'b1; // increment the OCM address
+			nextaddr = address + 1'b1;  // increment the address for next read
 		end
 		default: ;
 	endcase

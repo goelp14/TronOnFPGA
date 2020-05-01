@@ -1,5 +1,5 @@
 // notes: assuming address is per 16 bit word, active-low
-// not sure if inout wire should be input if ROM
+// not sure if inout wire should be input if ROM (Data)
 
 module sram_controller(
 	input logic Clk, Reset, Read,
@@ -9,7 +9,7 @@ module sram_controller(
 	output logic done_r, // active when 1, tells that reg is loaded w/ correct value
 	output logic [15:0] OUTPUT_DATA, // to actually be used in other modules
 	output logic [19:0] ADDR, // to the SRAM
-	inout wire [15:0] data // connecting to sram
+	input wire [15:0] Data // connecting to sram NOT SURE IF INOUT
 	// output logic [639:0] BG [480]
 	// inout wire [307199:0] Data //tristate buffers need to be of type wire
 );
@@ -71,20 +71,22 @@ begin
 	done_r = 1'b0;
 	
 	unique case (state)
-		idle: ;
+		idle:
+			newreadData = 16'b0;
 			
 		read:
 			begin
 				OE = 1'b0;
-				newreadData = data;
+				newreadData = Data;
 			end
 		done:
 			begin
 				OE = 1'b0;
 				done_r = 1'b1;
-				newreadData = data;
+				newreadData = Data;
 			end
-		default: ;
+		default: 
+			newreadData = 16'b0;
 	endcase
 end
 

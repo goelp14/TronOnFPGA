@@ -44,10 +44,10 @@ module  arena ( input         Clk,                // 50 MHz clock
     parameter [9:0] Arena_X_Spawn_blue = 10'd76;  // Center position on the X axis
 	 parameter [9:0] Arena_X_Spawn_red = 10'd400;  // Center position on the X axis
     parameter [9:0] Arena_Y_Spawn = 10'd240;  // Center position on the Y axis
-    parameter [9:0] Arena_X_Min = 10'd14;       // Leftmost point on the X axis
-    parameter [9:0] Arena_X_Max = 10'd462;     // Rightmost point on the X axis
-    parameter [9:0] Arena_Y_Min = 10'd14;       // Topmost point on the Y axis
-    parameter [9:0] Arena_Y_Max = 10'd462;     // Bottommost point on the Y axis
+//    parameter [9:0] Arena_X_Min = 10'd14;       // Leftmost point on the X axis
+//    parameter [9:0] Arena_X_Max = 10'd462;     // Rightmost point on the X axis
+//    parameter [9:0] Arena_Y_Min = 10'd14;       // Topmost point on the Y axis
+//    parameter [9:0] Arena_Y_Max = 10'd462;     // Bottommost point on the Y axis
     parameter [9:0] Bike_X_Step = 10'd1;      // Step size on the X axis
     parameter [9:0] Bike_Y_Step = 10'd1;      // Step size on the Y axis
 	 parameter [9:0] Bike_Size = 10'd16;      // Bike size for collision detection
