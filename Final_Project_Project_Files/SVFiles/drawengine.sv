@@ -18,7 +18,7 @@ module drawengine(
 	logic [15:0] data_In_b, data_In_r;
 	logic [19:0] write_address_b, read_address_b, write_address_r, read_address_r, read_address;
 	logic [15:0] data_Out_bub, data_Out_blb, data_Out_brb, data_Out_bdb, data_Out_bur, data_Out_blr, data_Out_brr, data_Out_bdr, data_Out;
-	logic [7:0]  blue_upper, blue_lower, red_upper, red_lower, out_byte;
+	logic [3:0]  blue_upper, blue_lower, red_upper, red_lower, out_byte;
 
 
     // logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
@@ -32,9 +32,6 @@ module drawengine(
         frame_clk_rising_edge <= (frame_clk == 1'b1) && (frame_clk_delayed == 1'b0);
     end
     
-    // Compute whether the pixel corresponds to ball or background
-    /* Since the multiplicants are required to be signed, we have to first cast them
-	   from logic to int (signed by default) before they are multiplied. */
 
     int DistX_blue, DistY_blue;
     assign DistX_blue = DrawX - Blue_X_real - Bike_Size;
@@ -56,30 +53,30 @@ module drawengine(
 				if (Blue_dir == 2'd0)
 					begin
 						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bub [7:0];
+							out_byte = data_Out_bub [3:0];
 						else
-							out_byte = data_Out_bub [15:8]; 
+							out_byte = data_Out_bub [7:4]; 
 					end
 				else if (Blue_dir == 2'd1)
 					begin
 						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_blb [7:0];
+							out_byte = data_Out_blb [3:0];
 						else
-							out_byte = data_Out_blb [15:8]; 
+							out_byte = data_Out_blb [7:4]; 
 					end
 				else if (Blue_dir == 2'd2)
 					begin
 						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bdb [7:0];
+							out_byte = data_Out_bdb [3:0];
 						else
-							out_byte = data_Out_bdb [15:8]; 
+							out_byte = data_Out_bdb [7:4]; 
 					end
 				else
 					begin
 						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bdb [7:0];
+							out_byte = data_Out_bdb [3:0];
 						else
-							out_byte = data_Out_bdb [15:8]; 
+							out_byte = data_Out_bdb [7:4]; 
 					end
 			end
 		else if (( DistX_red <= Bike_Size * 2) && (DistY_red <= Bike_Size*2))
@@ -92,55 +89,35 @@ module drawengine(
 				if (Red_dir == 2'd0)
 					begin
 						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bur [7:0];
+							out_byte = data_Out_bur [3:0];
 						else
-							out_byte = data_Out_bur [15:8]; 
+							out_byte = data_Out_bur [7:4]; 
 					end
 				else if (Red_dir == 2'd1)
 					begin
 						if (DistX_red % 2 == 1)
-							out_byte = data_Out_blr [7:0];
+							out_byte = data_Out_blr [3:0];
 						else
-							out_byte = data_Out_blr [15:8]; 
+							out_byte = data_Out_blr [7:4]; 
 					end
 				else if (Red_dir == 2'd2)
 					begin
 						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bdr [7:0];
+							out_byte = data_Out_bdr [3:0];
 						else
-							out_byte = data_Out_bdr [15:8]; 
+							out_byte = data_Out_bdr [7:4]; 
 					end
 				else
 					begin
 						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bdr [7:0];
+							out_byte = data_Out_bdr [3:0];
 						else
-							out_byte = data_Out_bdr [15:8]; 
+							out_byte = data_Out_bdr [7:4]; 
 					end
 			end
 		else:
 			begin
-				read_address = DrawX/2 + DrawY * (640/2);
-				read_address_r = 20'd6; //arbitrary value
-				write_address_r = read_address_r;
-				read_address_b = write_address_r;
-				write_address_b = read_address_b;
-				if (DrawX % 2 == 1)
-					out_byte = data_Out [7:0];
-				else
-					out_byte = data_Out [15:8];
-			end
-		if (out_byte == 8'h15)
-			begin
-				read_address = DrawX/2 + DrawY * (640/2);
-				read_address_r = 20'd6; //arbitrary value
-				write_address_r = read_address_r;
-				read_address_b = write_address_r;
-				write_address_b = read_address_b;
-				if (DrawX % 2 == 1)
-					out_byte = data_Out [7:0];
-				else
-					out_byte = data_Out [15:8];
+				out_byte = 4'hf;
 			end
 	end
 	

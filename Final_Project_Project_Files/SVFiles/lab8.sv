@@ -163,9 +163,13 @@ module lab8( input               CLOCK_50,
 //		 .keycode(keycode)	// Key inputs
 //	 );
     
-	 drawengine(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
+	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
 					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
+					.color_enum(Drawengine_out));
+	 
+	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
+					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
 					.color_enum(color_enum));
 	 
     color_mapper color_instance(
