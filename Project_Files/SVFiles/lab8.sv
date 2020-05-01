@@ -81,7 +81,8 @@ module lab8( input               CLOCK_50,
 	 
 	 logic sram_read, sram_done;
 	 
-	 logic [15:0] SRAM_OUTPUT_DATA;
+	 logic [15:0] SRAM_OUTPUT_DATA, OCM_Data;
+	 
 	 
 	 logic load_background;
     // Interface between NIOS II and EZ-OTG chip
@@ -157,6 +158,8 @@ module lab8( input               CLOCK_50,
 //		 .keycode(keycode)	// Key inputs
 //	 );
     
+	 drawengine(.Clk(),.Reset(),.frame_clk, .WE(),.DrawX(),.DrawY(),.Blue_dir(), .Red_dir(), .Blue_X_real(), .Blue_Y_real(), .Red_X_real(), .Red_Y_real(), .Data_In(OCM_Data), .write_address()., color_enum())
+	 
     color_mapper color_instance(
 		.VGA_R(VGA_R), 
 		.VGA_G(VGA_G), 
@@ -203,6 +206,6 @@ module lab8( input               CLOCK_50,
 	 load_background ldback(.Clk(CLOCK_50), .Reset(KEY[0]), .load(load_background), .SRAM_done(sram_done),
 	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
 									.writing(), .reading(sram_read), .ADDR(addr_to_cont),
-									.addr_OCM(), .DATA_OUT());
+									.addr_OCM(), .DATA_OUT(OCM_Data));
 	 
 endmodule
