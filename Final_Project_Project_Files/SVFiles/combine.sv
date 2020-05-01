@@ -1,6 +1,7 @@
 module combine(
 	input Clk, Reset, frame_clk, WE,        // The clock indicating a new frame (~60Hz)
 	input [9:0] DrawX, DrawY,
+	input [15:0] Data_In,
 	input [3:0] Data_In_Bike,
 	input [18:0] write_address,
     output logic [3:0]  color_enum         

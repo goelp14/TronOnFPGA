@@ -1,10 +1,8 @@
 module drawengine(
-	input Clk, Reset, frame_clk, WE,        // The clock indicating a new frame (~60Hz)
+	input Clk, Reset, frame_clk,       // The clock indicating a new frame (~60Hz)
 	input [9:0] DrawX, DrawY,
 	input [1:0] Blue_dir, Red_dir,       // Current pixel coordinates
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
-	input [15:0] Data_In,
-	input [18:0] write_address,
     output logic [3:0]  color_enum          // Whether current pixel belongs to ball or background
     );
 
@@ -138,8 +136,6 @@ module drawengine(
 	bikeLeftRedRAM bike_left_red (.data_In(data_In_r),.write_address(write_address_r),.read_address(read_address_r),.we(1'b0),.Clk(Clk),.data_Out(data_Out_blr));
 	bikeRightRedRAM bike_right_red (.data_In(data_In_r),.write_address(write_address_r),.read_address(read_address_r),.we(1'b0),.Clk(Clk),.data_Out(data_Out_brr));
 	bikeDownRedRAM bike_down_red (.data_In(data_In_r),.write_address(write_address_r),.read_address(read_address_r),.we(1'b0),.Clk(Clk),.data_Out(data_Out_bdr));
-
-	frameRAM frame_buffer (.data_In(data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
 
 	assign color_enum = out_byte;
 endmodule

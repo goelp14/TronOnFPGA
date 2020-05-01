@@ -87,7 +87,7 @@ module lab8( input               CLOCK_50,
 	 
 	 logic [18:0] fb_addr_OCM;
 	 
-	 logic [3:0] color_enum;
+	 logic [3:0] color_enum, Drawengine_out;
 	 
 	 logic load_background;
     // Interface between NIOS II and EZ-OTG chip
@@ -163,10 +163,9 @@ module lab8( input               CLOCK_50,
 //		 .keycode(keycode)	// Key inputs
 //	 );
     
-	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
+	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
-					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
-					.color_enum(Drawengine_out));
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .color_enum(Drawengine_out));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
 					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
