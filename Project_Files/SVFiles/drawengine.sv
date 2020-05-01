@@ -4,7 +4,7 @@ module drawengine(
 	input [1:0] Blue_dir, Red_dir,       // Current pixel coordinates
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
 	input [15:0] Data_In,
-	input [19:0] write_address,
+	input [18:0] write_address,
     output logic [3:0]  color_enum          // Whether current pixel belongs to ball or background
     );
 
@@ -50,6 +50,9 @@ module drawengine(
 			begin
 				read_address_b = DistX_blue/2 + (DistY_blue * 32)/2;
 				write_address_b = read_address_b;
+				read_address_r = read_address_b;
+				write_address_r = read_address_r;
+				read_address = write_address_r;
 				if (Blue_dir == 2'd0)
 					begin
 						if (DrawX % 2 == 0)
@@ -83,6 +86,9 @@ module drawengine(
 			begin
 				read_address_r = DistX_red/2 + (DistY_red*32)/2;
 				write_address_r = read_address_r;
+				read_address_b = write_address_r;
+				write_address_b = read_address_b;
+				read_address = write_address_b;
 				if (Red_dir == 2'd0)
 					begin
 						if (DrawX % 2 == 0)
@@ -111,11 +117,14 @@ module drawengine(
 						else
 							out_byte = data_Out_bdr [15:8]; 
 					end
-				end
+			end
 		else
 			begin
 				read_address = DrawX/2 + (DrawY * 640)/2;
-				write_address = read_address;
+				read_address_r = 20'd6; //arbitrary value
+				write_address_r = read_address_r;
+				read_address_b = write_address_r;
+				write_address_b = read_address_b;
 				if (DrawX % 2 == 0)
 					out_byte = data_Out [7:0];
 				else

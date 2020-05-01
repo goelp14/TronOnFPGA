@@ -83,6 +83,11 @@ module lab8( input               CLOCK_50,
 	 
 	 logic [15:0] SRAM_OUTPUT_DATA, OCM_Data;
 	 
+	 logic fb_we;
+	 
+	 logic [18:0] fb_addr_OCM;
+	 
+	 logic [3:0] color_enum;
 	 
 	 logic load_background;
     // Interface between NIOS II and EZ-OTG chip
@@ -158,12 +163,13 @@ module lab8( input               CLOCK_50,
 //		 .keycode(keycode)	// Key inputs
 //	 );
     
-	 drawengine(.Clk(),.Reset(),.frame_clk, .WE(),.DrawX(),.DrawY(),.Blue_dir(), .Red_dir(), .Blue_X_real(), .Blue_Y_real(), .Red_X_real(), .Red_Y_real(), .Data_In(OCM_Data), .write_address()., color_enum())
+	 drawengine(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .Data_In(OCM_Data), .write_address(fb_addr_OCM), .color_enum(color_enum));
 	 
     color_mapper color_instance(
 		.VGA_R(VGA_R), 
 		.VGA_G(VGA_G), 
-		.VGA_B(VGA_B)		// VGA RGB output
+		.VGA_B(VGA_B),		// VGA RGB output
+		.color_pallete_enum(color_enum)
 	 );
     
     // Display keycode on hex display
@@ -205,7 +211,7 @@ module lab8( input               CLOCK_50,
 	
 	 load_background ldback(.Clk(CLOCK_50), .Reset(KEY[0]), .load(load_background), .SRAM_done(sram_done),
 	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
-									.writing(), .reading(sram_read), .ADDR(addr_to_cont),
-									.addr_OCM(), .DATA_OUT(OCM_Data));
+									.writing(fb_we), .reading(sram_read), .ADDR(addr_to_cont),
+									.addr_OCM(fb_addr_OCM), .DATA_OUT(OCM_Data));
 	 
 endmodule
