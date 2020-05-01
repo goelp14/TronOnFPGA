@@ -1,0 +1,29 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\HP\Documents\Github\ECE-385\FinalProject\Final_Project_Project_Files\sram_controller.qsys --block-symbol-file --output-directory=C:\Users\HP\Documents\Github\ECE-385\FinalProject\Final_Project_Project_Files\sram_controller --family="Cyclone IV E" --part=EP4CE115F29C7
+Progress: Loading Final_Project_Project_Files/sram_controller.qsys
+Progress: Reading input file
+Progress: Adding sram_0 [altera_up_avalon_sram 18.0]
+Progress: Parameterizing module sram_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\HP\Documents\Github\ECE-385\FinalProject\Final_Project_Project_Files\sram_controller.qsys --synthesis=VERILOG --output-directory=C:\Users\HP\Documents\Github\ECE-385\FinalProject\Final_Project_Project_Files\sram_controller\synthesis --family="Cyclone IV E" --part=EP4CE115F29C7
+Progress: Loading Final_Project_Project_Files/sram_controller.qsys
+Progress: Reading input file
+Progress: Adding sram_0 [altera_up_avalon_sram 18.0]
+Progress: Parameterizing module sram_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: sram_controller: Generating sram_controller "sram_controller" for QUARTUS_SYNTH
+Info: sram_0: Starting Generation of the SRAM Controller
+Info: sram_0: "sram_controller" instantiated altera_up_avalon_sram "sram_0"
+Info: sram_controller: Done "sram_controller" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
