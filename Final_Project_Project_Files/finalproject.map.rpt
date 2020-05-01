@@ -1,5 +1,5 @@
 Analysis & Synthesis report for finalproject
-Fri May 01 14:05:07 2020
+Fri May 01 14:31:24 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -374,7 +374,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri May 01 14:05:07 2020       ;
+; Analysis & Synthesis Status        ; Successful - Fri May 01 14:31:24 2020       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; finalproject                                ;
 ; Top-level Entity Name              ; lab8                                        ;
@@ -9123,7 +9123,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:12     ;
+; Top            ; 00:00:14     ;
 +----------------+--------------+
 
 
@@ -9133,7 +9133,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri May 01 13:54:59 2020
+    Info: Processing started: Fri May 01 14:20:11 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off finalproject -c finalproject
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -9671,7 +9671,7 @@ Warning (12011): Net is missing source, defaulting to GND
 Warning (12011): Net is missing source, defaulting to GND
     Warning (12110): Net "reset_game" is missing source, defaulting to GND File: C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/SVFiles/lab8.sv Line: 70
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2020.05.01.14:04:38 Progress: Loading slda7c6b933/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2020.05.01.14:30:50 Progress: Loading slda7c6b933/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -9987,10 +9987,10 @@ Info (21057): Implemented 4986 device resources after synthesis - the final reso
     Info (21065): Implemented 2 PLLs
     Info (21062): Implemented 8 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 289 warnings
-    Info: Peak virtual memory: 5324 megabytes
-    Info: Processing ended: Fri May 01 14:05:07 2020
-    Info: Elapsed time: 00:10:08
-    Info: Total CPU time (on all processors): 00:10:42
+    Info: Peak virtual memory: 5312 megabytes
+    Info: Processing ended: Fri May 01 14:31:24 2020
+    Info: Elapsed time: 00:11:13
+    Info: Total CPU time (on all processors): 00:11:37
 
 
 +------------------------------------------+

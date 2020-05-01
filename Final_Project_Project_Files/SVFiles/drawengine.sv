@@ -48,7 +48,7 @@ module drawengine(
 	always_comb begin
 		if ( ( DistX_blue*DistX_blue + DistY_blue*DistY_blue) <= (Bike_Size*Bike_Size*4) )
 			begin
-				read_address_b = DistX_blue/2 + (DistY_blue * 32)/2;
+				read_address_b = DistX_blue/2 + DistY_blue * (32/2);
 				write_address_b = read_address_b;
 				read_address_r = read_address_b;
 				write_address_r = read_address_r;
@@ -84,7 +84,7 @@ module drawengine(
 			end
 		else if ( ( DistX_red*DistX_red + DistY_red*DistY_red) <= (Bike_Size*Bike_Size*4) )
 			begin
-				read_address_r = DistX_red/2 + (DistY_red*32)/2;
+				read_address_r = DistX_red/2 + DistY_red*(32/2);
 				write_address_r = read_address_r;
 				read_address_b = write_address_r;
 				write_address_b = read_address_b;
@@ -120,7 +120,7 @@ module drawengine(
 			end
 		else
 			begin
-				read_address = DrawX/2 + (DrawY * 640)/2;
+				read_address = DrawX/2 + DrawY * (640/2);
 				read_address_r = 20'd6; //arbitrary value
 				write_address_r = read_address_r;
 				read_address_b = write_address_r;
