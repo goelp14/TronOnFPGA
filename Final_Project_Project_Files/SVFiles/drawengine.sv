@@ -118,7 +118,19 @@ module drawengine(
 							out_byte = data_Out_bdr [15:8]; 
 					end
 			end
-		else
+		else:
+			begin
+				read_address = DrawX/2 + DrawY * (640/2);
+				read_address_r = 20'd6; //arbitrary value
+				write_address_r = read_address_r;
+				read_address_b = write_address_r;
+				write_address_b = read_address_b;
+				if (DrawX % 2 == 1)
+					out_byte = data_Out [7:0];
+				else
+					out_byte = data_Out [15:8];
+			end
+		if (out_byte == 8'h15)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
 				read_address_r = 20'd6; //arbitrary value
