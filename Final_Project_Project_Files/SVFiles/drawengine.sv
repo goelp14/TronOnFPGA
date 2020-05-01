@@ -46,7 +46,7 @@ module drawengine(
 	
 
 	always_comb begin
-		if ( ( DistX_blue*DistX_blue + DistY_blue*DistY_blue) <= (Bike_Size*Bike_Size*4) )
+		if ( ( DistX_blue <= Bike_Size * 2) && (DistY_blue <= Bike_Size*2) )
 			begin
 				read_address_b = DistX_blue/2 + DistY_blue * (32/2);
 				write_address_b = read_address_b;
@@ -55,34 +55,34 @@ module drawengine(
 				read_address = write_address_r;
 				if (Blue_dir == 2'd0)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bub [7:0];
 						else
 							out_byte = data_Out_bub [15:8]; 
 					end
 				else if (Blue_dir == 2'd1)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_blb [7:0];
 						else
 							out_byte = data_Out_blb [15:8]; 
 					end
 				else if (Blue_dir == 2'd2)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bdb [7:0];
 						else
 							out_byte = data_Out_bdb [15:8]; 
 					end
 				else
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bdb [7:0];
 						else
 							out_byte = data_Out_bdb [15:8]; 
 					end
 			end
-		else if ( ( DistX_red*DistX_red + DistY_red*DistY_red) <= (Bike_Size*Bike_Size*4) )
+		else if (( DistX_red <= Bike_Size * 2) && (DistY_red <= Bike_Size*2))
 			begin
 				read_address_r = DistX_red/2 + DistY_red*(32/2);
 				write_address_r = read_address_r;
@@ -91,28 +91,28 @@ module drawengine(
 				read_address = write_address_b;
 				if (Red_dir == 2'd0)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bur [7:0];
 						else
 							out_byte = data_Out_bur [15:8]; 
 					end
 				else if (Red_dir == 2'd1)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_blr [7:0];
 						else
 							out_byte = data_Out_blr [15:8]; 
 					end
 				else if (Red_dir == 2'd2)
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bdr [7:0];
 						else
 							out_byte = data_Out_bdr [15:8]; 
 					end
 				else
 					begin
-						if (DrawX % 2 == 0)
+						if (DrawX % 2 == 1)
 							out_byte = data_Out_bdr [7:0];
 						else
 							out_byte = data_Out_bdr [15:8]; 
@@ -125,7 +125,7 @@ module drawengine(
 				write_address_r = read_address_r;
 				read_address_b = write_address_r;
 				write_address_b = read_address_b;
-				if (DrawX % 2 == 0)
+				if (DrawX % 2 == 1)
 					out_byte = data_Out [7:0];
 				else
 					out_byte = data_Out [15:8];
