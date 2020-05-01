@@ -177,7 +177,7 @@ module lab8( input               CLOCK_50,
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
     
 	 // STUFF FOR GAMELOGIC
-	 GameState statemachine(.Clk(CLOCK_50), .Reset(KEY[0]), .Reset_Game(reset_game),
+	 GameState statemachine(.Clk(CLOCK_50), .Reset(Reset_h), .Reset_Game(reset_game),
 									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W), 
 									.keycode(keycode), .Game_State(Game_State), .background_select(background_sel), .load_background(load_background));
 									
@@ -185,31 +185,20 @@ module lab8( input               CLOCK_50,
 							 .red_color(red_color), .blue_color(blue_color), 
 							 .Blue_W(Blue_W), .Red_W(Red_W), .reset_round(reset_round), .score_blue(score_blue), .score_red(score_red));
 							
-	 arena field(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
+	 arena field(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
 	
-	 trails trail_decider(.Clk(CLOCK_50), .Reset(KEY[0]), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
+	 trails trail_decider(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
 								 
-	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(KEY[0]), .Read(sram_read), .addr_in(addr_to_cont), .CE(CE), .UB(UB),
+	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(Reset_h), .Read(sram_read), .addr_in(addr_to_cont), .CE(CE), .UB(UB),
 										 .LB(LB), .OE(OE), .WE(WE), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(ADDR),
 										 .Data(Data));
 	 
-//	 
-//	 
-//	 
-//	 LOAD_BACKGROUND
-//	 NOT FILLED COMPLETELY
-//	 
-//	 WARNING
-//	 
-//	 WARNING
-//	 
-//	 
 	
-	 load_background ldback(.Clk(CLOCK_50), .Reset(KEY[0]), .load(load_background), .SRAM_done(sram_done),
+	 load_background ldback(.Clk(CLOCK_50), .Reset(Reset_h), .load(load_background), .SRAM_done(sram_done),
 	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
 									.writing(fb_we), .reading(sram_read), .ADDR(addr_to_cont),
 									.addr_OCM(fb_addr_OCM), .DATA_OUT(OCM_Data));
