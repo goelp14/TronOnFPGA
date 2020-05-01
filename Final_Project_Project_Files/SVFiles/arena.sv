@@ -90,7 +90,7 @@ module  arena ( input         Clk,                // 50 MHz clock
 	 //Blue
     always_ff @ (posedge Clk)
     begin
-        if (Reset || (Game_State == 3'b1))
+        if (Reset || (Game_State == 3'b01))
         begin
 				// for blue bike
             Blue_X_reg <= Arena_X_Spawn_blue;

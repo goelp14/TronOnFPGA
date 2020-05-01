@@ -163,7 +163,10 @@ module lab8( input               CLOCK_50,
 //		 .keycode(keycode)	// Key inputs
 //	 );
     
-	 drawengine(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .Data_In(OCM_Data), .write_address(fb_addr_OCM), .color_enum(color_enum));
+	 drawengine(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
+					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
+					.color_enum(color_enum));
 	 
     color_mapper color_instance(
 		.VGA_R(VGA_R), 
@@ -197,6 +200,17 @@ module lab8( input               CLOCK_50,
 										 .LB(LB), .OE(OE), .WE(WE), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(ADDR),
 										 .Data(Data));
 	 
+//	 
+//	 
+//	 
+//	 LOAD_BACKGROUND
+//	 NOT FILLED COMPLETELY
+//	 
+//	 WARNING
+//	 
+//	 WARNING
+//	 
+//	 
 	
 	 load_background ldback(.Clk(CLOCK_50), .Reset(Reset_h), .load(load_background), .SRAM_done(sram_done),
 	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),

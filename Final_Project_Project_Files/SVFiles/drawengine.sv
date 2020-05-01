@@ -55,28 +55,28 @@ module drawengine(
 				read_address = write_address_r;
 				if (Blue_dir == 2'd0)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_blue % 2 == 1)
 							out_byte = data_Out_bub [7:0];
 						else
 							out_byte = data_Out_bub [15:8]; 
 					end
 				else if (Blue_dir == 2'd1)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_blue % 2 == 1)
 							out_byte = data_Out_blb [7:0];
 						else
 							out_byte = data_Out_blb [15:8]; 
 					end
 				else if (Blue_dir == 2'd2)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_blue % 2 == 1)
 							out_byte = data_Out_bdb [7:0];
 						else
 							out_byte = data_Out_bdb [15:8]; 
 					end
 				else
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_blue % 2 == 1)
 							out_byte = data_Out_bdb [7:0];
 						else
 							out_byte = data_Out_bdb [15:8]; 
@@ -91,28 +91,28 @@ module drawengine(
 				read_address = write_address_b;
 				if (Red_dir == 2'd0)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_red % 2 == 1)
 							out_byte = data_Out_bur [7:0];
 						else
 							out_byte = data_Out_bur [15:8]; 
 					end
 				else if (Red_dir == 2'd1)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_red % 2 == 1)
 							out_byte = data_Out_blr [7:0];
 						else
 							out_byte = data_Out_blr [15:8]; 
 					end
 				else if (Red_dir == 2'd2)
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_red % 2 == 1)
 							out_byte = data_Out_bdr [7:0];
 						else
 							out_byte = data_Out_bdr [15:8]; 
 					end
 				else
 					begin
-						if (DrawX % 2 == 1)
+						if (DistX_red % 2 == 1)
 							out_byte = data_Out_bdr [7:0];
 						else
 							out_byte = data_Out_bdr [15:8]; 
@@ -130,9 +130,6 @@ module drawengine(
 				else
 					out_byte = data_Out [15:8];
 			end
-        /* The ball's (pixelated) circle is generated using the standard circle formula.  Note that while 
-           the single line is quite powerful descriptively, it causes the synthesis tool to use up three
-           of the 12 available multipliers on the chip! */
 	end
 	
 	// always_comb begin
