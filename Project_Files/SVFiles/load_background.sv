@@ -40,9 +40,9 @@ always_ff @ (posedge Clk)
 begin
 	unique case (BG_Sel)
 		2'b00: OFFSET <= 20'd0;
-		2'b01: OFFSET <= 20'd307200;
-		2'b10: OFFSET <= 20'd614400;
-		2'b11: OFFSET <= 20'd921600;
+		2'b01: OFFSET <= 20'd153601;
+		2'b10: OFFSET <= 20'd307202;
+		2'b11: OFFSET <= 20'd460803;
 		default: OFFSET <= 20'd0;
 	endcase
 end
