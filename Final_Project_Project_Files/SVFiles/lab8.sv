@@ -168,7 +168,7 @@ module lab8( input               CLOCK_50,
 					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(15'h3333), .write_address(fb_addr_OCM),
+					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
 					.color_enum(color_enum));
 	 
     color_mapper color_instance(
@@ -202,22 +202,11 @@ module lab8( input               CLOCK_50,
 	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(Reset_h), .Read(sram_read), .addr_in(addr_to_cont), .CE(SRAM_CE_N), .UB(SRAM_UB_N),
 										 .LB(SRAM_LB_N), .OE(SRAM_OE_N), .WE(SRAM_WE_N), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(SRAM_ADDR),
 										 .Data(SRAM_DQ));
-	 
-//	 
-//	 
-//	 
-//	 LOAD_BACKGROUND
-//	 NOT FILLED COMPLETELY
-//	 
-//	 WARNING
-//	 
-//	 WARNING
-//	 
-//	 
 	
-	 load_background ldback(.Clk(CLOCK_50), .Reset(Reset_h), .load(load_background), .SRAM_done(sram_done),
-	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
-									.writing(fb_we), .reading(sram_read), .ADDR(addr_to_cont),
-									.addr_OCM(fb_addr_OCM), .DATA_OUT(OCM_Data));
+//	 load_background ldback(.Clk(CLOCK_50), .Reset(Reset_h), .load(load_background), .SRAM_done(sram_done),
+//	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
+//									.writing(fb_we), .reading(sram_read), .ADDR(addr_to_cont),
+//									.addr_OCM(fb_addr_OCM), .DATA_OUT(OCM_Data));
+	 FB_tester test(.Data_Out(OCM_Data), .write_address(fb_addr_OCM), .we(fb_we));
 	 
 endmodule
