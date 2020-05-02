@@ -53,28 +53,28 @@ module drawengine(
 					read_address = write_address_r;
 					if (Blue_dir == 2'd0)
 						begin
-							if (DistX_blue % 2 == 1)
+							if (DistX_blue % 2 == 0)
 								out_byte = data_Out_bub [3:0];
 							else
 								out_byte = data_Out_bub [7:4]; 
 						end
-					else if (Blue_dir == 2'd1)
+					else if (Blue_dir == 2'd2)
 						begin
-							if (DistX_blue % 2 == 1)
+							if (DistX_blue % 2 == 0)
 								out_byte = data_Out_blb [3:0];
 							else
 								out_byte = data_Out_blb [7:4]; 
 						end
-					else if (Blue_dir == 2'd2)
+					else if (Blue_dir == 2'd1)
 						begin
-							if (DistX_blue % 2 == 1)
+							if (DistX_blue % 2 == 0)
 								out_byte = data_Out_bdb [3:0];
 							else
 								out_byte = data_Out_bdb [7:4]; 
 						end
 					else
 						begin
-							if (DistX_blue % 2 == 1)
+							if (DistX_blue % 2 == 0)
 								out_byte = data_Out_bdb [3:0];
 							else
 								out_byte = data_Out_bdb [7:4]; 
@@ -89,28 +89,28 @@ module drawengine(
 					read_address = write_address_b;
 					if (Red_dir == 2'd0)
 						begin
-							if (DistX_red % 2 == 1)
+							if (DistX_red % 2 == 0)
 								out_byte = data_Out_bur [3:0];
 							else
 								out_byte = data_Out_bur [7:4]; 
 						end
-					else if (Red_dir == 2'd1)
+					else if (Red_dir == 2'd2)
 						begin
-							if (DistX_red % 2 == 1)
+							if (DistX_red % 2 == 0)
 								out_byte = data_Out_blr [3:0];
 							else
 								out_byte = data_Out_blr [7:4]; 
 						end
-					else if (Red_dir == 2'd2)
+					else if (Red_dir == 2'd1)
 						begin
-							if (DistX_red % 2 == 1)
+							if (DistX_red % 2 == 0)
 								out_byte = data_Out_bdr [3:0];
 							else
 								out_byte = data_Out_bdr [7:4]; 
 						end
 					else
 						begin
-							if (DistX_red % 2 == 1)
+							if (DistX_red % 2 == 0)
 								out_byte = data_Out_bdr [3:0];
 							else
 								out_byte = data_Out_bdr [7:4]; 
