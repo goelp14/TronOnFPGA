@@ -72,7 +72,7 @@ begin
 	
 	unique case (state)
 		idle:
-			newreadData = 16'b3;
+			newreadData = 16'b3333;
 			
 		read:
 			begin
@@ -86,7 +86,7 @@ begin
 				newreadData = Data;
 			end
 		default: 
-			newreadData = 16'b5;
+			newreadData = 16'b5555;
 	endcase
 end
 
