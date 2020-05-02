@@ -63,7 +63,7 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 				end
 								
 			Round_Paused :
-				if (keycode)
+				if (keycode == 8'h28)
 					Next_state = Round_Started;
 			Round_Started :
 					if (Reset_Round)
@@ -76,13 +76,13 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 					else if (Red_W)
 						Next_state = Red_Wins;
 			Blue_Wins :
-				if (keycode)
+				if (keycode == 8'h28)
 				begin
 					Next_state = Menu;
 					load_background = 1'b1;
 				end
 			Red_Wins :
-				if (keycode)
+				if (keycode == 8'h28)
 				begin
 					Next_state = Menu;
 					load_background = 1'b1;
