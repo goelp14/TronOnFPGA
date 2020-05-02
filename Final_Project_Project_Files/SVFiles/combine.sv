@@ -20,7 +20,7 @@ module combine(
 				if (DrawX % 2 == 1)
 					out_byte = data_Out [3:0];
 				else
-					out_byte = data_Out [7:4];
+					out_byte = data_Out [11:8];
 			end
 		else
 			begin
