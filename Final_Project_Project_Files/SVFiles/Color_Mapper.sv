@@ -33,49 +33,49 @@ module  color_mapper ( input [3:0] color_pallete_enum,            // Whether cur
 		  default: ;
         16'd0:
             begin
-                Red = 8'hff;
+                Red = 8'hff; // white, 
                 Green = 8'hff;
                 Blue = 8'hff;
             end
         16'd1:
             begin
-                Red = 8'h0e;
+                Red = 8'h0e; // dark grey (tyres)
                 Green = 8'h0e;
                 Blue = 8'h0e;
             end
         16'd2:
             begin
-                Red = 8'h3b;
+                Red = 8'h3b; // light grey
                 Green = 8'h3b;
                 Blue = 8'h3b;
             end
         16'd3:
             begin
-                Red = 8'h21;
+                Red = 8'h21; // bike blue
                 Green = 8'h95;
                 Blue = 8'hf3;
             end
         16'd4:
             begin
-                Red = 8'h00;
+                Red = 8'h00; // light trail blue
                 Green = 8'hbb;
                 Blue = 8'hd4;
             end
          16'd5:
             begin
-                Red = 8'hcf;
+                Red = 8'hcf; // bike red
                 Green = 8'h10;
                 Blue = 8'h10;
             end
          16'd6:
             begin
-                Red = 8'hff;
+                Red = 8'hff; // light trail red
                 Green = 8'h52;
                 Blue = 8'h52;
             end
          16'd7:
             begin
-                Red = 8'h24;
+                Red = 8'h24; // lighter grey
                 Green = 8'h24;
                 Blue = 8'h24;
             end
@@ -117,13 +117,13 @@ module  color_mapper ( input [3:0] color_pallete_enum,            // Whether cur
             end
          16'd14:
             begin
-                Red = 8'h00;
+                Red = 8'h00; // black
                 Green = 8'h00;
                 Blue = 8'h00;
             end
          16'd15:
             begin
-                Red = 8'hf2;
+                Red = 8'hf2; // clear background (pink)
                 Green = 8'h00;
                 Blue = 8'hff;
             end

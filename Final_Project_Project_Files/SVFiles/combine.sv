@@ -29,7 +29,7 @@ module combine(
 			end
 	end
 	
-	frameRAM frame_buffer (.data_In(data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
+	frameRAM frame_buffer (.data_In(Data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
 	assign color_enum = out_byte;
 
 endmodule
