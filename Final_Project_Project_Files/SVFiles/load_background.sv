@@ -23,6 +23,7 @@ assign DATA_OUT = DATA_IN;
 //assign addr_OCM = ADDR * 2;
 
 assign addr_OCM = OCM_addr_reg;
+assign ADDR = address;
 
 // have reg to hold offset for the background selected
 logic [19:0] OFFSET, address, nextaddr;
