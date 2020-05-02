@@ -75,9 +75,9 @@ module drawengine(
 					else
 						begin
 							if (DistX_blue % 2 == 0)
-								out_byte = data_Out_bdb [3:0];
+								out_byte = data_Out_brb [3:0];
 							else
-								out_byte = data_Out_bdb [7:4]; 
+								out_byte = data_Out_brb [7:4]; 
 						end
 				end
 			else if (( DistX_red <= Bike_Size * 2) && (DistY_red <= Bike_Size*2))
@@ -111,9 +111,9 @@ module drawengine(
 					else
 						begin
 							if (DistX_red % 2 == 0)
-								out_byte = data_Out_bdr [3:0];
+								out_byte = data_Out_brr [3:0];
 							else
-								out_byte = data_Out_bdr [7:4]; 
+								out_byte = data_Out_brr [7:4]; 
 						end
 				end
 			else
