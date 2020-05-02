@@ -27,7 +27,7 @@ assign ADDR = addr_in;
 // assign output data
 assign OUTPUT_DATA = readData;
 // states
-enum logic [1:0] {idle, read, done} state, nextState;
+enum logic [2:0] {idle, setaddr, read, done, done1} state, nextState;
 
 assign OUTPUT_DATA = readData;
 
@@ -54,8 +54,12 @@ begin
 	unique case (state)
 		idle:
 			if (Read)
-				nextState = read;
+				nextState = setaddr;
+		setaddr: 
+			nextState = read;
 		read:
+			nextstate = read1;
+		read1:
 			nextState = done;
 		done:
 			nextState = idle;
@@ -72,7 +76,7 @@ begin
 	
 	unique case (state)
 		idle:
-			newreadData = 16'b3333;
+			newreadData = 16'h3333;
 			
 		read:
 			begin
@@ -86,7 +90,7 @@ begin
 				newreadData = Data;
 			end
 		default: 
-			newreadData = 16'b5555;
+			newreadData = 16'h5555;
 	endcase
 end
 
