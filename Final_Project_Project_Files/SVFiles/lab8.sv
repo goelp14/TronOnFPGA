@@ -168,7 +168,7 @@ module lab8( input               CLOCK_50,
 					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
+					.Data_In_Bike(Drawengine_out), .Data_In(15h3333), .write_address(fb_addr_OCM),
 					.color_enum(color_enum));
 	 
     color_mapper color_instance(

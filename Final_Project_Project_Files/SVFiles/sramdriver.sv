@@ -42,7 +42,7 @@ begin
 	else
 	begin
 		state <= nextState;
-		readData <= 16'h0303;
+		readData <= nereadData;
 	end
 end
 
