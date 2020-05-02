@@ -44,9 +44,9 @@ module lab8( input               CLOCK_50,
                                  DRAM_WE_N,    //SDRAM Write Enable
                                  DRAM_CS_N,    //SDRAM Chip Select
                                  DRAM_CLK,      //SDRAM Clock
-				 output logic CE, UB, LB, OE, WE,  // Sram stuff
-				 output [19:0] ADDR,
-				 input [15:0] Data
+				 output logic SRAM_CE_N, SRAM_UB_N, SRAM_LB_N, SRAM_OE_N, SRAM_WE_N,  // Sram stuff
+				 output [19:0] SRAM_ADDR,
+				 input [15:0] SRAM_DQ
                     );
     
     logic Reset_h, Clk, is_ball;
@@ -165,7 +165,7 @@ module lab8( input               CLOCK_50,
     
 	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
-					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State),.color_enum(Drawengine_out));
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .color_enum(Drawengine_out));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
 					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
@@ -199,9 +199,9 @@ module lab8( input               CLOCK_50,
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
 								 
-	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(Reset_h), .Read(sram_read), .addr_in(addr_to_cont), .CE(CE), .UB(UB),
-										 .LB(LB), .OE(OE), .WE(WE), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(ADDR),
-										 .Data(Data));
+	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(Reset_h), .Read(sram_read), .addr_in(addr_to_cont), .CE(SRAM_CE_N), .UB(SRAM_UB_N),
+										 .LB(SRAM_LB_N), .OE(SRAM_OE_N), .WE(SRAM_WE_N), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(SRAM_ADDR),
+										 .Data(SRAM_DQ));
 	 
 //	 
 //	 
