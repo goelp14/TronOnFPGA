@@ -46,7 +46,8 @@ module lab8( input               CLOCK_50,
                                  DRAM_CLK,      //SDRAM Clock
 				 output logic SRAM_CE_N, SRAM_UB_N, SRAM_LB_N, SRAM_OE_N, SRAM_WE_N,  // Sram stuff
 				 output [19:0] SRAM_ADDR,
-				 input [15:0] SRAM_DQ
+				 input [15:0] SRAM_DQ,
+				 output [8:0] LEDG 
                     );
     
     logic Reset_h, Clk, is_ball;
@@ -64,7 +65,10 @@ module lab8( input               CLOCK_50,
 	 
 	 // VARS TO STORE GAME STUFF
 	 logic [7:0] red_color, blue_color;
+	 
 	 logic [2:0] Game_State;
+	 assign LEDG = Game_State;
+	 
 	 logic [1:0] score_blue, score_red, background_sel;
 	 
 	 logic reset_round, reset_game, Blue_W, Red_W;
