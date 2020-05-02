@@ -91,7 +91,10 @@ begin
 				nextState = write;
 		write:
 			//if (OCM_done)
-			nextState = idle;
+			nextState = read;
+		done:
+			if (~load)
+				nextState = idle;
 		default:
 			nextState = idle;
 	endcase
@@ -121,6 +124,7 @@ begin
 			OCM_addr_new = OCM_addr_reg + 19'b1; // increment the OCM address
 			nextaddr = address + 1'b1;  // increment the address for next read
 		end
+		done: ;
 		default: ;
 	endcase
 end

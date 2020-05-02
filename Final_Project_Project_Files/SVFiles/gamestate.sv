@@ -52,7 +52,7 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	begin 
 		// Default Keep State
 		Next_state = State;
-		load_background = 1'b1;
+		load_background = 1'b0;
 		// Assign next state
 		unique case (State)
 			Menu :
