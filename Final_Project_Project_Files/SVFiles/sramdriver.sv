@@ -27,7 +27,7 @@ assign ADDR = addr_in;
 // assign output data
 assign OUTPUT_DATA = readData;
 // states
-enum logic [2:0] {idle, setaddr, read, done, done1} state, nextState;
+enum logic [2:0] {idle, setaddr, read, done, read1} state, nextState;
 
 assign OUTPUT_DATA = readData;
 
@@ -89,7 +89,7 @@ begin
 				done_r = 1'b1;
 				newreadData = Data;
 			end
-		done1:
+		read1:
 			begin
 				OE = 1'b0;
 				done_r = 1'b1;
