@@ -192,9 +192,11 @@ module lab8( input               CLOCK_50,
 									.keycode(keycode), .Game_State(Game_State), .background_select(background_sel), .load_background(load_background));
 									
 	 score scorekeeper(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
-							 .red_color(red_color), .blue_color(blue_color), 
+							 .red_color(8'b1), .blue_color(8'b1), 
 							 .Blue_W(Blue_W), .Red_W(Red_W), .reset_round(reset_round), .score_blue(score_blue), .score_red(score_red));
-							
+	//.red_color(red_color), .blue_color(blue_color), 
+	
+	
 	 arena field(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .Game_State(Game_State), .keycode(keycode), 
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
