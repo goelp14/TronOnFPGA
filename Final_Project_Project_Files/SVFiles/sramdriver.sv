@@ -42,7 +42,7 @@ begin
 	else
 	begin
 		state <= nextState;
-		readData <= newreadData;
+		readData <= 16'h0303;
 	end
 end
 
@@ -58,7 +58,7 @@ begin
 		setaddr: 
 			nextState = read;
 		read:
-			nextstate = read1;
+			nextState = read1;
 		read1:
 			nextState = done;
 		done:

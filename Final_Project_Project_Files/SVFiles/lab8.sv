@@ -165,7 +165,7 @@ module lab8( input               CLOCK_50,
     
 	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
-					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .color_enum(Drawengine_out));
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
 					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
