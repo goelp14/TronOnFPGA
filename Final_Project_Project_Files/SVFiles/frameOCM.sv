@@ -16,9 +16,9 @@
     // mem has width of 480 bits and a total of 640 addresses
     logic [15:0] mem [0:((640*240)-1)];
 
-//    initial begin
-//        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/menu_2bytes.txt", mem);
-//    end
+    initial begin
+        $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/menu_2bytes.txt", mem);
+    end
     
     always_ff @ (posedge Clk) begin
         if (we)

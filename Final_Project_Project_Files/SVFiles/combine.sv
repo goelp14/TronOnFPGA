@@ -14,7 +14,7 @@ module combine(
 	logic [3:0]  out_byte;
 
 	always_comb begin
-		if (Data_In_Bike == 8'h15)
+		if (Data_In_Bike == 4'hf)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
 				if (DrawX % 2 == 1)
@@ -23,7 +23,10 @@ module combine(
 					out_byte = data_Out [7:4];
 			end
 		else
-			out_byte = Data_In_Bike;
+			begin
+				read_address = 19'd10;
+				out_byte = Data_In_Bike;
+			end
 	end
 	
 	frameRAM frame_buffer (.data_In(data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));

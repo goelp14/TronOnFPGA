@@ -1,5 +1,6 @@
 module drawengine(
 	input Clk, Reset, frame_clk,       // The clock indicating a new frame (~60Hz)
+	input [2:0] gamestate,
 	input [9:0] DrawX, DrawY,
 	input [1:0] Blue_dir, Red_dir,       // Current pixel coordinates
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
@@ -41,80 +42,97 @@ module drawengine(
 	
 
 	always_comb begin
-		if ( ( DistX_blue <= Bike_Size * 2) && (DistY_blue <= Bike_Size*2) )
+		if(gamestate == 3'b001 || gamestate == 3'b010)
 			begin
-				read_address_b = DistX_blue/2 + DistY_blue * (32/2);
-				write_address_b = read_address_b;
-				read_address_r = read_address_b;
-				write_address_r = read_address_r;
-				read_address = write_address_r;
-				if (Blue_dir == 2'd0)
-					begin
-						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bub [3:0];
-						else
-							out_byte = data_Out_bub [7:4]; 
-					end
-				else if (Blue_dir == 2'd1)
-					begin
-						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_blb [3:0];
-						else
-							out_byte = data_Out_blb [7:4]; 
-					end
-				else if (Blue_dir == 2'd2)
-					begin
-						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bdb [3:0];
-						else
-							out_byte = data_Out_bdb [7:4]; 
-					end
-				else
-					begin
-						if (DistX_blue % 2 == 1)
-							out_byte = data_Out_bdb [3:0];
-						else
-							out_byte = data_Out_bdb [7:4]; 
-					end
+			if ( ( DistX_blue <= Bike_Size * 2) && (DistY_blue <= Bike_Size*2) )
+				begin
+					read_address_b = DistX_blue/2 + DistY_blue * (32/2);
+					write_address_b = read_address_b;
+					read_address_r = read_address_b;
+					write_address_r = read_address_r;
+					read_address = write_address_r;
+					if (Blue_dir == 2'd0)
+						begin
+							if (DistX_blue % 2 == 1)
+								out_byte = data_Out_bub [3:0];
+							else
+								out_byte = data_Out_bub [7:4]; 
+						end
+					else if (Blue_dir == 2'd1)
+						begin
+							if (DistX_blue % 2 == 1)
+								out_byte = data_Out_blb [3:0];
+							else
+								out_byte = data_Out_blb [7:4]; 
+						end
+					else if (Blue_dir == 2'd2)
+						begin
+							if (DistX_blue % 2 == 1)
+								out_byte = data_Out_bdb [3:0];
+							else
+								out_byte = data_Out_bdb [7:4]; 
+						end
+					else
+						begin
+							if (DistX_blue % 2 == 1)
+								out_byte = data_Out_bdb [3:0];
+							else
+								out_byte = data_Out_bdb [7:4]; 
+						end
+				end
+			else if (( DistX_red <= Bike_Size * 2) && (DistY_red <= Bike_Size*2))
+				begin
+					read_address_r = DistX_red/2 + DistY_red*(32/2);
+					write_address_r = read_address_r;
+					read_address_b = write_address_r;
+					write_address_b = read_address_b;
+					read_address = write_address_b;
+					if (Red_dir == 2'd0)
+						begin
+							if (DistX_red % 2 == 1)
+								out_byte = data_Out_bur [3:0];
+							else
+								out_byte = data_Out_bur [7:4]; 
+						end
+					else if (Red_dir == 2'd1)
+						begin
+							if (DistX_red % 2 == 1)
+								out_byte = data_Out_blr [3:0];
+							else
+								out_byte = data_Out_blr [7:4]; 
+						end
+					else if (Red_dir == 2'd2)
+						begin
+							if (DistX_red % 2 == 1)
+								out_byte = data_Out_bdr [3:0];
+							else
+								out_byte = data_Out_bdr [7:4]; 
+						end
+					else
+						begin
+							if (DistX_red % 2 == 1)
+								out_byte = data_Out_bdr [3:0];
+							else
+								out_byte = data_Out_bdr [7:4]; 
+						end
+				end
+			else
+				begin
+					read_address_r = 20'd8;
+					write_address_r = read_address_r;
+					read_address_b = write_address_r;
+					write_address_b = read_address_b;
+					read_address = write_address_b;
+					out_byte = 4'hf;
+				end
 			end
-		else if (( DistX_red <= Bike_Size * 2) && (DistY_red <= Bike_Size*2))
+		else
 			begin
-				read_address_r = DistX_red/2 + DistY_red*(32/2);
+				read_address_r = 20'd8;
 				write_address_r = read_address_r;
 				read_address_b = write_address_r;
 				write_address_b = read_address_b;
 				read_address = write_address_b;
-				if (Red_dir == 2'd0)
-					begin
-						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bur [3:0];
-						else
-							out_byte = data_Out_bur [7:4]; 
-					end
-				else if (Red_dir == 2'd1)
-					begin
-						if (DistX_red % 2 == 1)
-							out_byte = data_Out_blr [3:0];
-						else
-							out_byte = data_Out_blr [7:4]; 
-					end
-				else if (Red_dir == 2'd2)
-					begin
-						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bdr [3:0];
-						else
-							out_byte = data_Out_bdr [7:4]; 
-					end
-				else
-					begin
-						if (DistX_red % 2 == 1)
-							out_byte = data_Out_bdr [3:0];
-						else
-							out_byte = data_Out_bdr [7:4]; 
-					end
-			end
-		else:
-			begin
 				out_byte = 4'hf;
 			end
 	end
