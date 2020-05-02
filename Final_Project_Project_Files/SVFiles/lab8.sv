@@ -204,7 +204,7 @@ module lab8( input               CLOCK_50,
 										 .Data(SRAM_DQ));
 	
 	 load_background ldback(.Clk(CLOCK_50), .Reset(Reset_h), .load(load_background), .SRAM_done(sram_done),
-	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(16'h0303),
+	                        .BG_Sel(background_sel), .Game_State(Game_State), .DATA_IN(SRAM_OUTPUT_DATA),
 									.writing(fb_we), .reading(sram_read), .ADDR(addr_to_cont),
 									.addr_OCM(fb_addr_OCM), .DATA_OUT(OCM_Data));
 									

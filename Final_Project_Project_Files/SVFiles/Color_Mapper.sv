@@ -39,9 +39,12 @@ module  color_mapper ( input [3:0] color_pallete_enum,            // Whether cur
             end
         16'd1:
             begin
-                Red = 8'h0e; // dark grey (tyres)
-                Green = 8'h0e;
-                Blue = 8'h0e;
+                Red = 8'hFF; // pink for testing
+                Green = 8'hC0;
+                Blue = 8'hCB;
+//					 Red = 8'h0e; // dark grey (tyres)
+//                Green = 8'h0e;
+//                Blue = 8'h0e;
             end
         16'd2:
             begin
@@ -117,9 +120,12 @@ module  color_mapper ( input [3:0] color_pallete_enum,            // Whether cur
             end
          16'd14:
             begin
-                Red = 8'h00; // black
-                Green = 8'h00;
-                Blue = 8'h00;
+                Red = 8'h00; // neon green for testing
+                Green = 8'hff;
+                Blue = 8'h00;                
+//					 Red = 8'h00; // black
+//                Green = 8'h00;
+//                Blue = 8'h00;
             end
          16'd15:
             begin
