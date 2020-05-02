@@ -89,6 +89,12 @@ begin
 				done_r = 1'b1;
 				newreadData = Data;
 			end
+		done1:
+			begin
+				OE = 1'b0;
+				done_r = 1'b1;
+				newreadData = Data;
+			end
 		default: 
 			newreadData = 16'h5555;
 	endcase
