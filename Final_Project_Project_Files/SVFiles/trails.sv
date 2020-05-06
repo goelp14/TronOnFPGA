@@ -60,8 +60,8 @@ module trails ( input        Clk,                // 50 MHz clock
 						// default
 //						collision_blue = 1'b0;
 //						collision_blue = 1'b0;
-						write_b = 3'b000;
-						write_r = 3'b000;
+						write_b = write_b_ff;
+						write_r = write_r_ff;
 						
 						// check if new locations
 						// blue
