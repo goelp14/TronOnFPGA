@@ -18,8 +18,8 @@ module combine(
 	
 	logic bool;
 	
-	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08 || data_Out [3:0] != 4'h00 || data_Out [11:8] != 4'h00;
-	
+	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8];
+	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08 || data_Out [3:0] != 4'h00 || data_Out [11:8] != 4'h00;	
 	always_comb begin
 		red = 8'b1;
 		blue = 8'b1;
@@ -38,14 +38,14 @@ module combine(
 					begin
 						if(bool || data_Out [3:0] != 4'h03 || data_Out [11:8] != 4'h03)
 							begin
-								blue = 8'b1;
+								blue = 8'b0;
 							end
 					end
 				else if (r_or_b == 2'b01)
 					begin
 						if(bool || data_Out [3:0] != 4'h05 || data_Out [11:8] != 4'h05)
 							begin
-								red = 8'b1;
+								red = 8'b0;
 							end
 					end
 				out_byte = Data_In_Bike;
