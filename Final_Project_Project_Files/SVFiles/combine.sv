@@ -22,7 +22,7 @@ module combine(
 		if (Data_In_Bike == 4'hf)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
-				if (DrawX % 2 == 1)
+				if (DrawX % 2 == 0)
 					out_byte = data_Out [3:0];
 				else
 					out_byte = data_Out [11:8];

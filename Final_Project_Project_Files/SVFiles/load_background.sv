@@ -17,7 +17,7 @@ module load_background(
 // 640 * 153600 = 0
 
 // assign data out and addr
-assign DATA_OUT = DATA_IN;
+assign SRAM_OUT_DATA = DATA_IN;
 
 //// addr_OCM is per byte, ADDR is per 2 bytes
 //assign addr_OCM = ADDR * 2;
@@ -109,7 +109,7 @@ begin
 	reading = 0;
 	nextaddr = address;
 	OCM_addr_new = OCM_addr_reg;
-	
+	DATA_OUT = 16'b0;
 	unique case (state)
 		idle:
 			begin
@@ -119,8 +119,10 @@ begin
 		pause: ;
 		read:
 			reading = 1'b1;          // tell SRAM to read at address
+			DATA_OUT = SRAM_OUT_DATA;
 		write:
 		begin
+			DATA_OUT = SRAM_OUT_DATA;
 			writing = 1'b1;            // tell OCM to write at address
 			OCM_addr_new = OCM_addr_reg + 19'b1; // increment the OCM address
 			nextaddr = address + 1'b1;  // increment the address for next read

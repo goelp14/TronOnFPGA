@@ -96,6 +96,12 @@ module lab8( input               CLOCK_50,
 	 logic load_background;
 	 
 	 logic [1:0] r_or_b;
+	 
+	 logic [15:0] write, write_comb;
+	 
+	 logic [19:0] trail_addr, addr_comb;
+	 
+	 logic trail_we, we_comb;
     // Interface between NIOS II and EZ-OTG chip
     hpi_io_intf hpi_io_inst(
                             .Clk(Clk),
@@ -173,8 +179,12 @@ module lab8( input               CLOCK_50,
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
 					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out), .r_or_b(r_or_b));
 	 
+	 assign write_comb = write | OCM_Data;
+	 assign addr_comb = fb_addr_OCM | trail_addr;
+	 assign we_comb = fb_we | trail_we;
+	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM), .r_or_b(r_or_b),
+					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .r_or_b(r_or_b),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
     color_mapper color_instance(
@@ -203,7 +213,7 @@ module lab8( input               CLOCK_50,
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
 	
-	 trails trail_decider(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write_r(write_r), .write_b(write_b),
+	 trails trail_controller(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write(write), .trail_addr(trail_addr), .we(trail_we)
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
 								 
