@@ -203,7 +203,7 @@ begin
 					3'b001: output_bus = b_h;
 					3'b010: output_bus = b_v;
 					3'b101: output_bus = corner;
-					default: output_bus = 16'b011;
+					default: output_bus = 16'd15;
 				endcase
 				we = 1'b1;
 				ocm_nextaddr = ocm_addr+20'b1;
@@ -219,7 +219,7 @@ begin
 				3'b011: output_bus = b_h;
 				3'b100: output_bus = b_v;
 				3'b101: output_bus = corner;
-				default: output_bus = 16'b011;
+				default: output_bus = 16'd15;
 			endcase
 			we = 1'b1;
 			ocm_nextaddr = ocm_addr+20'b1;
