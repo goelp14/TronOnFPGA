@@ -179,7 +179,7 @@ always_comb
 begin
 	// set defaults
 	nextaddr = address;
-	output_bus = 16'b0;
+	output_bus = 16'b5;
 	we = 1'b0;
 	trail_addr = 20'b0;
 	unique case (state)
