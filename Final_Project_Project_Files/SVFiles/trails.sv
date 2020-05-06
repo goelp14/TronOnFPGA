@@ -211,8 +211,10 @@ begin
 			end
 		// reset address for red sprite
 		reset_addr: 
-			nextaddr = 20'b0;
-			ocm_nextaddr = red_addr;
+			begin
+				nextaddr = 20'b0;
+				ocm_nextaddr = red_addr;
+			end
 		write_r_s:
 		begin
 			unique case (write_b_ff)
