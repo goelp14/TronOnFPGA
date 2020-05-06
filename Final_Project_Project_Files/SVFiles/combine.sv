@@ -36,14 +36,14 @@ module combine(
 				read_address = DrawX/2 + DrawY * (640/2);
 				if (r_or_b == 2'b00)
 					begin
-						if(bool || data_Out [3:0] != 4'h03 || data_Out [11:8] != 4'h03)
+						if(bool || data_Out [3:0] != 4'h03 || data_Out [11:8] != 4'h04)
 							begin
 								blue = 8'b1;
 							end
 					end
 				else if (r_or_b == 2'b01)
 					begin
-						if(bool || data_Out [3:0] != 4'h05 || data_Out [11:8] != 4'h05)
+						if(bool || data_Out [3:0] != 4'h05 || data_Out [11:8] != 4'h06)
 							begin
 								red = 8'b1;
 							end
