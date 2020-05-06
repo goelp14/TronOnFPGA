@@ -158,7 +158,7 @@ begin
 				nextState = prep;
 		prep: nextState = write_b_s;
 		write_b_s:
-			if (output_bus > 16'h000F) // worst case senario: h00FF
+			if (output_bus > 16'h000F || write_b_ff == 3'b0) // worst case senario: h00FF
 				nextState = reset_addr;
 			else
 				nextState = write_b_s;
@@ -166,7 +166,7 @@ begin
 			nextState = write_r_s;
 		write_r_s:
 			begin
-				if (output_bus > 16'h000F) // worst case senario: h00FF
+				if (output_bus > 16'h000F || write_r_ff == 3'b0) // worst case senario: h00FF
 					nextState = done;
 				else
 					nextState = write_r_s;
