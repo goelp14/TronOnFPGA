@@ -114,9 +114,9 @@ module  color_mapper ( input [3:0] color_pallete_enum,            // Whether cur
             end
          16'd12:
             begin
-                Red = 8'hAA;
-                Green = 8'hAA;
-                Blue = 8'hAA;
+                Red = 8'h00;
+                Green = 8'hFF;
+                Blue = 8'h00;
             end
          16'd13:
             begin
