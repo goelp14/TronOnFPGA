@@ -105,6 +105,7 @@ module trails ( input        Clk,                // 50 MHz clock
 
 // for transferring data
 logic [19:0] address, nextaddr, ocm_addr, ocm_nextaddr;
+logic [15:0] temp, next_temp;
 // assign address
 assign red_addr = (Blue_X+20)*2+320*(Blue_Y+20)*4;
 assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
@@ -112,13 +113,14 @@ assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
 // logic for transferring data
 logic [15:0] output_mapped, output_bus, b_h, b_v, r_h, r_v, corner;
 // map the different ways of storing
+assign output_bus = temp;
 assign output_mapped [3:0] = output_bus[3:0];
 assign output_mapped [11:8] = output_bus[7:4];
 assign write = output_mapped;
 
 assign trail_addr = ocm_addr;
 // states
-enum logic [2:0] {idle, prep, write_b_s, reset_addr, write_r_s, done} state, nextState;
+enum logic [2:0] {idle, prep, read_b_s, write_b_s, reset_addr, read_r_s, write_r_s, done} state, nextState;
 
 // update state
 always_ff @ (posedge Clk)
@@ -128,18 +130,20 @@ begin
 	else
 		state <= nextState;
 end
-// update addr
+// update addr and temp
 always_ff @ (posedge Clk)
 begin
 	if (Reset || Game_State != 3'b10)
 		begin
 		address <= 20'd0;
 		ocm_addr <= 20'd0;
+		temp <= 16'b0;
 		end
 	else
 		begin
 		address <= nextaddr;
 		ocm_addr <= ocm_nextaddr;
+		temp <= next_temp;
 		end
 end
 
@@ -156,20 +160,23 @@ begin
 		idle:
 			if (write_b_ff != 3'b0 || write_r_ff != 3'b0)
 				nextState = prep;
-		prep: nextState = write_b_s;
+		prep: nextState = read_b_s;
+		read_b_s: nextState = write_b_s;
 		write_b_s:
-			if (output_bus > 16'h000F || write_b_ff == 3'b0) // worst case senario: h00FF
+			if (temp > 16'h000F || write_b_ff == 3'b0) // worst case senario: h00FF
 				nextState = reset_addr;
 			else
-				nextState = write_b_s;
+				nextState = read_b_s;
 		reset_addr:
+			nextState = read_r_s;
+		read_r_s:
 			nextState = write_r_s;
 		write_r_s:
 			begin
-				if (output_bus > 16'h000F || write_r_ff == 3'b0) // worst case senario: h00FF
+				if (temp > 16'h000F || write_r_ff == 3'b0) // worst case senario: h00FF
 					nextState = done;
 				else
-					nextState = write_r_s;
+					nextState = read_r_s;
 			end
 		done:
 			nextState = idle;
@@ -183,7 +190,7 @@ always_comb
 begin
 	// set defaults
 	nextaddr = address;
-	output_bus = 16'b5;
+	next_temp = temp;
 	we = 1'b0;
 	ocm_nextaddr = 20'b0;
 	unique case (state)
@@ -197,17 +204,20 @@ begin
 			ocm_nextaddr = blue_addr;
 			nextaddr = 20'b0;
 			end
-		write_b_s:
+		read_b_s:
 			begin
 				unique case (write_b_ff)
-					3'b001: output_bus = b_h;
-					3'b010: output_bus = b_v;
-					3'b101: output_bus = corner;
-					default: output_bus = 16'd15;
+					3'b001: next_temp = b_h;
+					3'b010: next_temp = b_v;
+					3'b101: next_temp = corner;
+					default: text_temp = 16'd15;
 				endcase
+				nextaddr = address + 1'b1;
+			end
+		write_b_s:
+			begin
 				we = 1'b1;
 				ocm_nextaddr = ocm_addr+20'b1;
-				nextaddr = address + 1'b1;
 			end
 		// reset address for red sprite
 		reset_addr: 
