@@ -106,7 +106,7 @@ module trails ( input        Clk,                // 50 MHz clock
 // for transferring data
 logic [20:0] address, nextaddr;
 // assign address
-assign red_addr = (Blue_X)*2+320*(Blue_Y)*4;
+assign red_addr = (Blue_X+20)*2+320*(Blue_Y+20)*4;
 assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
 
 // logic for transferring data
@@ -154,7 +154,7 @@ begin
 			if (write_b_ff || write_r_ff)
 				nextState = write_b_s;
 		write_b_s:
-			if (output_bus > 16'hF000) // worst case senario: h00FF
+			if (output_bus > 16'h0000) // worst case senario: h00FF
 				nextState = reset_addr;
 			else
 				nextState = write_b_s;
@@ -162,7 +162,7 @@ begin
 			nextState = write_r_s;
 		write_r_s:
 			begin
-				if (output_bus > 16'hF000) // worst case senario: h00FF
+				if (output_bus > 16'h0000) // worst case senario: h00FF
 					nextState = done;
 				else
 					nextState = write_r_s;
