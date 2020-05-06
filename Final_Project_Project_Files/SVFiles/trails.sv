@@ -217,9 +217,9 @@ begin
 			end
 		write_r_s:
 		begin
-			unique case (write_b_ff)
-				3'b011: output_bus = b_h;
-				3'b100: output_bus = b_v;
+			unique case (write_r_ff)
+				3'b011: output_bus = r_h;
+				3'b100: output_bus = r_v;
 				3'b101: output_bus = corner;
 				default: output_bus = 16'd12;
 			endcase
@@ -227,7 +227,7 @@ begin
 			ocm_nextaddr = ocm_addr+20'b1;
 			nextaddr = address + 1'b1;
 		end
-		done: ;
+		done: nextaddr = 20'b0;
 		default: ;
 	endcase
 end
