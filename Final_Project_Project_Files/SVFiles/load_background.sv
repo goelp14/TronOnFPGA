@@ -15,6 +15,7 @@ module load_background(
 
 // loads 2 bytes at a time
 // 640 * 153600 = 0
+logic [15:0] SRAM_OUT_DATA;
 
 // assign data out and addr
 assign SRAM_OUT_DATA = DATA_IN;
