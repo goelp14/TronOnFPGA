@@ -104,7 +104,7 @@ module trails ( input        Clk,                // 50 MHz clock
 					end
 
 // for transferring data
-logic [20:0] address, nextaddr;
+logic [19:0] address, nextaddr, ocm_addr, ocm_nextaddr;
 // assign address
 assign red_addr = (Blue_X+20)*2+320*(Blue_Y+20)*4;
 assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
@@ -116,8 +116,9 @@ assign output_mapped [3:0] = output_bus[3:0];
 assign output_mapped [11:8] = output_bus[7:4];
 assign write = output_mapped;
 
+assign trail_addr = ocm_addr;
 // states
-enum logic [2:0] {idle, write_b_s, reset_addr, write_r_s, done} state, nextState;
+enum logic [2:0] {idle, prep, write_b_s, reset_addr, write_r_s, done} state, nextState;
 
 // update state
 always_ff @ (posedge Clk)
@@ -133,10 +134,12 @@ begin
 	if (Reset || Game_State != 3'b10)
 		begin
 		address <= 20'd0;
+		ocm_addr <= 20'd0;
 		end
 	else
 		begin
 		address <= nextaddr;
+		ocm_addr <= ocm_nextaddr;
 		end
 end
 
@@ -151,8 +154,9 @@ begin
 	
 	unique case (state)
 		idle:
-			if (write_b_ff || write_r_ff)
-				nextState = write_b_s;
+			if (write_b_ff != 3'b0 || write_r_ff != 3'b0)
+				nextState = prep;
+		prep: nextState = write_b_s;
 		write_b_s:
 			if (output_bus > 16'h000F) // worst case senario: h00FF
 				nextState = reset_addr;
@@ -181,30 +185,36 @@ begin
 	nextaddr = address;
 	output_bus = 16'b101;
 	we = 1'b0;
-	trail_addr = 20'b0;
+	ocm_nextaddr = 20'b0;
 	unique case (state)
 		idle:
 			begin
-			nextaddr = 19'b0;
+			nextaddr = 20'b0;
+			ocm_nextaddr = 20'b0;
+			end
+		prep: 
+			begin
+			ocm_nextaddr = blue_addr;
+			nextaddr = 20'b0;
 			end
 		write_b_s:
 			begin
-				trail_addr = blue_addr;
 				unique case (write_b_ff)
 					3'b001: output_bus = b_h;
 					3'b010: output_bus = b_v;
 					3'b101: output_bus = corner;
 					default: output_bus = 16'b011;
 				endcase
-				nextaddr = address + 1'b1;
 				we = 1'b1;
+				ocm_nextaddr = ocm_addr+20'b1;
+				nextaddr = address + 1'b1;
 			end
 		// reset address for red sprite
 		reset_addr: 
-			nextaddr = 19'b0;
+			nextaddr = 20'b0;
+			ocm_nextaddr = red_addr;
 		write_r_s:
 		begin
-			trail_addr = red_addr;
 			unique case (write_b_ff)
 				3'b011: output_bus = b_h;
 				3'b100: output_bus = b_v;
@@ -212,6 +222,7 @@ begin
 				default: output_bus = 16'b011;
 			endcase
 			we = 1'b1;
+			ocm_nextaddr = ocm_addr+20'b1;
 			nextaddr = address + 1'b1;
 		end
 		done: ;
