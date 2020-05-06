@@ -18,7 +18,7 @@ module combine(
 	
 	logic bool;
 	
-	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8]
+	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8];
 	
 	always_comb begin
 		red = 8'b1;
