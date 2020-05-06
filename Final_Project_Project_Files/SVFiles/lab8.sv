@@ -183,8 +183,8 @@ module lab8( input               CLOCK_50,
 	 assign addr_comb = fb_addr_OCM | trail_addr;
 	 assign we_comb = fb_we | trail_we;
 	 
-	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM), .r_or_b(r_or_b),
+	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(we_comb),.DrawX(DrawX),.DrawY(DrawY),
+					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .r_or_b(r_or_b),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
     color_mapper color_instance(
