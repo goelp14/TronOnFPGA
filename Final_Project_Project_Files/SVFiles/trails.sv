@@ -9,7 +9,7 @@ module trails ( input        Clk,                // 50 MHz clock
                              frame_clk,          // The clock indicating a new frame (~60Hz)
 					
 					output logic [15:0] write,
-					output logic [18:0] trail_addr,
+					output logic [19:0] trail_addr,
 					output logic we,
 					
                input logic [7:0] Blue_X, Blue_Y, Red_X, Red_Y,
@@ -181,7 +181,7 @@ begin
 	nextaddr = address;
 	output_bus = 16'b0;
 	we = 1'b0;
-	trail_addr = 19'b0;
+	trail_addr = 20'b0;
 	unique case (state)
 		idle:
 			begin
