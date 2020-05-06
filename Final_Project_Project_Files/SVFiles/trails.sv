@@ -109,8 +109,6 @@ logic [20:0] address, nextaddr;
 assign red_addr = (Blue_X)*2+320*(Blue_Y)*4;
 assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
 
-assign trail_addr = address;
-
 // logic for transferring data
 logic [15:0] output_mapped, output_bus, b_h, b_v, r_h, r_v, corner;
 // map the different ways of storing
@@ -183,6 +181,7 @@ begin
 	nextaddr = address;
 	output_bus = 16'b0;
 	we = 1'b0;
+	trail_addr = 19'b0;
 	unique case (state)
 		idle:
 			begin
@@ -190,6 +189,7 @@ begin
 			end
 		write_b_s:
 			begin
+				trail_addr = blue_addr;
 				unique case (write_b_ff)
 					3'b001: output_bus = b_h;
 					3'b010: output_bus = b_v;
@@ -204,6 +204,7 @@ begin
 			nextaddr = 19'b0;
 		write_r_s:
 		begin
+			trail_addr = red_addr;
 			unique case (write_b_ff)
 				3'b011: output_bus = b_h;
 				3'b100: output_bus = b_v;
