@@ -81,7 +81,7 @@ module trails ( input        Clk,                // 50 MHz clock
 									write_b = 3'b0;
 							end
 						else
-							write_b = 3'b0;
+							write_b = write_b_ff;
 						
 						// red
 						if ((Red_X_old != Red_X) && (Red_Y_old != Red_Y))
@@ -100,7 +100,7 @@ module trails ( input        Clk,                // 50 MHz clock
 								write_r = 3'b0;
 						end
 						else
-							write_r = 3'b0;
+							write_r = write_r_ff;
 					end
 
 // for transferring data
