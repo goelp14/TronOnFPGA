@@ -118,8 +118,10 @@ begin
 			end
 		pause: ;
 		read:
-			reading = 1'b1;          // tell SRAM to read at address
-			DATA_OUT = SRAM_OUT_DATA;
+			begin
+				reading = 1'b1;          // tell SRAM to read at address
+				DATA_OUT = SRAM_OUT_DATA;
+			end
 		write:
 		begin
 			DATA_OUT = SRAM_OUT_DATA;

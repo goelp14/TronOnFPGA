@@ -229,7 +229,7 @@ module  trailVertBlueRAM
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [15:0] mem [0:((4*4/2)-1)];
+    logic [15:0] mem [0:((4*4/2))];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_vert_blue_2bytes.txt", mem);
@@ -253,7 +253,7 @@ module  trailHorizBlueRAM
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [15:0] mem [0:((4*4/2)-1)];
+    logic [15:0] mem [0:((4*4/2))];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_horiz_blue_2bytes.txt", mem);
@@ -277,7 +277,7 @@ module  trailVertRedRAM
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [15:0] mem [0:((4*4/2)-1)];
+    logic [15:0] mem [0:((4*4/2))];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_vert_red_2bytes.txt", mem);
@@ -301,7 +301,7 @@ module  trailHorizRedRAM
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [15:0] mem [0:((4*4/2)-1)];
+    logic [15:0] mem [0:((4*4/2))];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_horiz_red_2bytes.txt", mem);
@@ -315,7 +315,7 @@ module  trailHorizRedRAM
     
 endmodule
 
-module  trailCornerRam
+module  trailCornerRAM
     (
             input [15:0] data_In,
             input [19:0] write_address, read_address,
@@ -325,7 +325,7 @@ module  trailCornerRam
     );
     
     // mem has width of 480 bits and a total of 640 addresses
-    logic [15:0] mem [0:((4*4/2)-1)];
+    logic [15:0] mem [0:((4*4/2))];
     
     initial begin
         $readmemh("C:/Users/HP/Documents/Github/ECE-385/FinalProject/tools/ECE385-HelperTools/PNG-To-Hex/SRAM/sprite_bytes/trail_corner_2bytes.txt", mem);

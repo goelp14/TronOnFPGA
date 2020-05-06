@@ -213,7 +213,7 @@ module lab8( input               CLOCK_50,
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
 	
-	 trails trail_controller(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write(write), .trail_addr(trail_addr), .we(trail_we)
+	 trails trail_controller(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write(write), .trail_addr(trail_addr), .we(trail_we),
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
 								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
 								 

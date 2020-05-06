@@ -42,35 +42,44 @@ module trails ( input        Clk,                // 50 MHz clock
 					always_ff @ (posedge Clk) 
 					begin
 					if (Game_State != 3'b10)
-						write_ff <= 3'b0;
+						begin
+							write_b_ff <= 3'b0;
+							write_r_ff <= 3'b0;
+						end
 					else
-						write_ff <= write;
+						begin
+							write_b_ff <= write_b;
+							write_r_ff <= write_r;
+						end
+					
 					end
+					
 					
 					always_comb
 					begin
 						// default
 //						collision_blue = 1'b0;
 //						collision_blue = 1'b0;
-						write = 3'b000;
+						write_b = 3'b000;
+						write_r = 3'b000;
 						
 						// check if new locations
 						// blue
 						if ((Blue_X_old != Blue_X) && (Blue_Y_old != Blue_Y))
-						begin
-							// update trails
-							// corner
-							if (Blue_dir != Blue_dir_old)
-								write = 3'b101;
-							// up or down
-							else if ((Blue_dir == 2'b00) || (Blue_dir == 2'b01))
-								write_b = 3'b010;
-							// left or right
-							else if ((Blue_dir == 2'b10) || (Blue_dir == 2'b11))
-								write_b = 3'b001;
-							else
-								write_b = 3'b0;
-						end
+							begin
+								// update trails
+								// corner
+								if (Blue_dir != Blue_dir_old)
+									write_b = 3'b101;
+								// up or down
+								else if ((Blue_dir == 2'b00) || (Blue_dir == 2'b01))
+									write_b = 3'b010;
+								// left or right
+								else if ((Blue_dir == 2'b10) || (Blue_dir == 2'b11))
+									write_b = 3'b001;
+								else
+									write_b = 3'b0;
+							end
 						else
 							write_b = 3'b0;
 						
@@ -95,7 +104,7 @@ module trails ( input        Clk,                // 50 MHz clock
 					end
 
 // for transferring data
-logic [20:0] address;
+logic [20:0] address, nextaddr;
 // assign address
 assign red_addr = (Blue_X+4)*2+320*(Blue_Y+4)*4;
 assign blue_addr = (Red_X+4)*2+320*(Red_Y+4)*4;
@@ -110,7 +119,7 @@ assign output_mapped [11:8] = output_bus[7:4];
 assign write = output_mapped;
 
 // states
-enum logic [2:0] {idle, write_b, reset_addr, write_r, done} state, nextState;
+enum logic [2:0] {idle, write_b_s, reset_addr, write_r_s, done} state, nextState;
 
 // update state
 always_ff @ (posedge Clk)
@@ -145,20 +154,21 @@ begin
 	unique case (state)
 		idle:
 			if (write_b_ff || write_r_ff)
-				nextState = read;
-		write_b:
+				nextState = write_b_s;
+		write_b_s:
 			if (output_bus > 16'hF000) // worst case senario: h00FF
 				nextState = reset_addr;
 			else
-				nextState = write_b;
+				nextState = write_b_s;
 		reset_addr:
-			nextState = write_r;
-		write_r:
-			if (output_bus > 16'hF000) // worst case senario: h00FF
-				nextState = done;
-			else
-				nextState = write_r;
-			nextState = read;
+			nextState = write_r_s;
+		write_r_s:
+			begin
+				if (output_bus > 16'hF000) // worst case senario: h00FF
+					nextState = done;
+				else
+					nextState = write_r_s;
+			end
 		done:
 			nextState = idle;
 		default:
@@ -172,24 +182,27 @@ begin
 	// set defaults
 	nextaddr = address;
 	output_bus = 16'b0;
+	we = 1'b0;
 	unique case (state)
 		idle:
 			begin
 			nextaddr = 19'b0;
 			end
-		write_b:
-			unique case (write_b_ff)
-				3'b001: output_bus = b_h;
-				3'b010: output_bus = b_v;
-				3'b101: output_bus = corner;
-				default: output_bus = 16'b0;
-			endcase
-			nextaddr = address + 1'b1;
-			we = 1'b1;
+		write_b_s:
+			begin
+				unique case (write_b_ff)
+					3'b001: output_bus = b_h;
+					3'b010: output_bus = b_v;
+					3'b101: output_bus = corner;
+					default: output_bus = 16'b0;
+				endcase
+				nextaddr = address + 1'b1;
+				we = 1'b1;
+			end
 		// reset address for red sprite
 		reset_addr: 
 			nextaddr = 19'b0;
-		write_r:
+		write_r_s:
 		begin
 			unique case (write_b_ff)
 				3'b011: output_bus = b_h;
