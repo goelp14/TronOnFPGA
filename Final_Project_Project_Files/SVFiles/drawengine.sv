@@ -4,6 +4,7 @@ module drawengine(
 	input [9:0] DrawX, DrawY,
 	input [1:0] Blue_dir, Red_dir,       // Current pixel coordinates
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
+	output[1:0] r_or_b,
     output logic [3:0]  color_enum          // Whether current pixel belongs to ball or background
     );
 
@@ -18,6 +19,7 @@ module drawengine(
 	logic [19:0] write_address_b, read_address_b, write_address_r, read_address_r, read_address;
 	logic [15:0] data_Out_bub, data_Out_blb, data_Out_brb, data_Out_bdb, data_Out_bur, data_Out_blr, data_Out_brr, data_Out_bdr, data_Out;
 	logic [3:0]  blue_upper, blue_lower, red_upper, red_lower, out_byte;
+	logic [1:0] rb;
 
 
     // logic [9:0] Ball_X_Pos, Ball_X_Motion, Ball_Y_Pos, Ball_Y_Motion;
@@ -46,6 +48,7 @@ module drawengine(
 			begin
 			if ( ( DistX_blue <= Bike_Size * 2) && (DistY_blue <= Bike_Size*2) )
 				begin
+					rb = 2'b00;
 					read_address_b = DistX_blue/2 + DistY_blue * (32/2);
 					write_address_b = read_address_b;
 					read_address_r = read_address_b;
@@ -87,6 +90,7 @@ module drawengine(
 					read_address_b = write_address_r;
 					write_address_b = read_address_b;
 					read_address = write_address_b;
+					rb = 2'b01;
 					if (Red_dir == 2'd0)
 						begin
 							if (DistX_red % 2 == 0)
@@ -124,6 +128,8 @@ module drawengine(
 					write_address_b = read_address_b;
 					read_address = write_address_b;
 					out_byte = 4'hf;
+					rb = 2'b10;
+					
 				end
 			end
 		else
@@ -134,6 +140,7 @@ module drawengine(
 				write_address_b = read_address_b;
 				read_address = write_address_b;
 				out_byte = 4'hf;
+				rb = 2'b10;
 			end
 	end
 	
@@ -156,4 +163,5 @@ module drawengine(
 	bikeDownRedRAM bike_down_red (.data_In(data_In_r),.write_address(write_address_r),.read_address(read_address_r),.we(1'b0),.Clk(Clk),.data_Out(data_Out_bdr));
 
 	assign color_enum = out_byte;
+	assign r_or_b = rb;
 endmodule

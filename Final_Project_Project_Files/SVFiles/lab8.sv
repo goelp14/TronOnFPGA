@@ -94,6 +94,8 @@ module lab8( input               CLOCK_50,
 	 logic [3:0] color_enum, Drawengine_out;
 	 
 	 logic load_background;
+	 
+	 logic [1:0] r_or_b;
     // Interface between NIOS II and EZ-OTG chip
     hpi_io_intf hpi_io_inst(
                             .Clk(Clk),
@@ -169,11 +171,11 @@ module lab8( input               CLOCK_50,
     
 	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
-					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out));
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out), .r_or_b(r_or_b));
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM),
-					.color_enum(color_enum));
+					.Data_In_Bike(Drawengine_out), .Data_In(OCM_Data), .write_address(fb_addr_OCM), .r_or_b(r_or_b),
+					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
     color_mapper color_instance(
 		.VGA_R(VGA_R), 
@@ -192,7 +194,7 @@ module lab8( input               CLOCK_50,
 									.keycode(keycode), .Game_State(Game_State), .background_select(background_sel), .load_background(load_background));
 									
 	 score scorekeeper(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),
-							 .red_color(8'b1), .blue_color(8'b1), 
+							 .red_color(red_color), .blue_color(blue_color), 
 							 .Blue_W(Blue_W), .Red_W(Red_W), .reset_round(reset_round), .score_blue(score_blue), .score_red(score_red));
 	//.red_color(red_color), .blue_color(blue_color), 
 	

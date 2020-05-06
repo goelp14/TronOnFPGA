@@ -4,16 +4,21 @@ module combine(
 	input [15:0] Data_In,
 	input [3:0] Data_In_Bike,
 	input [18:0] write_address,
-    output logic [3:0]  color_enum         
+	input [1:0] r_or_b,
+   output logic [3:0]  color_enum,
+	output logic [7:0] red_color, blue_color 
     );
 
 
 	logic [15:0] data_In_b, data_In_r;
-	logic [19:0] read_address;
+	logic [19:0] read_address, writeaddress;
 	logic [15:0] data_Out;
+	logic [7:0] red, blue;
 	logic [3:0]  out_byte;
 
 	always_comb begin
+		red = 8'b1;
+		blue = 8'b1;
 		if (Data_In_Bike == 4'hf)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
@@ -24,12 +29,28 @@ module combine(
 			end
 		else
 			begin
-				read_address = 19'd10;
+				read_address = DrawX/2 + DrawY * (640/2);
+				if (r_or_b == 2'b00)
+					begin
+						if(data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08)
+							begin
+								blue = 8'b0;
+							end
+					end
+				else if (r_or_b == 2'b01)
+					begin
+						if(data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08)
+							begin
+								red = 8'b0;
+							end
+					end
 				out_byte = Data_In_Bike;
 			end
 	end
 	
 	frameRAM frame_buffer (.data_In(Data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
 	assign color_enum = out_byte;
+	assign red_color = red;
+	assign blue_color = blue;
 
 endmodule
