@@ -49,7 +49,11 @@ module lab8( input               CLOCK_50,
 				 input [15:0] SRAM_DQ,
 				 output [8:0] LEDG 
                     );
-    
+    // test code
+	 assign LEDG[7] fb_we;
+	 assign LEDG[8] trail_we;
+	 
+	 
     logic Reset_h, Clk, is_ball;
     logic [7:0] keycode;
 	 logic [9:0] DrawX, DrawY;
@@ -67,7 +71,7 @@ module lab8( input               CLOCK_50,
 	 logic [7:0] red_color, blue_color;
 	 
 	 logic [2:0] Game_State;
-	 assign LEDG = Game_State;
+	 assign LEDG[2:0] = Game_State;
 	 
 	 logic [1:0] score_blue, score_red, background_sel;
 	 
@@ -184,7 +188,7 @@ module lab8( input               CLOCK_50,
 	 assign we_comb = fb_we | trail_we;
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(write), .write_address(trail_addr), .r_or_b(r_or_b),
+					.Data_In_Bike(Drawengine_out), .Data_In(fb_we), .write_address(fb_addr_ocm), .r_or_b(r_or_b),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
     color_mapper color_instance(
