@@ -15,7 +15,7 @@
 
 module lab8( input               CLOCK_50,
              input        [3:0]  KEY,          //bit 0 is set up as Reset
-             output logic [6:0]  HEX0, HEX1,
+             output logic [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
              // VGA Interface 
              output logic [7:0]  VGA_R,        //VGA Red
                                  VGA_G,        //VGA Green
@@ -47,11 +47,13 @@ module lab8( input               CLOCK_50,
 				 output logic SRAM_CE_N, SRAM_UB_N, SRAM_LB_N, SRAM_OE_N, SRAM_WE_N,  // Sram stuff
 				 output [19:0] SRAM_ADDR,
 				 input [15:0] SRAM_DQ,
-				 output [8:0] LEDG 
+				 output [8:0] LEDG, LEDR
                     );
     // test code
-	 assign LEDG[7] fb_we;
-	 assign LEDG[8] trail_we;
+//	 assign LEDG[7] = fb_we;
+//	 assign LEDG[8] = trail_we;
+	assign LEDG = write_comb;
+//	assign LEDR = trail_addr;
 	 
 	 
     logic Reset_h, Clk, is_ball;
@@ -71,7 +73,7 @@ module lab8( input               CLOCK_50,
 	 logic [7:0] red_color, blue_color;
 	 
 	 logic [2:0] Game_State;
-	 assign LEDG[2:0] = Game_State;
+//	 assign LEDG[2:0] = Game_State;
 	 
 	 logic [1:0] score_blue, score_red, background_sel;
 	 
@@ -187,8 +189,8 @@ module lab8( input               CLOCK_50,
 	 assign addr_comb = fb_addr_OCM | trail_addr;
 	 assign we_comb = fb_we | trail_we;
 	 
-	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(fb_we),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(fb_we), .write_address(fb_addr_ocm), .r_or_b(r_or_b),
+	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(we_comb),.DrawX(DrawX),.DrawY(DrawY),
+					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .r_or_b(r_or_b),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
     color_mapper color_instance(
@@ -201,6 +203,16 @@ module lab8( input               CLOCK_50,
     // Display keycode on hex display
     HexDriver hex_inst_0 (keycode[3:0], HEX0);
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
+	 
+	 //Display write enable
+	 HexDriver hex_inst_2 (we_comb, HEX2);
+	 
+	 //Display address
+	 HexDriver hex_inst_3 (addr_comb[3:0], HEX3);
+	 HexDriver hex_inst_4 (addr_comb[7:4], HEX4);
+	 HexDriver hex_inst_5 (addr_comb[11:8], HEX5);
+	 HexDriver hex_inst_6 (addr_comb[15:12], HEX6);
+	 HexDriver hex_inst_7 (addr_comb[19:16], HEX7);
     
 	 // STUFF FOR GAMELOGIC
 	 GameState statemachine(.Clk(CLOCK_50), .Reset(Reset_h), .Reset_Game(reset_game),
