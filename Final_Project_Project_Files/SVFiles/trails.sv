@@ -23,7 +23,7 @@ module trails ( input        Clk,                // 50 MHz clock
 
 					logic [1:0] Blue_dir_old, Red_dir_old;
 					
-					logic [6:0] Blue_X_old, Red_X_old, Blue_Y_old, Red_Y_old;
+					logic [7:0] Blue_X_old, Red_X_old, Blue_Y_old, Red_Y_old;
 
 					// update old values
 					always_ff @ (posedge Clk) 
@@ -104,7 +104,7 @@ module trails ( input        Clk,                // 50 MHz clock
 					end
 
 // for transferring data
-logic [19:0] address, nextaddr, ocm_addr, ocm_nextaddr;
+logic [19:0] address, nextaddr, ocm_addr, ocm_nextaddr, red_addr, blue_addr;
 logic [15:0] temp, next_temp;
 // assign address
 assign red_addr = (Blue_X+20)*2+320*(Blue_Y+20)*4;
@@ -223,8 +223,8 @@ begin
 		// reset address for red sprite
 		reset_addr: 
 			begin
-				nextaddr = 20'b0;
-				ocm_nextaddr = red_addr;
+			nextaddr = 20'b0;
+			ocm_nextaddr = red_addr;
 			end
 		read_r_s:
 			begin
