@@ -198,6 +198,7 @@ begin
 			begin
 			nextaddr = 20'b0;
 			ocm_nextaddr = 20'b0;
+			we = 1'b0;
 			end
 		prep: 
 			begin
@@ -210,7 +211,7 @@ begin
 					3'b001: next_temp = b_h;
 					3'b010: next_temp = b_v;
 					3'b101: next_temp = corner;
-					default: text_temp = 16'd15;
+					default: next_temp = 16'd15;
 				endcase
 				nextaddr = address + 1'b1;
 			end
@@ -221,15 +222,17 @@ begin
 			end
 		// reset address for red sprite
 		reset_addr: 
-			nextaddr = 20'b0;
-			ocm_nextaddr = red_addr;
+			begin
+				nextaddr = 20'b0;
+				ocm_nextaddr = red_addr;
+			end
 		read_r_s:
 			begin
 				unique case (write_r_ff)
-					3'b011: output_bus = r_h;
-					3'b100: output_bus = r_v;
-					3'b101: output_bus = corner;
-					default: output_bus = 16'd12;
+					3'b011: next_temp = r_h;
+					3'b100: next_temp = r_v;
+					3'b101: next_temp = corner;
+					default: next_temp = 16'd12;
 				endcase
 			nextaddr = address + 1'b1;				
 			end
