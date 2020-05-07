@@ -65,7 +65,7 @@ module trails ( input        Clk,                // 50 MHz clock
 						
 						// check if new locations
 						// blue
-						if ((Blue_X_old != Blue_X) && (Blue_Y_old != Blue_Y))
+						if ((Blue_X_old != Blue_X) || (Blue_Y_old != Blue_Y))
 							begin
 								// update trails
 								// corner
@@ -84,7 +84,7 @@ module trails ( input        Clk,                // 50 MHz clock
 							write_b = write_b_ff;
 						
 						// red
-						if ((Red_X_old != Red_X) && (Red_Y_old != Red_Y))
+						if ((Red_X_old != Red_X) || (Red_Y_old != Red_Y))
 						begin
 							// update trails
 							// corner
