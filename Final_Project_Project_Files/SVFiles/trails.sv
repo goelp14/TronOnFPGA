@@ -198,11 +198,13 @@ begin
 			begin
 			nextaddr = 20'b0;
 			ocm_nextaddr = 20'b0;
+			next_temp = 0;
 			end
 		prep: 
 			begin
 			ocm_nextaddr = blue_addr;
 			nextaddr = 20'b0;
+			next_temp = 0;
 			end
 		read_b_s:
 			begin
@@ -222,6 +224,7 @@ begin
 		// reset address for red sprite
 		reset_addr: 
 			begin
+			next_temp = 0;
 			nextaddr = 20'b0;
 			ocm_nextaddr = red_addr;
 			end
