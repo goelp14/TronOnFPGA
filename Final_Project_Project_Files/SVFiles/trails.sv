@@ -107,7 +107,7 @@ module trails ( input        Clk,                // 50 MHz clock
 logic [19:0] address, nextaddr, ocm_addr, ocm_nextaddr, red_addr, blue_addr;
 logic [15:0] temp, next_temp;
 // assign address
-assign red_addr = (Blue_X+20)*2+320*(Blue_Y+20)*4;
+assign red_addr = (Blue_X+6)*2+320*(Blue_Y+6)*4;
 assign blue_addr = (Red_X)*2+320*(Red_Y)*4;
 
 // logic for transferring data
