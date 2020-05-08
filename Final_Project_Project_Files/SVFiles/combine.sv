@@ -165,7 +165,7 @@ module combine(
 //						if(data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
 //							blue = 1'b1;
 						if (data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
-							begin							blue = 8'b0;
+							begin							
 							if ((DistX_blue == tempoffsetbluex) && (DistY_blue == tempoffsetbluey))
 								blue = 8'b0;
 							end
