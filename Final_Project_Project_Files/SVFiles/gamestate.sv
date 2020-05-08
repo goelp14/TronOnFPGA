@@ -21,8 +21,10 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	
 	always_ff @ (posedge Clk)
 	begin
-		if (State == Blue_Wins || State == Red_Wins)
-			background_sel <= 2'b0; // always load menu after win state
+		if (State == Blue_Wins)
+			background_sel <= 2'b10; // always load menu after win state
+		else if (State == Red_Wins)
+			background_sel <= 2'b11;
 		else if (State == Menu)  // choose next map after menu
 			begin
 			background_sel <= 2'b1;
@@ -87,7 +89,7 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 					Next_state = Menu;
 					load_background = 1'b1;
 				end
-			default : Next_state = Menu;
+			default : Next_state = State;
 
 		endcase
 	end

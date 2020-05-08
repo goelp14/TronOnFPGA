@@ -7,7 +7,7 @@ module combine(
 	input [1:0] r_or_b,
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
 	input [1:0] Blue_dir, Red_dir,
-	input is_blocked,
+	input is_blocked, is_blocked2,
    output logic [3:0]  color_enum,
 	output logic [7:0] red_color, blue_color,
 	output logic [15:0] dOut
@@ -95,7 +95,6 @@ module combine(
 //				read_address = DrawX/2 + DrawY * (640/2);
 //				out_byte = 4'h7;
 //			end
-		
 		if (Data_In_Bike == 4'hf)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
@@ -106,7 +105,7 @@ module combine(
 			end
 		else
 			begin
-				read_address = DrawX/2 + DrawY * (640/2);
+				read_address = (r_or_b) ? (Red_X_real + 8)*2 + (Red_Y_real)*320*4 : (Blue_X_real + 8)*2 + (Blue_Y_real)*320*4;
 
 //				if (Blue_dir == 2'b00)
 //					begin
@@ -165,7 +164,7 @@ module combine(
 //						if(data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
 //							blue = 1'b1;
 						if (data_Out [3:0] == 4'h06 || data_Out [11:8] == 4'h06)
-							red = 8'b0;
+							blue = 8'b0;
 						else if (data_Out [3:0] == 4'h0e || data_Out [11:8] == 4'h0e)
 							blue = 8'b0;
 //						else
@@ -186,7 +185,7 @@ module combine(
 	end
 	
 	frameRAM frame_buffer (.data_In(Data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
-	assign color_enum = (is_blocked) ? 4'h7 : out_byte;
+	assign color_enum = (is_blocked || is_blocked2) ? 4'h7 : out_byte;
 	assign red_color = red;
 	assign blue_color = blue;
 	assign dOut = data_Out;
