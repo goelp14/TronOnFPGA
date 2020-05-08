@@ -70,7 +70,13 @@ module score ( input         Clk,                // 50 MHz clock
 					end
 				raiseflagb3: nextStateb = blue_count3;
 				blue_count3: nextStateb = win_b;
-				win_b: nextStateb = restartb;
+				win_b:
+					begin
+						if (Game_State == 3'd3)
+							nextStateb = restartb;
+						else
+							nextStateb = win_b;
+					end
 				restartb: nextStateb = nocountb;
 				default: nextStateb = stateb;
 			endcase
@@ -110,7 +116,13 @@ module score ( input         Clk,                // 50 MHz clock
 					end
 				raiseflagr3: nextStater = red_count3;
 				red_count3: nextStater = win_r;
-				win_r: nextStater = restartr;
+				win_r: 
+					begin
+						if (Game_State == 3'd4)
+							nextStater = restartr;
+						else
+							nextStater = win_r;	
+					end
 				restartr: nextStater = nocountr;
 				default: nextStater = stater;
 			endcase
