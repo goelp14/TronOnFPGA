@@ -103,9 +103,9 @@ module lab8( input               CLOCK_50,
 	 
 	 logic [1:0] r_or_b;
 	 
-	 logic [15:0] write, write_comb;
+	 logic [15:0] write, write_comb, w_c;
 	 
-	 logic [19:0] trail_addr, addr_comb;
+	 logic [19:0] trail_addr, addr_comb, w_a;
 	 
 	 logic trail_we, we_comb;
     // Interface between NIOS II and EZ-OTG chip
@@ -185,11 +185,28 @@ module lab8( input               CLOCK_50,
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
 					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .color_enum(Drawengine_out), .r_or_b(r_or_b));
 	 
-	 assign write_comb = write | OCM_Data;
-	 assign addr_comb = fb_addr_OCM | trail_addr;
-	 assign we_comb = fb_we | trail_we;
+//	 assign write_comb = write | OCM_Data;
+//	 assign addr_comb = fb_addr_OCM | trail_addr;
+//	 assign we_comb = fb_we | trail_we;
 	 
-	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(we_comb),.DrawX(DrawX),.DrawY(DrawY),
+	 
+	 always_comb
+		begin
+			if (fb_we)
+				begin
+					write_comb = OCM_Data;
+					addr_comb = fb_addr_OCM;
+				end
+			else
+				begin
+					write_comb = w_c;
+					addr_comb = trail_addr;
+				end	
+		end
+	 
+	 assign w_c = (r_or_b) ? 16'h0606 : 16'h0404;
+	 
+	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(1'b1),.DrawX(DrawX),.DrawY(DrawY),
 					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .r_or_b(r_or_b),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
 	 
@@ -205,7 +222,7 @@ module lab8( input               CLOCK_50,
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
 	 
 	 //Display write enable
-	 HexDriver hex_inst_2 (we_comb, HEX2);
+//	 HexDriver hex_inst_2 (we_comb, HEX2);
 	 
 	 //Display address
 	 HexDriver hex_inst_3 (addr_comb[3:0], HEX3);
@@ -229,9 +246,9 @@ module lab8( input               CLOCK_50,
 					 .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real),
 					 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), .Blue_dir(Blue_dir), .Red_dir(Red_dir));
 	
-	 trails trail_controller(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write(write), .trail_addr(trail_addr), .we(trail_we),
+	 trails2 trail_controller(.Clk(CLOCK_50), .Reset(Reset_h), .frame_clk(VGA_VS), .write(write), .trail_addr(trail_addr), .we(trail_we),
 								 .Blue_X(Blue_X), .Blue_Y(Blue_Y), .Red_X(Red_X), .Red_Y(Red_Y), 
-								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State));
+								 .Blue_dir(Blue_dir), .Red_dir(Red_dir), .Game_State(Game_State), .r_or_b(r_or_b));
 								 
 	 sram_controller sramdriver(.Clk(CLOCK_50), .Reset(Reset_h), .Read(sram_read), .addr_in(addr_to_cont), .CE(SRAM_CE_N), .UB(SRAM_UB_N),
 										 .LB(SRAM_LB_N), .OE(SRAM_OE_N), .WE(SRAM_WE_N), .done_r(sram_done), .OUTPUT_DATA(SRAM_OUTPUT_DATA), .ADDR(SRAM_ADDR),
