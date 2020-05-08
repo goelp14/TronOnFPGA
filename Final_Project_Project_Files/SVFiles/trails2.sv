@@ -32,8 +32,18 @@ module trails2 ( input        Clk,                // 50 MHz clock
 	
 	logic [19:0]curr_address_b, next_address_b, curr_address_r, next_address_r, blue_addr, red_addr, w_a1, w_a2, w_a3, w_a4, c_a;
 	
-	
-	assign w_a1 = (r_or_b) ? (Red_X + 8)*2 + (Red_Y)*320*4 : (Blue_X + 8)*2 + (Blue_Y)*320*4;
+	logic r_or_b_ff;
+
+	always_ff (@posedge Clk)
+	begin
+		if (r_or_b != r_or_b_ff)
+			r_or_b_ff <= r_or_b;
+		else
+			r_or_b_ff <= r_or_b_ff;
+	end
+
+
+	assign w_a1 = (r_or_b_ff) ? (Red_X + 8)*2 + (Red_Y)*320*4 : (Blue_X + 8)*2 + (Blue_Y)*320*4;
 	assign w_a2 = w_a1 + 1;
 	assign w_a3 = w_a1 + (320);
 	assign w_a4 = w_a1 + (320) + 1;
