@@ -53,7 +53,7 @@ end
 always_ff @ (posedge Clk)
 begin
 	if (Reset)
-		state <= pause;
+		state <= idle;
 	else
 		state <= nextState;
 end
