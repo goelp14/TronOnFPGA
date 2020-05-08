@@ -24,15 +24,15 @@ module combine(
 	
 //	parameter [9:0] Bike_Size = 10'd16;
 //	
-	logic [9:0] DistX_blue, DistY_blue;
-   assign DistX_blue = DrawX - Blue_X_real + 16;
+	int DistX_blue, DistY_blue;
+   assign DistX_blue = DrawX - Blue_X_real - 16;
 	assign DistY_blue = DrawY - Blue_Y_real;
 	
-	logic [9:0] DistX_red, DistY_red;
-   assign DistX_red = DrawX - Red_X_real + 16;
+	int DistX_red, DistY_red;
+   assign DistX_red = DrawX - Red_X_real - 16;
 	assign DistY_red = DrawY - Red_Y_real;
 	
-	logic [9:0] tempoffsetbluex, tempoffsetbluey, tempoffsetredx, tempoffsetredy;
+	int tempoffsetbluex, tempoffsetbluey, tempoffsetredx, tempoffsetredy;
 	
 	always_comb
 		begin
