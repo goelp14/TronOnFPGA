@@ -164,7 +164,7 @@ module combine(
 					begin
 //						if(data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
 //							blue = 1'b1;
-						if (data_Out [3:0] == 4'h06 || data_Out [11:8] == 4'h06)
+						if (data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
 							begin							blue = 8'b0;
 							if ((DistX_blue == tempoffsetbluex) && (DistY_blue == tempoffsetbluey))
 								blue = 8'b0;
@@ -177,7 +177,7 @@ module combine(
 					begin
 //						if(data_Out [3:0] != 4'h08 && data_Out [11:8] != 4'h08)
 //							red = 8'b0;
-						if(data_Out [3:0] == 4'h04 || data_Out [11:8] == 4'h04)
+						if(data_Out [3:0] != 4'h08 || data_Out [11:8] == 4'h08)
 							if ((DistY_red == tempoffsetredx) && (DistX_red = tempoffsetredy))
 								red = 8'b0;
 					end
