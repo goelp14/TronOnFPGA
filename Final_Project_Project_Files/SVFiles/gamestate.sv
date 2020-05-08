@@ -70,11 +70,12 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 			Round_Started :
 					if (Reset_Round)
 					begin
-						Next_state = Round_Paused;
 						if (Blue_W)
 							Next_state = Blue_Wins;
 						else if (Red_W)
 							Next_state = Red_Wins;
+						else
+							Next_state = Round_Paused;
 						load_background = 1'b1;
 					end
 
