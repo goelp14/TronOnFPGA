@@ -54,7 +54,7 @@ module combine(
 				end
 			else
 				begin
-					tempoffsetbluex = -10'16;
+					tempoffsetbluex = -10'd16;
 					tempoffsetbluey = 10'd3;
 				end	
 				
