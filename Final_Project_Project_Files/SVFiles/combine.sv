@@ -186,7 +186,7 @@ module combine(
 	end
 	
 	frameRAM frame_buffer (.data_In(Data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
-	assign color_enum = (is_blocked || is_blocked2) ? 4'h7 : out_byte;
+	assign color_enum = out_byte;
 	assign red_color = red;
 	assign blue_color = blue;
 	assign dOut = data_Out;
