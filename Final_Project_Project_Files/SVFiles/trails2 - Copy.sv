@@ -68,10 +68,10 @@ module trails2 ( input        Clk,                // 50 MHz clock
 //			else if (Blue_dir == 2'b10)
 //				blue_addr = (Blue_X + 17)*2 + (Blue_Y)*320*4;
 //			else
-//				blue_addr = (Blue_X - 2)*2 + (Blue_Y)*320*4;	
+//				blue_addr = (Blue_X - 2)*2 + (Blue_Y)*320*4;
 //		end
 	
-	enum logic [5:0] {idle, one,two,three,four,five,six,seven,eight} state, nextState;
+	enum logic [3:0] {one,two,three,four,five,six,seven,eight} state, nextState;
 
 	assign trail_addr = c_a;
 	
@@ -86,7 +86,7 @@ module trails2 ( input        Clk,                // 50 MHz clock
 		begin
 			if (Reset || Game_State != 3'b10)
 				begin
-					state <= idle;
+					state <= one;
 					offset <= 1'b0;
 				end
 			else
@@ -98,11 +98,7 @@ module trails2 ( input        Clk,                // 50 MHz clock
 		
 	always_comb
 		begin
-			nextState = state;
 			unique case(state)
-				idle:
-					if (r_or_b != 2'b10)
-						nextState = one;
 				one: nextState = two;
 				two: nextState = three;
 				three: nextState = four;
@@ -110,14 +106,13 @@ module trails2 ( input        Clk,                // 50 MHz clock
 				five: nextState = six;
 				six: nextState = seven;
 				seven: nextState = eight;
-				eight: nextState = idle;
+				eight: nextState = one;
 			endcase
 		end
 	
 	always_comb
 		begin
 			unique case(state)
-				idle: ;
 				one: c_a = w_a1;
 				two: c_a = w_a3;
 				three: c_a = w_a2;
