@@ -36,7 +36,9 @@ module trails2 ( input        Clk,                // 50 MHz clock
 
 	always_ff (@posedge Clk)
 	begin
-		if (r_or_b != r_or_b_ff)
+		if (r_or_b == 2'b10)
+			r_or_b_ff <= r_or_b_ff;
+		else if (r_or_b != r_or_b_ff)
 			r_or_b_ff <= r_or_b;
 		else
 			r_or_b_ff <= r_or_b_ff;
