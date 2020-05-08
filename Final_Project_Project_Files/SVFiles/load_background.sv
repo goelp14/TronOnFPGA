@@ -53,7 +53,7 @@ end
 always_ff @ (posedge Clk)
 begin
 	if (Reset)
-		state <= idle;
+		state <= pause;
 	else
 		state <= nextState;
 end
@@ -117,7 +117,11 @@ begin
 			nextaddr = OFFSET;
 			OCM_addr_new = 19'd0;
 			end
-		pause: ;
+		pause:
+			begin
+			nextaddr = OFFSET;
+			OCM_addr_new = 19'd0;
+			end
 		read:
 			begin
 				reading = 1'b1;          // tell SRAM to read at address
