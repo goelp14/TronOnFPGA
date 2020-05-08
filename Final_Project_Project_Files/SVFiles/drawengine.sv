@@ -4,11 +4,14 @@ module drawengine(
 	input [9:0] DrawX, DrawY,
 	input [1:0] Blue_dir, Red_dir,       // Current pixel coordinates
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
+	input [1:0] score_blue, score_red,
 	output[1:0] r_or_b,
+	output logic is_blocked, is_blocked2,
     output logic [3:0]  color_enum          // Whether current pixel belongs to ball or background
     );
 
 	parameter [9:0] Bike_Size = 10'd16;        // Ball size
+	parameter [9:0] blocking_Size = 10'd32;
 	logic toggleBit, count;
 	// logic [15:0] data_In_bub, data_In_blb, data_In_brb, data_In_bdb, data_In_bur, data_In_blr, data_In_brr, data_In_bdr;
 	// logic [19:0] write_address_bub, read_address_bub, write_address_blb, read_address_blb, write_address_brb, read_address_brb, write_address_bdb, read_address_bdb, write_address_bur, read_address_bur, write_address_blr, read_address_blr, write_address_brr, read_address_brr, write_address_bdr, read_address_bdr;
@@ -41,6 +44,76 @@ module drawengine(
 	int DistX_red, DistY_red;
     assign DistX_red = DrawX - Red_X_real - Bike_Size;
 	assign DistY_red = DrawY - Red_Y_real + Bike_Size;
+	
+	int DistX, DistY;
+    assign DistX = DrawX - 485;
+    assign DistY = DrawY - 125;
+//    assign Size = blocking_Size;
+	 
+	int DistX2, DistY2;
+    assign DistX2 = DrawX - 485;
+    assign DistY2 = DrawY - 125 - 160;
+    always_comb begin
+		if(gamestate == 3'b001 || gamestate == 3'b010)
+		  begin
+			  if (score_blue == 2'b01)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*2) &&  ( DistY*2) <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
+			  else if (score_blue == 2'b10)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*4) &&  ( DistY*2) <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
+			  else if (score_blue == 2'b11)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*6) &&  ( DistY*2) <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
+			  else
+					is_blocked = 1'b0;
+			end		
+		else
+			is_blocked = 1'b0;
+    end
+	 
+	always_comb begin
+		if(gamestate == 3'b001 || gamestate == 3'b010)
+		  begin
+			  if (score_red == 2'b01)
+					begin
+					  if ( ( DistX2*2) <= (blocking_Size*2) &&  ( DistY2*2) <= (blocking_Size*2)) 
+							is_blocked2 = 1'b1;
+					  else
+							is_blocked2 = 1'b0;
+					end
+			  else if (score_red == 2'b10)
+					begin
+					  if ( ( DistX2*2) <= (blocking_Size*4) &&  ( DistY2*2) <= (blocking_Size*2)) 
+							is_blocked2 = 1'b1;
+					  else
+							is_blocked2 = 1'b0;
+					end
+			  else if (score_red == 2'b11)
+					begin
+					  if ( ( DistX2*2) <= (blocking_Size*6) &&  ( DistY2*2) <= (blocking_Size*2)) 
+							is_blocked2 = 1'b1;
+					  else
+							is_blocked2 = 1'b0;
+					end
+			  else
+					is_blocked2 = 1'b0;
+			end		
+		else
+			is_blocked2 = 1'b0;
+    end
 	
 
 	always_comb begin

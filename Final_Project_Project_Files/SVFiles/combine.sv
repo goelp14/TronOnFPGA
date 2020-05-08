@@ -7,6 +7,7 @@ module combine(
 	input [1:0] r_or_b,
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
 	input [1:0] Blue_dir, Red_dir,
+	input is_blocked, is_blocked2,
    output logic [3:0]  color_enum,
 	output logic [7:0] red_color, blue_color,
 	output logic [15:0] dOut
@@ -84,6 +85,17 @@ module combine(
 	always_comb begin
 		red = 8'b1;
 		blue = 8'b1;
+//		if (is_blocked)
+//			begin
+//				read_address = DrawX/2 + DrawY * (640/2);
+//				out_byte = 4'h7;
+//			end
+//		else if (is_blocked2)
+//			begin
+//				read_address = DrawX/2 + DrawY * (640/2);
+//				out_byte = 4'h7;
+//			end
+		
 		if (Data_In_Bike == 4'hf)
 			begin
 				read_address = DrawX/2 + DrawY * (640/2);
@@ -174,7 +186,7 @@ module combine(
 	end
 	
 	frameRAM frame_buffer (.data_In(Data_In),.write_address(write_address),.read_address(read_address),.we(WE),.Clk(Clk),.data_Out(data_Out));
-	assign color_enum = out_byte;
+	assign color_enum = (is_blocked || is_blocked2) ? 4'h7 : out_byte;
 	assign red_color = red;
 	assign blue_color = blue;
 	assign dOut = data_Out;
