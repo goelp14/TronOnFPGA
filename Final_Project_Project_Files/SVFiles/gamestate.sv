@@ -74,19 +74,15 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 						load_background = 1'b1;
 						end
 					if (Blue_W)
-						Next_state = Blue_Wins;
-						load_background = 1'b1
-					if (Red_W)
-						Next_state = Red_Wins;
-						load_background = 1'b1
 					begin
-
-					end
-					else if (Blue_W)
 						Next_state = Blue_Wins;
-					else if (Red_W)
+						load_background = 1'b1;
+					end
+					if (Red_W)
+					begin
 						Next_state = Red_Wins;
-
+						load_background = 1'b1;
+					end
 			Blue_Wins :
 				if (keycode == 8'h28)
 				begin
