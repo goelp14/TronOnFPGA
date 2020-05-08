@@ -184,7 +184,7 @@ module lab8( input               CLOCK_50,
 	 drawengine draw(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .DrawX(DrawX),.DrawY(DrawY),
 					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .Blue_X_real(Blue_X_real), .Blue_Y_real(Blue_Y_real),
 					.score_blue(score_blue), .score_red(score_red),
-					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .is_blocked(block), .is_blocked2(block2),.color_enum(Drawengine_out), .r_or_b(r_or_b));
+					.Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .gamestate(Game_State), .is_blocked(block),.color_enum(Drawengine_out), .r_or_b(r_or_b));
 	 
 //	 assign write_comb = write | OCM_Data;
 //	 assign addr_comb = fb_addr_OCM | trail_addr;
@@ -210,7 +210,7 @@ module lab8( input               CLOCK_50,
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(1'b1),.DrawX(DrawX),.DrawY(DrawY),
 					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .Blue_X_real(Blue_X_real), 
 					.Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .r_or_b(r_or_b),
-					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .is_blocked(block), .is_blocked2(block2),
+					.Blue_dir(Blue_dir), .Red_dir(Red_dir), .is_blocked(block),
 					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color),.dOut(checkOCM));
 	 
     color_mapper color_instance(

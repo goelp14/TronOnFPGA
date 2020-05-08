@@ -6,7 +6,7 @@ module drawengine(
 	input [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
 	input [1:0] score_blue, score_red,
 	output[1:0] r_or_b,
-	output logic is_blocked, is_blocked2,
+	output logic is_blocked,
     output logic [3:0]  color_enum          // Whether current pixel belongs to ball or background
     );
 
@@ -50,9 +50,9 @@ module drawengine(
     assign DistY = DrawY - 125;
 //    assign Size = blocking_Size;
 	 
-	int DistX2, DistY2;
-    assign DistX2 = DrawX - 485;
-    assign DistY2 = DrawY - 125 - 160;
+//	int DistX2, DistY2;
+//    assign DistX2 = DrawX - 485;
+//    assign DistY2 = DrawY - 125 - 160;
     always_comb begin
 		if(gamestate == 3'b001 || gamestate == 3'b010)
 		  begin
@@ -77,44 +77,34 @@ module drawengine(
 					  else
 							is_blocked = 1'b0;
 					end
+			  else if (score_red == 2'b01)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*2) &&  ( (DistY - 160) *2) <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
+			  else if (score_red == 2'b10)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*4) &&  ( DistY - 160)*2 <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
+			  else if (score_red == 2'b11)
+					begin
+					  if ( ( DistX*2) <= (blocking_Size*6) &&  ( DistY - 160)*2 <= (blocking_Size*2)) 
+							is_blocked = 1'b1;
+					  else
+							is_blocked = 1'b0;
+					end
 			  else
 					is_blocked = 1'b0;
 			end		
 		else
 			is_blocked = 1'b0;
     end
-	 
-	always_comb begin
-		if(gamestate == 3'b001 || gamestate == 3'b010)
-		  begin
-			  if (score_red == 2'b01)
-					begin
-					  if ( ( DistX2*2) <= (blocking_Size*2) &&  ( DistY2*2) <= (blocking_Size*2)) 
-							is_blocked2 = 1'b1;
-					  else
-							is_blocked2 = 1'b0;
-					end
-			  else if (score_red == 2'b10)
-					begin
-					  if ( ( DistX2*2) <= (blocking_Size*4) &&  ( DistY2*2) <= (blocking_Size*2)) 
-							is_blocked2 = 1'b1;
-					  else
-							is_blocked2 = 1'b0;
-					end
-			  else if (score_red == 2'b11)
-					begin
-					  if ( ( DistX2*2) <= (blocking_Size*6) &&  ( DistY2*2) <= (blocking_Size*2)) 
-							is_blocked2 = 1'b1;
-					  else
-							is_blocked2 = 1'b0;
-					end
-			  else
-					is_blocked2 = 1'b0;
-			end		
-		else
-			is_blocked2 = 1'b0;
-    end
-	
+	 	
 
 	always_comb begin
 		if(gamestate == 3'b001 || gamestate == 3'b010)
