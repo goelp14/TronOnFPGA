@@ -160,7 +160,7 @@ module score ( input         Clk,                // 50 MHz clock
 						score_red_reg = 2'd3;
 						Blue_W = 1'b1;
 					end
-				restartb: 
+				restartr: 
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd0;
