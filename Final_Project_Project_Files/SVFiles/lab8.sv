@@ -103,7 +103,7 @@ module lab8( input               CLOCK_50,
 	 
 	 logic [1:0] r_or_b;
 	 
-	 logic [15:0] write, write_comb, w_c;
+	 logic [15:0] write, write_comb, w_c, checkOCM;
 	 
 	 logic [19:0] trail_addr, addr_comb, w_a;
 	 
@@ -207,8 +207,10 @@ module lab8( input               CLOCK_50,
 	 assign w_c = (r_or_b) ? 16'h0606 : 16'h0404;
 	 
 	 combine combiner(.Clk(Clk),.Reset(Reset_h),.frame_clk(VGA_VS), .WE(1'b1),.DrawX(DrawX),.DrawY(DrawY),
-					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .r_or_b(r_or_b),
-					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color));
+					.Data_In_Bike(Drawengine_out), .Data_In(write_comb), .write_address(addr_comb), .Blue_X_real(Blue_X_real), 
+					.Blue_Y_real(Blue_Y_real), .Red_X_real(Red_X_real), .Red_Y_real(Red_Y_real), .r_or_b(r_or_b),
+					.Blue_dir(Blue_dir), .Red_dir(Red_dir),
+					.color_enum(color_enum), .red_color(red_color), .blue_color(blue_color),.dOut(checkOCM));
 	 
     color_mapper color_instance(
 		.VGA_R(VGA_R), 
@@ -222,14 +224,16 @@ module lab8( input               CLOCK_50,
     HexDriver hex_inst_1 (keycode[7:4], HEX1);
 	 
 	 //Display write enable
-//	 HexDriver hex_inst_2 (we_comb, HEX2);
+	 HexDriver hex_inst_2 (red_color, HEX2);
+	 HexDriver hex_inst_3 (blue_color, HEX3);
+
 	 
 	 //Display address
-	 HexDriver hex_inst_3 (addr_comb[3:0], HEX3);
-	 HexDriver hex_inst_4 (addr_comb[7:4], HEX4);
-	 HexDriver hex_inst_5 (addr_comb[11:8], HEX5);
-	 HexDriver hex_inst_6 (addr_comb[15:12], HEX6);
-	 HexDriver hex_inst_7 (addr_comb[19:16], HEX7);
+//	 HexDriver hex_inst_3 (addr_comb[3:0], HEX3);
+	 HexDriver hex_inst_4 (checkOCM[3:0], HEX4);
+	 HexDriver hex_inst_5 (checkOCM[7:4], HEX5);
+	 HexDriver hex_inst_6 (checkOCM[11:8], HEX6);
+	 HexDriver hex_inst_7 (checkOCM[15:12], HEX7);
     
 	 // STUFF FOR GAMELOGIC
 	 GameState statemachine(.Clk(CLOCK_50), .Reset(Reset_h), .Reset_Game(reset_game),
