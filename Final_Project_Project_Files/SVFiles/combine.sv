@@ -38,7 +38,7 @@ module combine(
 						if(data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08)
 							begin
 								if(data_Out [3:0] != 4'h06 || data_Out [11:8] != 4'h06)
-									blue = 8'b0;
+									blue = 8'b1;
 							end
 						
 					end
@@ -47,7 +47,7 @@ module combine(
 						if(data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08)
 							begin
 								if(data_Out [3:0] != 4'h04 || data_Out [11:8] != 4'h04)
-									red = 8'b0;
+									red = 8'b1;
 							end
 					end
 				out_byte = Data_In_Bike;

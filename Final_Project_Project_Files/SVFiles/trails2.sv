@@ -99,11 +99,11 @@ module trails2 ( input        Clk,                // 50 MHz clock
 				one: nextState = two;
 				two: nextState = three;
 				three: nextState = four;
-				four: nextState = one;
-//				five: nextState = six;
-//				six: nextState = seven;
-//				seven: nextState = eight;
-//				eight: nextState = one;
+				four: nextState = five;
+				five: nextState = six;
+				six: nextState = seven;
+				seven: nextState = eight;
+				eight: nextState = one;
 			endcase
 		end
 	
@@ -114,10 +114,10 @@ module trails2 ( input        Clk,                // 50 MHz clock
 				two: c_a = w_a3;
 				three: c_a = w_a2;
 				four: c_a = w_a4;
-//				five: c_a = w_a5;
-//				six: c_a = w_a6;
-//				seven: c_a = w_a7;
-//				eight: c_a = w_a8;
+				five: c_a = w_a5;
+				six: c_a = w_a6;
+				seven: c_a = w_a7;
+				eight: c_a = w_a8;
 			endcase
 		end
 endmodule
