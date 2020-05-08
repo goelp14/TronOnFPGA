@@ -75,7 +75,7 @@ module combine(
 				end
 			else
 				begin
-					tempoffsetredx = 10'd16;
+					tempoffsetredx = 10'd14;
 					tempoffsetredy = 10'd3;
 				end	
 		end
