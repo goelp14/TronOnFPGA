@@ -178,7 +178,7 @@ module combine(
 //						if(data_Out [3:0] != 4'h08 && data_Out [11:8] != 4'h08)
 //							red = 8'b0;
 						if(data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08)
-							if ((DistY_red == tempoffsetredx) && (DistX_red = tempoffsetredy))
+							if ((DistY_red == tempoffsetredy) && (DistX_red = tempoffsetredx))
 								red = 8'b0;
 					end
 				out_byte = Data_In_Bike;
