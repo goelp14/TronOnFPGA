@@ -14,8 +14,8 @@ module score ( input         Clk,                // 50 MHz clock
 				 );
 	
 	logic [1:0] score_blue_reg, score_red_reg;
-	enum logic [3:0] {nocountb, raiseflagb1, blue_count1, raiseflagb2, blue_count2, raiseflagb3, blue_count3, restartb} stateb, nextStateb;
-	enum logic [3:0] {nocountr, raiseflagr1, red_count1, raiseflagr2, red_count2,raiseflagr3, red_count3, restartr} stater, nextStater;
+	enum logic [3:0] {nocountb, raiseflagb1, blue_count1, raiseflagb2, blue_count2, raiseflagb3, blue_count3, win_b, restartb} stateb, nextStateb;
+	enum logic [3:0] {nocountr, raiseflagr1, red_count1, raiseflagr2, red_count2,raiseflagr3, red_count3, win_r, restartr} stater, nextStater;
 	logic reset_flag, reset_flagr, reset_flag_nextr, reset_flagb, reset_flag_next;
 	
 	assign score_blue = score_blue_reg;
@@ -69,7 +69,8 @@ module score ( input         Clk,                // 50 MHz clock
 							nextStateb = stateb;
 					end
 				raiseflagb3: nextStateb = blue_count3;
-				blue_count3: nextStateb = restartb;
+				blue_count3: nextStateb = win_b;
+				win_b: nextStateb = restartb;
 				restartb: nextStateb = nocountb;
 				default: nextStateb = stateb;
 			endcase
@@ -108,7 +109,8 @@ module score ( input         Clk,                // 50 MHz clock
 							nextStater = stater;
 					end
 				raiseflagr3: nextStater = red_count3;
-				red_count3: nextStater = restartr;
+				red_count3: nextStater = win_r;
+				win_r: nextStater = restartr;
 				restartr: nextStater = nocountr;
 				default: nextStater = stater;
 			endcase
@@ -155,6 +157,12 @@ module score ( input         Clk,                // 50 MHz clock
 						Blue_W = 1'b0;
 					end
 				red_count3:
+					begin
+						reset_flagr = 1'b0;
+						score_red_reg = 2'd3;
+						Blue_W = 1'b1;
+					end
+				win_r:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd3;
@@ -211,6 +219,12 @@ module score ( input         Clk,                // 50 MHz clock
 						Red_W = 1'b0;
 					end
 				blue_count3:
+					begin
+						reset_flagb = 1'b0;
+						score_blue_reg = 2'd3;
+						Red_W = 1'b1;
+					end
+				win_b:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd3;
