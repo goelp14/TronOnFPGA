@@ -32,9 +32,9 @@ module trails2 ( input        Clk,                // 50 MHz clock
 	
 	logic [19:0]curr_address_b, next_address_b, curr_address_r, next_address_r, blue_addr, red_addr, w_a1, w_a2, w_a3, w_a4, c_a;
 	
-	logic r_or_b_ff;
+	logic [1:0] r_or_b_ff;
 
-	always_ff (@posedge Clk)
+	always_ff @ (posedge Clk)
 	begin
 		if (r_or_b != r_or_b_ff)
 			r_or_b_ff <= r_or_b;
