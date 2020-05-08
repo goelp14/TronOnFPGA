@@ -23,59 +23,61 @@ module combine(
 	
 //	parameter [9:0] Bike_Size = 10'd16;
 //	
-//	int DistX_blue, DistY_blue;
-//   assign DistX_blue = DrawX - Blue_X_real - Bike_Size;
-//	assign DistY_blue = DrawY - Blue_Y_real + Bike_Size;
-//	
-//	int DistX_red, DistY_red;
-//   assign DistX_red = DrawX - Red_X_real - Bike_Size;
-//	assign DistY_red = DrawY - Red_Y_real + Bike_Size;
-//	
-//	always_comb
-//		begin
-//			// for blue
-//			if (Blue_dir == 2'b00)
-//				begin
-//					tempoffsetbluex = 10'd0;
-//					tempoffsetbluey = 10'd4;
-//				end
-//			else if (Blue_dir == 2'b01)
-//				begin
-//					tempoffsetbluex = 10'd0;
-//					tempoffsetbluey = -10'd4;
-//				end
-//			else if (Blue_dir == 2'b10)
-//				begin
-//					tempoffsetbluex = 10'd4;
-//					tempoffsetbluey = 10'd0;
-//				end
-//			else
-//				begin
-//					tempoffsetbluex = -10'd4;
-//					tempoffsetbluey = 10'd0;
-//				end	
-//				
-//			if (Red_dir == 2'b00)
-//				begin
-//					tempoffsetredx = 10'd0;
-//					tempoffsetredy = 10'd4;
-//				end
-//			else if (Red_dir == 2'b01)
-//				begin
-//					tempoffsetredx = 10'd0;
-//					tempoffsetredy = -10'd4;
-//				end
-//			else if (Red_dir == 2'b10)
-//				begin
-//					tempoffsetredx = 10'd4;
-//					tempoffsetredy = 10'd0;
-//				end
-//			else
-//				begin
-//					tempoffsetredx = -10'd4;
-//					tempoffsetredy = 10'd0;
-//				end	
-//		end
+	logic [9:0] DistX_blue, DistY_blue;
+   assign DistX_blue = DrawX - Blue_X_real;
+	assign DistY_blue = DrawY - Blue_Y_real;
+	
+	logic [9:0] DistX_red, DistY_red;
+   assign DistX_red = DrawX - Red_X_real;
+	assign DistY_red = DrawY - Red_Y_real;
+	
+	logic [9:0] tempoffsetbluex, tempoffsetbluey, tempoffsetredx, tempoffsetredy;
+	
+	always_comb
+		begin
+			// for blue
+			if (Blue_dir == 2'b00)
+				begin
+					tempoffsetbluex = 10'd3;
+					tempoffsetbluey = 10'd16;
+				end
+			else if (Blue_dir == 2'b01)
+				begin
+					tempoffsetbluex = 10'd3;
+					tempoffsetbluey = -10'd16;
+				end
+			else if (Blue_dir == 2'b10)
+				begin
+					tempoffsetbluex = 10'd16;
+					tempoffsetbluey = 10'd3;
+				end
+			else
+				begin
+					tempoffsetbluex = -10'16;
+					tempoffsetbluey = 10'd3;
+				end	
+				
+			if (Red_dir == 2'b00)
+				begin
+					tempoffsetredx = 10'd3;
+					tempoffsetredy = 10'd16;
+				end
+			else if (Red_dir == 2'b01)
+				begin
+					tempoffsetredx = 10'd2;
+					tempoffsetredy = -10'd16;
+				end
+			else if (Red_dir == 2'b10)
+				begin
+					tempoffsetredx = 10'd16;
+					tempoffsetredy = 10'd3;
+				end
+			else
+				begin
+					tempoffsetredx = -10'd16;
+					tempoffsetredy = 10'd3;
+				end	
+		end
 		
 	
 //	assign bool = data_Out [3:0] != 4'h08 || data_Out [11:8] != 4'h08 || data_Out [3:0] != 4'h00 || data_Out [11:8] != 4'h00;	
@@ -151,9 +153,10 @@ module combine(
 //						if(data_Out [3:0] == 4'h08 || data_Out [11:8] == 4'h08)
 //							blue = 1'b1;
 						if (data_Out [3:0] == 4'h06 || data_Out [11:8] == 4'h06)
-							blue = 8'b0;
-						else if (data_Out [3:0] == 4'h0e || data_Out [11:8] == 4'h0e)
-							blue = 8'b0;
+							begin							blue = 8'b0;
+							if ((DistX_blue == tempoffsetbluex) && (DistY_blue == tempoffsetbluey))
+								blue = 8'b0;
+							end
 //						else
 							
 						
@@ -163,9 +166,8 @@ module combine(
 //						if(data_Out [3:0] != 4'h08 && data_Out [11:8] != 4'h08)
 //							red = 8'b0;
 						if(data_Out [3:0] == 4'h04 || data_Out [11:8] == 4'h04)
-							red = 8'b0;
-						else if (data_Out [3:0] == 4'h0e || data_Out [11:8] == 4'h0e)
-							red = 8'b0;
+							if ((DistY_red == tempoffsetredx) && (DistX_red = tempoffsetredy))
+								red = 8'b0;
 					end
 				out_byte = Data_In_Bike;
 			end
