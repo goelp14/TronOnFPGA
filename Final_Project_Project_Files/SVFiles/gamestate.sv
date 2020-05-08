@@ -21,7 +21,9 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	
 	always_ff @ (posedge Clk)
 	begin
-		if (Next_state == Blue_Wins)
+		if (Reset_Game || Reset)
+			background_sel <= 2'b00;
+		else if (Next_state == Blue_Wins)
 			background_sel <= 2'b10; // always load menu after win state
 		else if (Next_state == Red_Wins)
 			background_sel <= 2'b11;
