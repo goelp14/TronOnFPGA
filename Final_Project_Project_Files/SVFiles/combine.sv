@@ -40,37 +40,37 @@ module combine(
 			if (Blue_dir == 2'b00)
 				begin
 					tempoffsetbluex = 10'd3;
-					tempoffsetbluey = -10'd16;
+					tempoffsetbluey = -10'd14;
 				end
 			else if (Blue_dir == 2'b01)
 				begin
 					tempoffsetbluex = 10'd3;
-					tempoffsetbluey = 10'd16;
+					tempoffsetbluey = 10'd14;
 				end
 			else if (Blue_dir == 2'b10)
 				begin
-					tempoffsetbluex = -10'd16;
+					tempoffsetbluex = -10'd14;
 					tempoffsetbluey = 10'd3;
 				end
 			else
 				begin
-					tempoffsetbluex = 10'16;
+					tempoffsetbluex = 10'14;
 					tempoffsetbluey = 10'd3;
 				end	
 				
 			if (Red_dir == 2'b00)
 				begin
 					tempoffsetredx = 10'd3;
-					tempoffsetredy = -10'd16;
+					tempoffsetredy = -10'd14;
 				end
 			else if (Red_dir == 2'b01)
 				begin
 					tempoffsetredx = 10'd3;
-					tempoffsetredy = 10'd16;
+					tempoffsetredy = 10'd14;
 				end
 			else if (Red_dir == 2'b10)
 				begin
-					tempoffsetredx = -10'd16;
+					tempoffsetredx = -10'd14;
 					tempoffsetredy = 10'd3;
 				end
 			else
