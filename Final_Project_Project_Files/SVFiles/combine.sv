@@ -25,12 +25,12 @@ module combine(
 //	parameter [9:0] Bike_Size = 10'd16;
 //	
 	int DistX_blue, DistY_blue;
-   assign DistX_blue = DrawX - Blue_X_real - 16;
-	assign DistY_blue = DrawY - Blue_Y_real;
+   assign DistX_blue = DrawX - Blue_X_real*4+2;
+	assign DistY_blue = DrawY - Blue_Y_real*4+2;
 	
 	int DistX_red, DistY_red;
-   assign DistX_red = DrawX - Red_X_real - 16;
-	assign DistY_red = DrawY - Red_Y_real;
+   assign DistX_red = DrawX - Red_X_real*4+2;
+	assign DistY_red = DrawY - Red_Y_real*4+2;
 	
 	int tempoffsetbluex, tempoffsetbluey, tempoffsetredx, tempoffsetredy;
 	
