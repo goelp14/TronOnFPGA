@@ -22,18 +22,18 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	always_ff @ (posedge Clk)
 	begin
 		if (Reset_Game || Reset)
-			background_sel <= 3'b00;
+			background_sel <= 3'b000;
 		else if (Next_state == Blue_Wins)
-			background_sel <= 3'b10; // always load menu after win state
+			background_sel <= 3'b100; // always load menu after win state
 		else if (Next_state == Red_Wins)
-			background_sel <= 3'b11;
+			background_sel <= 3'b011;
 		else if (Next_state == Menu)
 			background_sel <= 3'b010;
 		else if (State == Menu)  // choose next map after menu
 			begin
-			if (((keycode == 8'h1a) || (keycode == 8'h52)) && (keycode != oldkeycode)) // UPDATE TO NUMBER OF MAPS, 2'b1 is highest map, w or up arrow
+			if (((keycode == 8'h1a) || (keycode == 8'h52))) // UPDATE TO NUMBER OF MAPS, 2'b1 is highest map, w or up arrow
 				background_sel <= 3'b001;
-			else if (((keycode == 8'h16) || (keycode == 8'h51)) && (keycode != oldkeycode)) // UPDATE TO NUMBER OF MAPS, 2'b1 is lowest map, s or down arrow
+			else if (((keycode == 8'h16) || (keycode == 8'h51))) // UPDATE TO NUMBER OF MAPS, 2'b1 is lowest map, s or down arrow
 				background_sel <= 3'b100;
 			else
 				background_sel <= background_sel;
