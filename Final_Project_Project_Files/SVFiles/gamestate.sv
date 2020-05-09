@@ -38,7 +38,7 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 		else if (Next_state == Red_Wins)
 			background_sel <= 3'b011;
 		else if (Next_state == Menu)
-			background_sel <= 3'b010;
+			background_sel <= 3'b000;
 		else
 			background_sel <= background_sel;
 			
