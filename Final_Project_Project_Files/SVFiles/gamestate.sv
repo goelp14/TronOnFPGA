@@ -23,12 +23,6 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 	begin
 		if (Reset_Game || Reset)
 			background_sel <= 3'b000;
-		else if (Next_state == Blue_Wins)
-			background_sel <= 3'b100; // always load menu after win state
-		else if (Next_state == Red_Wins)
-			background_sel <= 3'b011;
-		else if (Next_state == Menu)
-			background_sel <= 3'b010;
 		else if (State == Menu)  // choose next map after menu
 			begin
 			if (((keycode == 8'h1a) || (keycode == 8'h52))) // UPDATE TO NUMBER OF MAPS, 2'b1 is highest map, w or up arrow
@@ -38,6 +32,12 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 			else
 				background_sel <= background_sel;
 			end
+		else if (Next_state == Blue_Wins)
+			background_sel <= 3'b100; // always load menu after win state
+		else if (Next_state == Red_Wins)
+			background_sel <= 3'b011;
+		else if (Next_state == Menu)
+			background_sel <= 3'b010;
 		else
 			background_sel <= background_sel;
 			
