@@ -62,7 +62,7 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 			Menu :
 				if (keycode == 8'h28) // enter
 				begin
-					Next_state = Blue_Wins;
+					Next_state = Round_Paused;
 					load_background = 1'b1;
 				end
 								
