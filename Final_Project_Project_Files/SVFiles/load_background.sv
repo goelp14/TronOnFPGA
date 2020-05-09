@@ -41,12 +41,12 @@ enum logic [2:0] {idle, pause, read, write, done} state, nextState;
 always_ff @ (posedge Clk)
 begin
 	unique case (BG_Sel)
-//		3'b000: OFFSET <= 20'd0;
-//		3'b001: OFFSET <= 20'd153601;
-//		3'b010: OFFSET <= 20'd307202;
-//		3'b011: OFFSET <= 20'd460803;
-//		3'b100: OFFSET <= 20'd614404;
-		default: OFFSET <= 20'd614404;
+		3'b000: OFFSET <= 20'd0;
+		3'b001: OFFSET <= 20'd153601;
+		3'b010: OFFSET <= 20'd307202;
+		3'b011: OFFSET <= 20'd460803;
+		3'b100: OFFSET <= 20'd614404;
+		default: OFFSET <= 20'd0;
 	endcase
 end
 
