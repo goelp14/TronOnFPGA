@@ -242,7 +242,7 @@ module lab8( input               CLOCK_50,
     
 	 // STUFF FOR GAMELOGIC
 	 GameState statemachine(.Clk(CLOCK_50), .Reset(Reset_h), .Reset_Game(reset_game),
-									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W), .Score_B(score_blue), .Score_R(score_red)
+									.Reset_Round(reset_round), .Blue_W(Blue_W), .Red_W(Red_W), .Score_B(score_blue), .Score_R(score_red),
 									.keycode(keycode), .Game_State(Game_State), .background_select(background_sel), .load_background(load_background));
 									
 	 score scorekeeper(.Clk(CLOCK_50), .Reset_Score(reset_game), .frame_clk(VGA_VS), .Game_State(Game_State),

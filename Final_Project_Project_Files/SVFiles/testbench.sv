@@ -30,18 +30,21 @@ initial begin : TEST_VECTORS
 
     red_color = 8'b1;
 	 blue_color = 8'b1;
+	 Reset_Score = 1'b1;
+	 Game_State = 3'd1;
 	 
-	 #1 red_color = 8'b0;
-	 #1 red_color = 8'b1;
-	 #4 blue_color = 8'b0;
-	 #4 blue_color = 8'b1;
-	 #6 red_color = 8'b0;
-	 #6 red_color = 8'b1;
+	 #2 Reset_Score = 1'b0;
+	 #5 red_color = 8'b0;
+	 #5 red_color = 8'b1;
 	 #8 blue_color = 8'b0;
 	 #8 blue_color = 8'b1;
-	 #9 blue_color = 8'b0;
-	 #9 blue_color = 8'b1;
-	 #10 Game_State = 3'd4;
+	 #11 red_color = 8'b0;
+	 #11 red_color = 8'b1;
+	 #16 blue_color = 8'b0;
+	 #16 blue_color = 8'b1;
+	 #20 blue_color = 8'b0;
+	 #20 blue_color = 8'b1;
+	 #25 Game_State = 3'd4;
 	 
 
  

@@ -14,8 +14,8 @@ module score ( input         Clk,                // 50 MHz clock
 				 );
 	
 	logic [1:0] score_blue_reg, score_red_reg;
-	enum logic [3:0] {nocountb, raiseflagb1, blue_count1, raiseflagb2, blue_count2, raiseflagb3, blue_count3, win_b, restartb} stateb, nextStateb;
-	enum logic [3:0] {nocountr, raiseflagr1, red_count1, raiseflagr2, red_count2,raiseflagr3, red_count3, win_r, restartr} stater, nextStater;
+	enum logic [3:0] {nocountb, raiseflagb1, blue_count1, raiseflagb2, blue_count2, raiseflagb3, blue_count3, winner_b, restartb} stateb, nextStateb;
+	enum logic [3:0] {nocountr, raiseflagr1, red_count1, raiseflagr2, red_count2,raiseflagr3, red_count3, winner_r, restartr} stater, nextStater;
 	logic reset_flag, reset_flagr, reset_flag_nextr, reset_flagb, reset_flag_next;
 	
 	assign score_blue = score_blue_reg;
@@ -88,13 +88,13 @@ module score ( input         Clk,                // 50 MHz clock
 							nextStateb = stateb;
 					end
 				raiseflagb3: nextStateb = blue_count3;
-				blue_count3: nextStateb = win_b;
-				win_b:
+				blue_count3: nextStateb = winner_b;
+				winner_b:
 					begin
 						if (Game_State == 3'd4)
 							nextStateb = restartb;
 						else
-							nextStateb = win_b;
+							nextStateb = winner_b;
 					end
 				restartb: nextStateb = nocountb;
 				default: nextStateb = stateb;
@@ -134,13 +134,13 @@ module score ( input         Clk,                // 50 MHz clock
 							nextStater = stater;
 					end
 				raiseflagr3: nextStater = red_count3;
-				red_count3: nextStater = win_r;
-				win_r: 
+				red_count3: nextStater = winner_r;
+				winner_r: 
 					begin
 						if (Game_State == 3'd3)
 							nextStater = restartr;
 						else
-							nextStater = win_r;	
+							nextStater = winner_r;	
 					end
 				restartr: nextStater = nocountr;
 				default: nextStater = stater;
@@ -194,7 +194,7 @@ module score ( input         Clk,                // 50 MHz clock
 						score_red_reg = 2'd3;
 						win_b = 1'b1;
 					end
-				win_r:
+				winner_r:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd3;
@@ -257,7 +257,7 @@ module score ( input         Clk,                // 50 MHz clock
 						score_blue_reg = 2'd3;
 						win_r = 1'b1;
 					end
-				win_b:
+				winner_b:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd3;
