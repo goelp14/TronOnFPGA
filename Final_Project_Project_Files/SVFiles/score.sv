@@ -35,6 +35,25 @@ module score ( input         Clk,                // 50 MHz clock
 					stater <= nextStater;
 				end
 		end
+		
+		
+	logic new_win_r, new_win_b, win_r, win_b;
+	always_ff @ (posedge Clk)
+		begin
+				if (Reset_Score || Game_State == 3'b0)
+				begin
+					new_win_r <= 1'b0;
+					new_win_b <= 1'b0;
+				end
+			else
+				begin
+					new_win_r <= win_r;
+					new_win_b <= win_b;
+				end
+		end
+		
+	assign Blue_W = new_win_b;
+	assign Red_W = new_win_r;
 	
 	always_comb
 		begin
@@ -130,61 +149,62 @@ module score ( input         Clk,                // 50 MHz clock
 		
 		always_comb
 			begin
+				win_b = 1'b0;
 				reset_flagr = 1'b0;
 				unique case(stater)
 				nocountr:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd0;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				raiseflagr1:
 					begin
 						reset_flagr = 1'b1;
 						score_red_reg = 2'd0;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				red_count1:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd1;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				raiseflagr2:
 					begin
 						reset_flagr = 1'b1;
 						score_red_reg = 2'd1;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				red_count2:
 					begin
 						reset_flagr = 1'b0; 
 						score_red_reg = 2'd2;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				raiseflagr3:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd2;
-						Blue_W = 1'b1;
+						win_b = 1'b1;
 					end
 				red_count3:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd3;
-						Blue_W = 1'b1;
+						win_b = 1'b1;
 					end
 				win_r:
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd3;
-						Blue_W = 1'b1;
+						win_b = 1'b1;
 					end
 				restartr: 
 					begin
 						reset_flagr = 1'b0;
 						score_red_reg = 2'd0;
-						Blue_W = 1'b0;
+						win_b = 1'b0;
 					end
 				default: ;
 			endcase
@@ -192,61 +212,62 @@ module score ( input         Clk,                // 50 MHz clock
 			
 		always_comb
 			begin
+				win_r = 1'b0;
 				reset_flagb = 1'b0;
 				unique case(stateb)
 				nocountb:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd0;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				raiseflagb1:
 					begin
 						reset_flagb = 1'b1;
 						score_blue_reg = 2'd0;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				blue_count1:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd1;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				raiseflagb2:
 					begin
 						reset_flagb = 1'b1;
 						score_blue_reg = 2'd1;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				blue_count2:
 					begin
 						reset_flagb = 1'b0; 
 						score_blue_reg = 2'd2;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				raiseflagb3:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd2;
-						Red_W = 1'b1;
+						win_r = 1'b1;
 					end
 				blue_count3:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd3;
-						Red_W = 1'b1;
+						win_r = 1'b1;
 					end
 				win_b:
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd3;
-						Red_W = 1'b1;
+						win_r = 1'b1;
 					end
 				restartb: 
 					begin
 						reset_flagb = 1'b0;
 						score_blue_reg = 2'd0;
-						Red_W = 1'b0;
+						win_r = 1'b0;
 					end
 				default: ;
 			endcase
