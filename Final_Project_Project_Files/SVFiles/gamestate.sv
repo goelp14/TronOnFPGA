@@ -33,12 +33,15 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 			else
 				background_sel <= background_sel;
 			end
-		else if (Next_state == Blue_Wins)
-			background_sel <= 3'b100; // always load menu after win state
-		else if (Next_state == Red_Wins)
-			background_sel <= 3'b011;
-		else if (Next_state == Menu)
-			background_sel <= 3'b010;
+		else if (State == Red_Wins || State == Blue_Wins)
+			background_sel <= 3'b000;
+		else if (State == Round_Started)
+			if (Blue_W)
+				background_sel <= 3'b010;
+			else if (Red_W)
+				background_sel <= 3'b011;
+			else
+				background_sel <= background_sel;
 		else
 			background_sel <= background_sel;
 			
