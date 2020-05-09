@@ -76,7 +76,9 @@ module lab8( input               CLOCK_50,
 	 logic [2:0] Game_State;
 //	 assign LEDG[2:0] = Game_State;
 	 
-	 logic [1:0] score_blue, score_red, background_sel;
+	 logic [1:0] score_blue, score_red;
+	 
+	 logic [2:0] background_sel;
 	 
 	 logic reset_round, reset_game, Blue_W, Red_W;
 	 // actual 640x480 coords

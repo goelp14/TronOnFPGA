@@ -1,6 +1,6 @@
 module load_background(
 	input logic Clk, Reset, load, SRAM_done,// OCM_done, // load to tell it to load the background, SRAM_done tells it that its ready.
-	input logic [1:0] BG_Sel,
+	input logic [2:0] BG_Sel,
 	input logic [2:0] Game_State,
 	input logic [15:0] DATA_IN,
 	output logic writing, reading, // writing tells OCM FB that its writing, reading tells SRAM that its reading
@@ -41,10 +41,11 @@ enum logic [2:0] {idle, pause, read, write, done} state, nextState;
 always_ff @ (posedge Clk)
 begin
 	unique case (BG_Sel)
-		2'b00: OFFSET <= 20'd0;
-		2'b01: OFFSET <= 20'd153601;
-		2'b10: OFFSET <= 20'd307202;
-		2'b11: OFFSET <= 20'd460803;
+		3'b000: OFFSET <= 20'd0;
+		3'b001: OFFSET <= 20'd153601;
+		3'b010: OFFSET <= 20'd307202;
+		3'b011: OFFSET <= 20'd460803;
+		3'b100: OFFSET <= 20'd614404;
 		default: OFFSET <= 20'd0;
 	endcase
 end

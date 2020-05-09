@@ -3,7 +3,7 @@
 module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, Red_W,
 					 input logic  [7:0] keycode,
 					 output logic [2:0] Game_State,
-					 output logic [1:0] background_select,
+					 output logic [2:0] background_select,
 					 output logic load_background
 				);
 
@@ -15,26 +15,31 @@ module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, R
 							}   State, Next_state; // states
 	// to detect keypress
 	logic [7:0] oldkeycode;
-	logic [1:0] background_sel;
+	logic [2:0] background_sel;
 	
 	assign background_select = background_sel;
 	
 	always_ff @ (posedge Clk)
 	begin
 		if (Reset_Game || Reset)
-			background_sel <= 2'b00;
+			background_sel <= 3'b00;
 		else if (Next_state == Blue_Wins)
-			background_sel <= 2'b10; // always load menu after win state
+			background_sel <= 3'b10; // always load menu after win state
 		else if (Next_state == Red_Wins)
-			background_sel <= 2'b11;
+			background_sel <= 3'b11;
+		else if (Next_state == Menu)
+			background_sel <= 3'b010;
 		else if (State == Menu)  // choose next map after menu
 			begin
-			background_sel <= 2'b1;
-			if (((keycode == 8'h1a) || (keycode == 8'h52)) && (keycode != oldkeycode) && (background_sel != 2'b1)) // UPDATE TO NUMBER OF MAPS, 2'b1 is highest map, w or up arrow
-				background_sel <= background_sel+2'b1;
-			else if (((keycode == 8'h16) || (keycode == 8'h51)) && (keycode != oldkeycode) && (background_sel != 2'b1)) // UPDATE TO NUMBER OF MAPS, 2'b1 is lowest map, s or down arrow
-				background_sel <= background_sel+2'b1;
+			if (((keycode == 8'h1a) || (keycode == 8'h52)) && (keycode != oldkeycode)) // UPDATE TO NUMBER OF MAPS, 2'b1 is highest map, w or up arrow
+				background_sel <= 3'b001;
+			else if (((keycode == 8'h16) || (keycode == 8'h51)) && (keycode != oldkeycode)) // UPDATE TO NUMBER OF MAPS, 2'b1 is lowest map, s or down arrow
+				background_sel <= 3'b100;
+			else
+				background_sel <= background_sel;
 			end
+		else
+			background_sel <= background_sel;
 			
 		// load in current keycode for keydown detection
 		oldkeycode <= keycode;
