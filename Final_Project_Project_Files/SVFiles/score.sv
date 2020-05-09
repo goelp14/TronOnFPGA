@@ -164,9 +164,9 @@ module score ( input         Clk,                // 50 MHz clock
 					end
 				raiseflagr3:
 					begin
-						reset_flagr = 1'b1;
+						reset_flagr = 1'b0;
 						score_red_reg = 2'd2;
-						Blue_W = 1'b0;
+						Blue_W = 1'b1;
 					end
 				red_count3:
 					begin
@@ -226,9 +226,9 @@ module score ( input         Clk,                // 50 MHz clock
 					end
 				raiseflagb3:
 					begin
-						reset_flagb = 1'b1;
+						reset_flagb = 1'b0;
 						score_blue_reg = 2'd2;
-						Red_W = 1'b0;
+						Red_W = 1'b1;
 					end
 				blue_count3:
 					begin

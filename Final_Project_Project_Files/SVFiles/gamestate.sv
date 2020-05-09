@@ -1,6 +1,7 @@
 //Game State Machine
 
 module GameState (   input logic  Clk, Reset, Reset_Game, Reset_Round, Blue_W, Red_W,
+					 input logic [1:0] Score_B, Score_R,
 					 input logic  [7:0] keycode,
 					 output logic [2:0] Game_State,
 					 output logic [2:0] background_select,
