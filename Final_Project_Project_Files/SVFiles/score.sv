@@ -72,7 +72,7 @@ module score ( input         Clk,                // 50 MHz clock
 				blue_count3: nextStateb = win_b;
 				win_b:
 					begin
-						if (Game_State == 3'd4)
+						if (Game_State == 3'd3)
 							nextStateb = restartb;
 						else
 							nextStateb = win_b;
@@ -118,7 +118,7 @@ module score ( input         Clk,                // 50 MHz clock
 				red_count3: nextStater = win_r;
 				win_r: 
 					begin
-						if (Game_State == 3'd3)
+						if (Game_State == 3'd4)
 							nextStater = restartr;
 						else
 							nextStater = win_r;	
