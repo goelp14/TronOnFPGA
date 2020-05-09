@@ -52,8 +52,6 @@ module lab8( input               CLOCK_50,
     // test code
 //	 assign LEDG[7] = fb_we;
 //	 assign LEDG[8] = trail_we;
-	assign LEDG [1:0] = score_blue;
-	assign LEDG [3:2] = score_red;
 //	assign LEDR = trail_addr;
 	 
 	 
@@ -111,6 +109,9 @@ module lab8( input               CLOCK_50,
 	 logic [19:0] trail_addr, addr_comb, w_a;
 	 
 	 logic trail_we, we_comb, block, block2;
+
+	assign LEDG [1:0] = score_blue;
+	assign LEDG [3:2] = score_red;
     // Interface between NIOS II and EZ-OTG chip
     hpi_io_intf hpi_io_inst(
                             .Clk(Clk),

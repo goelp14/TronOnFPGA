@@ -25,7 +25,6 @@ assign WE = 1'b1;
 // assign address
 assign ADDR = addr_in;
 // assign output data
-assign OUTPUT_DATA = readData;
 // states
 enum logic [2:0] {idle, setaddr, read, done, read1} state, nextState;
 

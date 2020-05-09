@@ -17,18 +17,10 @@ module load_background(
 // 640 * 153600 = 0
 logic [15:0] SRAM_OUT_DATA;
 
-// assign data out and addr
-assign SRAM_OUT_DATA = DATA_IN;
-
-//// addr_OCM is per byte, ADDR is per 2 bytes
-//assign addr_OCM = ADDR * 2;
-
-assign addr_OCM = OCM_addr_reg;
-assign ADDR = address;
-
 // have reg to hold offset for the background selected
 logic [19:0] OFFSET, address, nextaddr;
 logic [18:0] OCM_addr_reg, OCM_addr_new;
+
 
 // states
 enum logic [2:0] {idle, pause, read, write, done} state, nextState;
@@ -139,5 +131,14 @@ begin
 		default: ;
 	endcase
 end
+
+// assign data out and addr
+assign SRAM_OUT_DATA = DATA_IN;
+
+//// addr_OCM is per byte, ADDR is per 2 bytes
+//assign addr_OCM = ADDR * 2;
+
+assign addr_OCM = OCM_addr_reg;
+assign ADDR = address;
 
 endmodule
