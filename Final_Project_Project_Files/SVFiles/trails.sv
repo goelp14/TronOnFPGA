@@ -20,7 +20,7 @@ module trails ( input        Clk,                // 50 MHz clock
 	// play area is 448x448
 	// 14x14 offset from top left corner
 	logic [2:0] write_b, write_b_ff, write_r, write_r_ff;
-
+	
 	logic [1:0] Blue_dir_old, Red_dir_old;
 	
 	logic [7:0] Blue_X_old, Red_X_old, Blue_Y_old, Red_Y_old;
