@@ -7,9 +7,9 @@ module testbench();
  logic Reset_Score;     // Active-high reset signal
  logic frame_clk = 0;        // The clock indicating a new frame (~60Hz)
  logic [2:0]   Game_State;			  
- logic [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real,
- logic [7:0] Blue_X, Blue_Y, Red_X, Red_Y,
- logic [1:0] Blue_dir, Red_dir
+ logic [9:0] Blue_X_real, Blue_Y_real, Red_X_real, Red_Y_real;
+ logic [7:0] Blue_X, Blue_Y, Red_X, Red_Y;
+ logic [1:0] Blue_dir, Red_dir;
  
 arena arena(.*);
  
