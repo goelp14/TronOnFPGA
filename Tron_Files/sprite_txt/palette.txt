@@ -1,0 +1,8 @@
+palette_hex = [ '0xffffff', '0x0e0e0e','0x3b3b3b','0x2195f3','0x00bbd4', '0xcf1010', '0xff5252', '0x242424', '0xAAAAAA', '0xAAAAAA', '0xAAAAAA', '0xAAAAAA', '0xAAAAAA', '0x00710e', '0x000000', '0xf200ff']
+              [ '0xffffff', '0x0e0e0e','0x3b3b3b','0x2195f3','0x00bbd4', '0xcf1010', '0xff5252', '0x242424', '0x161616', '0xAAAAAA', '0xAAAAAA', '0xAAAAAA', '0xAAAAAA', '0x00710e', '0x000000', '0xf200ff']
+# white, dark grey (tyres), light grey, bike blue ,light trail blue, bike red, light trail red, lighter grey,       ... press enter to start color (CHANGE), Black ,clear background
+
+palette background: 242424 - background grey, 2195f3 - blue border, -0xFCFCFC text background -0e0e0e - tyres and shadow
+
+Hearts: f200ff - clear background, 00bbd4 - color indicator (equal red color for the other player), ffffff - middle part
+.

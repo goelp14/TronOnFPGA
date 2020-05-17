@@ -1,0 +1,1110 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/simulation/modelsim
+valtera_avalon_sc_fifo
+Z1 !s110 1588994089
+!i10b 1
+!s100 4mK@em][G=j]om3zJIhOc0
+IgQTC]UT]omzVBVa;^2K[E3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1588947233
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_avalon_sc_fifo.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_avalon_sc_fifo.v
+Z4 L0 21
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1588994089.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_avalon_sc_fifo.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_avalon_sc_fifo.v|
+!i113 1
+Z7 o-vlog01compat -work finalproject_soc
+Z8 !s92 -vlog01compat -work finalproject_soc +incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules
+Z9 tCvgOpt 0
+valtera_reset_controller
+Z10 !s110 1588994088
+!i10b 1
+!s100 z[H_hRO9gO=:^2E3_jWH03
+Ic`ETUMU>Z^Io7mOCb?[jg2
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_controller.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_controller.v
+L0 42
+R5
+r1
+!s85 0
+31
+Z11 !s108 1588994088.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_controller.v|
+!i113 1
+R7
+R8
+R9
+valtera_reset_synchronizer
+R10
+!i10b 1
+!s100 oWLYmSO[EOX[G0PgQhZ2=0
+IR7ICmC40I5TGm:[P>TYgJ2
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_synchronizer.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_synchronizer.v
+L0 24
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_synchronizer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/altera_reset_synchronizer.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc
+R10
+!i10b 1
+!s100 EbA@kZaz>@heJD<INd4kd0
+In67GXYjdHKOHFack?3lFh1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/finalproject_soc.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/finalproject_soc.v
+L0 6
+R5
+r1
+!s85 0
+31
+R11
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/finalproject_soc.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/finalproject_soc.v|
+!i113 1
+R7
+!s92 -vlog01compat -work finalproject_soc +incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis
+R9
+vfinalproject_soc_accum_b
+Z12 !s110 1588994096
+!i10b 1
+!s100 NRCVL?I]YZGzTF;^:dA:N2
+IR=MLQD74O9iV3oTciX=Pj3
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_accum_b.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_accum_b.v
+R4
+R5
+r1
+!s85 0
+31
+Z13 !s108 1588994096.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_accum_b.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_accum_b.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_jtag_uart_0
+R12
+!i10b 1
+!s100 V^1^BKeD^CMmOKzezfMaV1
+IWNZO=iOUaCPR^Ql4Q2Im^3
+R2
+R0
+R3
+Z14 8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_jtag_uart_0.v
+Z15 FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_jtag_uart_0.v
+L0 331
+R5
+r1
+!s85 0
+31
+R13
+Z16 !s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_jtag_uart_0.v|
+Z17 !s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_jtag_uart_0.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_jtag_uart_0_scfifo_r
+R12
+!i10b 1
+!s100 WUYcIMZaL;?j5H[G11_b_1
+IEg9j2Qz?99NT5Rbc]1OL71
+R2
+R0
+R3
+R14
+R15
+L0 243
+R5
+r1
+!s85 0
+31
+R13
+R16
+R17
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_jtag_uart_0_scfifo_w
+R12
+!i10b 1
+!s100 TAm@cmE;:Y7:znG6cE:_e1
+INKmQ2X?K3MbfkY[jJn7OX0
+R2
+R0
+R3
+R14
+R15
+L0 78
+R5
+r1
+!s85 0
+31
+R13
+R16
+R17
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_jtag_uart_0_sim_scfifo_r
+R12
+!i10b 1
+!s100 ]CIYDKzL?zZc2:Gc7a9NG2
+IJ<SZ@kAY8Ro>Ai?^d@d4F1
+R2
+R0
+R3
+R14
+R15
+L0 164
+R5
+r1
+!s85 0
+31
+R13
+R16
+R17
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_jtag_uart_0_sim_scfifo_w
+R12
+!i10b 1
+!s100 bDJoXjgGHUUMXdDgYJ47n3
+IeWEU=WaJ3[PD22go6WC0g3
+R2
+R0
+R3
+R14
+R15
+R4
+R5
+r1
+!s85 0
+31
+R13
+R16
+R17
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_keycode
+Z18 !s110 1588994095
+!i10b 1
+!s100 OXnCY3m464kd?ChM=U_kU2
+ID3ihhUF;6YJWl;:?HTCfF1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_keycode.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_keycode.v
+R4
+R5
+r1
+!s85 0
+31
+Z19 !s108 1588994095.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_keycode.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_keycode.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_mm_interconnect_0
+R1
+!i10b 1
+!s100 1dB61e;XP=CH8;k`1DbNE3
+IB7mTI_OL>JG]VcN3PAl?M2
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0.v
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_mm_interconnect_0_avalon_st_adapter
+R1
+!i10b 1
+!s100 OIm6G0o3kRToiQ9U=oV`o3
+IWS^naQLWCFZWj]S<_YQ3^1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0_avalon_st_adapter.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0_avalon_st_adapter.v
+L0 9
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0_avalon_st_adapter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_mm_interconnect_0_avalon_st_adapter.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0
+Z20 !s110 1588994092
+!i10b 1
+!s100 >GIhmI;E7g?T9nBbR^heD2
+IXhYZOc2ONF@?KCFUcPM8f3
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0.v
+L0 9
+R5
+r1
+!s85 0
+31
+Z21 !s108 1588994092.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu
+Z22 !s110 1588994093
+!i10b 1
+!s100 7mn4L;e4Z0hf7hj[`jlkR1
+IfoQ]NSa?9Eo8F<oFz1SYm1
+R2
+R0
+R3
+Z23 8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu.v
+Z24 FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu.v
+L0 2834
+R5
+r1
+!s85 0
+31
+Z25 !s108 1588994093.000000
+Z26 !s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu.v|
+Z27 !s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_debug_slave_sysclk
+Z28 !s110 1588994094
+!i10b 1
+!s100 5VPK?jeD7mfEhAM1^DgYZ3
+IO50^3CSfgHAFKlaRK9:Td3
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_sysclk.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_sysclk.v
+R4
+R5
+r1
+!s85 0
+31
+Z29 !s108 1588994094.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_sysclk.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_sysclk.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_debug_slave_tck
+R28
+!i10b 1
+!s100 omzVMQ>mKMi3SYa60n?DN2
+Ilbjj=0]6FUX2a[nA7QeK[1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_tck.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_tck.v
+R4
+R5
+r1
+!s85 0
+31
+R29
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_tck.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_tck.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_debug_slave_wrapper
+R18
+!i10b 1
+!s100 ?ek`cb0g6?c3jF8=SPBM@1
+IEBk`ASmhE`Gj]5CTV`mXm3
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_wrapper.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_wrapper.v
+R4
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_wrapper.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_debug_slave_wrapper.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_avalon_reg
+R22
+!i10b 1
+!s100 j`H09<Z=KaWD]zGdKA1cP1
+I:7m?LN`VC<BgHzn;Dff=]1
+R2
+R0
+R3
+R23
+R24
+L0 2023
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci
+R22
+!i10b 1
+!s100 c`ZN]`;bRfF74i?zG80>N3
+IdzFiK:=IkYU2W6nQOW?Gj2
+R2
+R0
+R3
+R23
+R24
+L0 2362
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_break
+R22
+!i10b 1
+!s100 ?4EmQ9<76<B<S<2N`gANA2
+IKLj;TZ3OAPaAlj8O1j3de2
+R2
+R0
+R3
+R23
+R24
+L0 295
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_compute_input_tm_cnt
+R22
+!i10b 1
+!s100 NgUZzWcF7D8eASEicM<^n3
+IGMbQQF__DQhjAc?_:k?F[0
+R2
+R0
+R3
+R23
+R24
+L0 1265
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_dbrk
+R22
+!i10b 1
+!s100 KRDK5e9@z^^hSehgL_5>Q3
+IYG]UImQ2jjiUMQ1H59SM=2
+R2
+R0
+R3
+R23
+R24
+L0 795
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_debug
+R22
+!i10b 1
+!s100 zMMo@aae3gCKQjY485bh_1
+I5LW8a;z_O6?MPIcJFhT@90
+R2
+R0
+R3
+R23
+R24
+L0 153
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_dtrace
+R22
+!i10b 1
+!s100 onML7llQ9f2K=S5nEmnh@1
+I^FK]VaoDG2OKQ6`P4?b:02
+R2
+R0
+R3
+R23
+R24
+L0 1183
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_fifo
+R22
+!i10b 1
+!s100 ?d2EiIR[7eliaFChTHGBm3
+I;E9dd6ISJ^XXF8h9eO;JN0
+R2
+R0
+R3
+R23
+R24
+L0 1427
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_fifo_cnt_inc
+R22
+!i10b 1
+!s100 L6KC4DImfiZ2n@1]CVJMJ2
+I_OS0nY7Hezz`AXCSEEX@b0
+R2
+R0
+R3
+R23
+R24
+L0 1380
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_fifo_wrptr_inc
+R22
+!i10b 1
+!s100 ZM`J<l>Hg]XS<4C_^V_^C3
+IYi[8DHaIVhKj3>8>6:8S42
+R2
+R0
+R3
+R23
+R24
+L0 1337
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_im
+R22
+!i10b 1
+!s100 6JCm::?Z94m5F<JR8@oDB1
+IkF=Pn;`W>8f6U@:im2MWE3
+R2
+R0
+R3
+R23
+R24
+L0 1936
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_itrace
+R22
+!i10b 1
+!s100 jYj[n`f]c^Q39E0FdQbb61
+I`4<Q5WNYiU47Do49W?ach0
+R2
+R0
+R3
+R23
+R24
+L0 982
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_pib
+R22
+!i10b 1
+!s100 _Q]DLl9Sa=15BmF2lB_gT1
+IgDz?DPB9a@[Q9AAZFLaaJ0
+R2
+R0
+R3
+R23
+R24
+L0 1913
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_td_mode
+R22
+!i10b 1
+!s100 :z[h5FF=Ao<1[P;?L<g6:2
+IU8I]jN72ViZEY>UcOBP=e1
+R2
+R0
+R3
+R23
+R24
+L0 1115
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_oci_xbrk
+R22
+!i10b 1
+!s100 FAP_U=JfiCBJP?]GA=g?H1
+I;LWDldQX2jg[a@Nmh:8791
+R2
+R0
+R3
+R23
+R24
+L0 588
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_ocimem
+R22
+!i10b 1
+!s100 26k8]k?JkRF1AO7H:LiP;2
+IIBC5^AXF`R@:l;[;?kb0K2
+R2
+R0
+R3
+R23
+R24
+L0 2181
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_nios2_performance_monitors
+R22
+!i10b 1
+!s100 @8;lOiRN3DOzF1RjG<>:M1
+ID0zm6:DGEiIn<`30ZeHZg3
+R2
+R0
+R3
+R23
+R24
+L0 2006
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_ociram_sp_ram_module
+R22
+!i10b 1
+!s100 l5=zMPPR=KfRQJDe?<;YN3
+IiQI6AeSFL`f5bADDY0^M62
+R2
+R0
+R3
+R23
+R24
+L0 2116
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_register_bank_a_module
+R22
+!i10b 1
+!s100 Cg9c@XVN<NU8V5kF>JRli3
+IJ=Iz;;H]caPRLPXD5jQ1_0
+R2
+R0
+R3
+R23
+R24
+R4
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_register_bank_b_module
+R22
+!i10b 1
+!s100 eU:a[GUHoMXLa20h?[>410
+IWz[g=BGUzI@[QUH>9MVZ^0
+R2
+R0
+R3
+R23
+R24
+L0 87
+R5
+r1
+!s85 0
+31
+R25
+R26
+R27
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_nios2_gen2_0_cpu_test_bench
+R18
+!i10b 1
+!s100 ZDeN7`lAz^4_[:L=:9QRz2
+I3N?bYU`N5H^697CQLZjK@1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_test_bench.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_test_bench.v
+R4
+R5
+r1
+!s85 0
+31
+R19
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_test_bench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_nios2_gen2_0_cpu_test_bench.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_onchip_memory2_0
+R20
+!i10b 1
+!s100 nGk>83V3:_K[98ag6z44@2
+IZKX;9SL]o<6^h1i;ajaE^0
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_onchip_memory2_0.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_onchip_memory2_0.v
+R4
+R5
+r1
+!s85 0
+31
+R21
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_onchip_memory2_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_onchip_memory2_0.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_otg_hpi_address
+R20
+!i10b 1
+!s100 Y3FKU3QHJAcmN62_FXFdl2
+IXYiKel]V;l>CH?ZNaXVck0
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_address.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_address.v
+R4
+R5
+r1
+!s85 0
+31
+R21
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_address.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_address.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_otg_hpi_cs
+Z30 !s110 1588994091
+!i10b 1
+!s100 <l=_DONaU`<i;:VeSkgeh3
+I5UOhDW8@Z11]DmaLX:09B0
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_cs.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_cs.v
+R4
+R5
+r1
+!s85 0
+31
+Z31 !s108 1588994091.000000
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_cs.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_cs.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_otg_hpi_data
+R30
+!i10b 1
+!s100 UB75gk^ES;`eW9VIPo_`P2
+IG;PX4][kU@1H5M2oWQU<i1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_data.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_data.v
+R4
+R5
+r1
+!s85 0
+31
+R31
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_data.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_otg_hpi_data.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram
+R30
+!i10b 1
+!s100 AJV9:F6j_nFlMeld?UAJ23
+I=bl6L4Hg4R:]7fk2j4g9U1
+R2
+R0
+R3
+Z32 8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram.v
+Z33 FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram.v
+L0 159
+R5
+r1
+!s85 0
+31
+Z34 !s108 1588994090.000000
+Z35 !s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram.v|
+Z36 !s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram_input_efifo_module
+R30
+!i10b 1
+!s100 6XY_iQ;9_4<YgOPDN71Y^2
+I1`lUN??=Sb>Ennf^J>e[P0
+R2
+R0
+R3
+R32
+R33
+R4
+R5
+r1
+!s85 0
+31
+R34
+R35
+R36
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram_pll
+Z37 !s110 1588994090
+!i10b 1
+!s100 DOLOb6Rfc=?cZ=UY52YTi3
+Iz3S3ffc^I64PXgKjL3[B`3
+R2
+R0
+R3
+Z38 8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram_pll.v
+Z39 FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram_pll.v
+L0 217
+R5
+r1
+!s85 0
+31
+R34
+Z40 !s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram_pll.v|
+Z41 !s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sdram_pll.v|
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram_pll_altpll_lqa2
+R37
+!i10b 1
+!s100 G_hIon_ci9Y=zZQTe0^de2
+IBQn7ibSRNkVWc5KzHZUPI0
+R2
+R0
+R3
+R38
+R39
+L0 130
+R5
+r1
+!s85 0
+31
+R34
+R40
+R41
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram_pll_dffpipe_l2c
+R37
+!i10b 1
+!s100 ]JWfM=7hFYMT@>6ai3[bF2
+IhVaN2`8]Mz]eWQG9l1Hdi3
+R2
+R0
+R3
+R38
+R39
+L0 37
+R5
+r1
+!s85 0
+31
+R34
+R40
+R41
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sdram_pll_stdsync_sv6
+R37
+!i10b 1
+!s100 4aOjm]Kd0LQi[]NXXDJBA3
+IOPY_WOAYBXIF_^A1VNHNM3
+R2
+R0
+R3
+R38
+R39
+L0 98
+R5
+r1
+!s85 0
+31
+R34
+R40
+R41
+!i113 1
+R7
+R8
+R9
+vfinalproject_soc_sysid_qsys_0
+R37
+!i10b 1
+!s100 >Vjn38X@;:?ECnNYz@RK]0
+I9RLIbVeHlZ_he8iT6Iz5<1
+R2
+R0
+R3
+8C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sysid_qsys_0.v
+FC:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sysid_qsys_0.v
+L0 34
+R5
+r1
+!s85 0
+31
+R34
+!s107 C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sysid_qsys_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|finalproject_soc|+incdir+C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules|C:/Users/HP/Documents/Github/ECE-385/FinalProject/Final_Project_Project_Files/finalproject_soc/synthesis/submodules/finalproject_soc_sysid_qsys_0.v|
+!i113 1
+R7
+R8
+R9

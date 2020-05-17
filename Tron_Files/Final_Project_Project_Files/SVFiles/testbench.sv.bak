@@ -1,0 +1,149 @@
+// module testbench();
+
+// timeunit 10ns;
+// timeprecision 1ns;
+
+// 	// inputs
+// 	logic [15:0] S;
+// 	logic Clk, Reset, Run, Continue;
+	
+// 	//outputs
+// 	logic [11:0] LED;
+// 	logic [6:0] HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7;
+// 	logic CE, UB, LB, OE, WE;
+// 	logic [19:0] ADDR;
+	
+// 	logic [15:0] MDR, MAR, PC, IR;
+	
+// 	//bus
+// 	wire [15:0] Data;
+	
+// lab6_toplevel top_level(.*);
+
+
+// initial begin: CLOCK_INIT
+// 	Clk = 0;
+// end
+
+// always begin: CLOCK_GEN
+// 	#1 Clk = ~Clk;
+// end
+
+// always begin: DIAGNOSTIC_OUT
+// 	#2 PC = top_level.my_slc.PCFF.Q;
+// 	MAR = top_level.my_slc.MARFF.Q;
+// 	MDR = top_level.my_slc.MDRFF.Q;
+// 	IR = top_level.my_slc.IRFF.Q;
+// end
+
+// initial begin: TEST_VECTORS
+// 	Reset = 0;
+// 	Run = 0;
+// 	Continue = 0;
+	
+// 	#2 Reset = 1;
+// 	#2 Run = 1;
+	
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;	
+// 	#2 Continue = 1;
+// 	#2 Continue = 0;	
+// end
+
+// endmodule
+
+module testbench();
+
+	timeunit 10ns;
+	timeprecision 1ns;
+
+	        logic   CLOCK_50,
+            logic   [3:0]  KEY,          //bit 0 is set up as Reset
+            logic [6:0]  HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7,
+             // VGA Interface 
+            logic [7:0] VGA_R,        //VGA Red
+                    	VGA_G,        //VGA Green
+                        VGA_B,        //VGA Blue
+            logic   	VGA_CLK,      //VGA Clock
+            			VGA_SYNC_N,   //VGA Sync signal
+                        VGA_BLANK_N,  //VGA Blank signal
+                    	VGA_VS,       //VGA virtical sync signal
+                        VGA_HS,       //VGA horizontal sync signal
+             // CY7C67200 Interface
+            wire  [15:0] OTG_DATA,     //CY7C67200 Data bus 16 Bits
+            logic [1:0]  OTG_ADDR,     //CY7C67200 Address 2 Bits
+            logic        OTG_CS_N,     //CY7C67200 Chip Select
+                         OTG_RD_N,     //CY7C67200 Write
+                         OTG_WR_N,     //CY7C67200 Read
+                         OTG_RST_N,    //CY7C67200 Reset
+                         OTG_INT,      //CY7C67200 Interrupt
+             // SDRAM Interface for Nios II Software
+            logic [12:0] DRAM_ADDR,    //SDRAM Address 13 Bits
+            wire  [31:0] DRAM_DQ,      //SDRAM Data 32 Bits
+            logic [1:0]  DRAM_BA,      //SDRAM Bank Address 2 Bits
+        	logic [3:0]  DRAM_DQM,     //SDRAM Data Mast 4 Bits
+            logic        DRAM_RAS_N,   //SDRAM Row Address Strobe
+                         DRAM_CAS_N,   //SDRAM Column Address Strobe
+                         DRAM_CKE,     //SDRAM Clock Enable
+                         DRAM_WE_N,    //SDRAM Write Enable
+                         DRAM_CS_N,    //SDRAM Chip Select
+                         DRAM_CLK,      //SDRAM Clock
+			logic SRAM_CE_N, SRAM_UB_N, SRAM_LB_N, SRAM_OE_N, SRAM_WE_N,  // Sram stuff
+			logic [19:0] SRAM_ADDR,
+			logic [15:0] SRAM_DQ,
+			logic [8:0] LEDG, LEDR
+
+	lab8 tp(.*);
+
+	always begin: CLOCK_GEN
+		#1 Clk = ~Clk;
+	end
+
+	initial begin: CLOCK_INIT
+		Clk = 0;
+	end
+
+//	
+	// always begin: MONITORING
+	// 	// Basic Testing Stuff
+		
+		
+	// 	end
+//Testing begins here
+
+	initial begin: TEST_VECTORS
+	
+		#2 keycode = 8'h28;
+		#2 keycode = 8'h28;
+//	#10	S			= 16'h0002;
+		
+ // XOR Test 
+// 		#2    Reset		= 0;
+// 		#2    Reset 	= 1;
+// 		#4    Run      = 0;
+// 		#4    Run      = 1;
+// 		      S        = 16'h0014;
+//		#4	Continue = 0;
+//		S        = 16'h0001;
+//		#10  Continue = 1;
+//		#4   Continue = 0;
+//		S        = 16'h0001;
+//		#4   Continue = 1;
+//		#10  Continue = 0;
+//		#2   Continue = 1;
+	
+	end
+endmodule 
