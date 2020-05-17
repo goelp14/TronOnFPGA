@@ -1,1 +1,0 @@
-All ascpects of the demo code works. We are supposed to get 5/5 points.
